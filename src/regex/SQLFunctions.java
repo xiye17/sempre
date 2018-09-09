@@ -59,6 +59,7 @@ public class SQLFunctions {
     String res = "L{" + predStr + "}";
     return res;
   };
+
   /*
    * public static String SelectFunc (String predStr, String groupingStr) { String
    * res = "selectFuncWithGrouping(" + predStr + ", " + groupingStr + ")"; return

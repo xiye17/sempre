@@ -1,8 +1,9 @@
 (rule $ROOT ($Regex) (IdentityFn))
 
-#(rule $Regex ($CC) (IdentityFn))
-(rule $Regex ($Operator $CC) (JoinFn forward))
+(rule $Regex ($CC) (IdentityFn))
+(rule $Regex ($OpContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.contain (var y)))))
 
-(rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.regex)))
+(rule $OpContain ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.opcontain)))
 
-(rule $Operator ($PHRASE) (SimpleLexiconFn (type (-> fb:type.regex fb:type.regex))))
+(rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.cc)))
+

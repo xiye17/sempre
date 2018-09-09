@@ -1,2 +1,3 @@
-{"lexeme" : "a", "formula" : "fb:en.m0", "type" : "fb:type.regex"}
-{"lexeme" : "b", "formula" : "fb:en.word", "type" : "(-> fb:type.regex fb:type.regex)"}
+{"lexeme" : "letter", "formula" : "fb:en.let", "type" : "fb:type.cc"}
+{"lexeme" : "contain", "formula" : "fb:en.contain", "type" : "fb:type.opcontain"}
+{"lexeme" : "have", "formula" : "fb:en.contain", "type" : "fb:type.opcontain"}
