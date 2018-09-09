@@ -1,3 +1,8 @@
 {"lexeme" : "letter", "formula" : "fb:en.let", "type" : "fb:type.cc"}
-{"lexeme" : "contain", "formula" : "fb:en.contain", "type" : "fb:type.opcontain"}
-{"lexeme" : "have", "formula" : "fb:en.contain", "type" : "fb:type.opcontain"}
+{"lexeme" : "capital", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
+{"lexeme" : "vowel", "formula" : "fb:en.vow", "type" : "fb:type.cc"}
+{"lexeme" : "as well as", "formula" : "fb:en.and", "type" : "fb:type.op.and"}
+{"lexeme" : "and", "formula" : "fb:en.and", "type" : "fb:type.op.and"}
+{"lexeme" : "have", "formula" : "fb:en.contain", "type" : "fb:type.op.contain"}
+{"lexeme" : "contain", "formula" : "fb:en.contain", "type" : "fb:type.op.contain"}
+{"lexeme" : "word", "formula" : "fb:en.word", "type" : "fb:type.op.word"}

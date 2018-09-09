@@ -2,8 +2,16 @@
 
 (rule $Regex ($CC) (IdentityFn))
 (rule $Regex ($OpContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.contain (var y)))))
+(rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var x) (var z))))))
+(rule $Regex ($Ignored $Regex) (SelectFn 1))
+(rule $Regex ($Regex $Ignored) (SelectFn 0))
 
-(rule $OpContain ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.opcontain)))
+(rule $OpContain ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.contain)))
+(rule $OpAnd ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.and)))
+(rule $OpWord ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.word)))
 
 (rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.cc)))
+(rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.cc)))
+
+(rule $Ignored ($PHRASE) (ConstantFn null))
 
