@@ -1,0 +1,83 @@
+# ROOT
+(rule $ROOT ($Query) (IdentityFn))
+
+# Query
+(rule $Query ($Projection) (IdentityFn))
+
+# Projection
+# Projection -> key_word col Join
+(rule $Projection ($ProjectionKeyWords $Columns $Join) (lambda w (lambda x (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.ProjectFunc (var x) (var z))))))
+
+# ProjectionKeyWords
+(rule $ProjectionKeyWords ($PHRASE) (SimpleLexiconFn (type ProjectQuery)))
+
+# Join
+# Join -> key_word table pred | key_word table
+(rule $Join ($JoinKeyWords $Tables $Selection) (lambda x (lambda y (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.JoinFunc (var y) (var z))))))
+(rule $Join ($JoinKeyWords $Tables) (lambda x (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.JoinWithoutPredicateFn (var y)))))
+
+# JoinKeyWords
+(rule $JoinKeyWords ($PHRASE) (SimpleLexiconFn (type JoinQuery)))
+
+# Selection
+(rule $Selection ($SelectionKeyWords $Predicate) (lambda x (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.SelectFunc (var y)))))
+#(rule $Selection ($SelectionKeyWords $Predicate $Grouping) (lambda x (lambda y (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.selectFunc (var y) (var z))))))
+
+# SelectionKeyWords
+(rule $SelectionKeyWords ($PHRASE) (SimpleLexiconFn (type SelectQuery)))
+
+# Predicate
+(rule $Predicate ($SinglePredicate) (IdentityFn))
+(rule $Predicate ($SinglePredicate $LogicOperandKeyWords $Predicate) (lambda x (lambda y (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.combinePredicatesFn (var x) (var y) (var z))))))
+
+# SinglePredicate
+(rule $SinglePredicate ($SingleColumn $OperandKeyWords $Value) (lambda x (lambda y (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.generateSinglePredicateFn (var x) (var y) (var z))))))
+(rule $SinglePredicate ($SingleColumn $OperandKeyWords $SingleColumn) (lambda x (lambda y (lambda z (call edu.stanford.nlp.sempre.SqlQueryMethods.generateSingleJoinConditionFn (var x) (var y) (var z))))))
+
+
+# Grouping
+#(rule $Grouping ($GroupByKeyWords $Columns) (lambda x (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.groupingFunc (var y)))))
+
+
+# GroupByKeyWords
+#(rule $GroupByKeyWords ($PHRASE) (SimpleLexiconFn (type GroupByKeyWords)))
+
+# OperandKeyWords
+(rule $OperandKeyWords ($PHRASE) (SimpleLexiconFn (type OperandWords)))
+#(rule $OperandKeyWords ($PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.operandKeyWord (var x))))
+
+# LogicOperandKeyWords
+(rule $LogicOperandKeyWords ($PHRASE) (SimpleLexiconFn (type LogicOperandWords)))
+#(rule $LogicOperandKeyWords ($PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.logicOperandKeyWord (var x))))
+
+# Value
+#(rule $Value ($PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.VALUE (var x))))
+(rule $Value ($PHRASE) (IdentityFn))
+
+# Tables
+(rule $Tables ($SingleTable) (IdentityFn))
+(rule $Tables ($SingleTable $ListGeneratorKeyWords $Tables) (lambda x ( lambda z (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.JoinTablesFn (var x) (var y))))))
+
+# Table
+(rule $SingleTable ($LEMMA_PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.TABLE (var x))))
+
+# Columns
+(rule $Columns ($SingleColumn) (IdentityFn))
+(rule $Columns ($SingleColumn $ListGeneratorKeyWords $Columns) (lambda x ( lambda z (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.CombineColumnsFn (var x) (var y))))))
+
+# ListGeneratorKeyWords
+(rule $ListGeneratorKeyWords ($PHRASE) (SimpleLexiconFn (type ListGenerationWords)))
+
+# SingleColumn
+(rule $SingleColumn ($SingleColName) (IdentityFn))
+(rule $SingleColumn ($AgrFunc $ModifierAggrWord $SingleColName) (lambda x (lambda z (lambda y (call edu.stanford.nlp.sempre.SqlQueryMethods.AggregateFn (var x) (var y))))))
+
+# AgrFunc
+#(rule $AgrFunc ($PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.AGGR (var x) )))
+(rule $AgrFunc ($PHRASE) (SimpleLexiconFn (type AgrFuncWords)))
+
+# SingleColName
+(rule $SingleColName ($LEMMA_PHRASE) (lambda x (call edu.stanford.nlp.sempre.SqlQueryMethods.COLUMN (var x) ))) 
+
+# ModifierKeyWord
+(rule $ModifierAggrWord ($PHRASE) (SimpleLexiconFn (type ModifierKeyWords)))

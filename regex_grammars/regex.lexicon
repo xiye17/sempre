@@ -1,0 +1,2 @@
+{"lexeme" : "a", "formula" : "fb:en.m0", "type" : "fb:type.regex"}
+{"lexeme" : "b", "formula" : "fb:en.word", "type" : "(-> fb:type.regex fb:type.regex)"}

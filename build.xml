@@ -127,4 +127,16 @@
     </delete>
   </target>
 
+
+
+
+  <target name="regex" depends="core">
+    <echo message="Compiling ${ant.project.name}: regex"/>
+    <mkdir dir="${classes}"/>
+    <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
+    </javac>
+    <jar destfile="${libsempre}/sempre-regex.jar" basedir="${classes}" includes="regex/**"/>
+
+  </target>
+
 </project>

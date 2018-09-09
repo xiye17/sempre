@@ -1,0 +1,8 @@
+(rule $ROOT ($Regex) (IdentityFn))
+
+#(rule $Regex ($CC) (IdentityFn))
+(rule $Regex ($Operator $CC) (JoinFn forward))
+
+(rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.regex)))
+
+(rule $Operator ($PHRASE) (SimpleLexiconFn (type (-> fb:type.regex fb:type.regex))))
