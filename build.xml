@@ -8,8 +8,10 @@
   <property name="classes" location="${root}/classes"/>
   <property name="lib" location="${root}/lib"/>
   <property name="libsempre" location="${root}/libsempre"/>
+  <property name="libregex" location="${root}/libregex"/>
   <path id="lib.path">
     <fileset dir="${libsempre}" includes="*.jar"/>
+    <fileset dir="${libregex}" includes="*.jar"/>
     <fileset dir="${lib}" includes="*.jar"/>
   </path>
 
@@ -135,7 +137,7 @@
     <mkdir dir="${classes}"/>
     <javac srcdir="${src}" destdir="${classes}" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
     </javac>
-    <jar destfile="${libsempre}/sempre-regex.jar" basedir="${classes}" includes="regex/**"/>
+    <jar destfile="${libregex}/sempre-regex.jar" basedir="${classes}" includes="regex/**"/>
 
   </target>
 

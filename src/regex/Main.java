@@ -14,7 +14,7 @@ import fig.exec.Execution;
 
 public class Main implements Runnable {
 
-  public String filePath = "benchmarks/test/src.txt";
+  public String filePath = "regex/data/turk/src-train.txt";
 
   @Override
   public void run() {
@@ -39,8 +39,10 @@ public class Main implements Runnable {
         int indent = LogInfo.getIndLevel();
         try {
 
-          master.processQuery(session, line);
+          Master.Response response = master.processQuery(session, line);
 
+          // get derivations from response 
+          
         } catch (Throwable t) {
 
           while (LogInfo.getIndLevel() > indent)
