@@ -45,3 +45,5 @@ interactive/.ipynb_checkpoints
 community-server/data
 community-server/data-backup
 /bin/
+
+libregex

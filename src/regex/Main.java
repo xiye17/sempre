@@ -3,9 +3,11 @@ package regex;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.List;
 
 import edu.stanford.nlp.sempre.Builder;
 import edu.stanford.nlp.sempre.Dataset;
+import edu.stanford.nlp.sempre.Derivation;
 import edu.stanford.nlp.sempre.Learner;
 import edu.stanford.nlp.sempre.Master;
 import edu.stanford.nlp.sempre.Session;
@@ -14,7 +16,7 @@ import fig.exec.Execution;
 
 public class Main implements Runnable {
 
-  public String filePath = "regex/data/turk/src-train.txt";
+  public String filePath = "regex/data/test/src-train.txt";
 
   @Override
   public void run() {
@@ -42,7 +44,23 @@ public class Main implements Runnable {
           Master.Response response = master.processQuery(session, line);
 
           // get derivations from response 
+          // UNCOMMENT this to see how it prints 
+
+//          List<Derivation> derivations = response.ex.getPredDerivations();
+//
+//          for (Derivation derivation : derivations) {
+
           
+          // This prints: 
+          // (name "contain(fb:en.let)") --> we want contain(fb:en.let) [extract the substring from first space to last "] 
+          // (name fb:en.let) --> we want fb:en.let 
+          //            System.out.println(derivation.value);
+
+//            System.out.println(derivation);
+//          }
+//
+//          assert false;
+
         } catch (Throwable t) {
 
           while (LogInfo.getIndLevel() > indent)
