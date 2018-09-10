@@ -9,8 +9,8 @@ import regex.SpecLanguage.Symbol;
 
 public class Main {
 
-  public static String turkInputFilePath = "regex/data/turk/targ-train.txt";
-  public static String turkOutputFilePath = "regex/data/turk/spec-train.txt";
+  public static String turkInputFilePath = "regex/data/turk/targ-test.txt";
+  public static String turkOutputFilePath = "regex/data/turk/spec-test.txt";
 
   public static void main(String[] args) {
 
@@ -57,7 +57,7 @@ public class Main {
 
           System.out.println("Output: " + spec);
 
-          sb.append(spec);
+          sb.append(spec.toSempreName());
 
           line = br.readLine();
 

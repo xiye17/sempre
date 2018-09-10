@@ -4,7 +4,7 @@ package regex;
 // Specification language grammar 
 //
 // Phi := 
-// <NUM> | <LET> | ... 
+// <NUM> | <LET> | <ANY> | <VOW> | <CAP> | <LOW> | <M0> | <M1> | <M2> | <M3> 
 // | Contains( Phi ) 
 // | StartsWith( Phi ) 
 // | EndsWith( Phi ) 
@@ -27,7 +27,7 @@ public class SpecLanguage {
     @Override
     public abstract String toString();
 
-//    public abstract String toSempreName();
+    public abstract String toSempreName();
 
   }
 
@@ -39,7 +39,7 @@ public class SpecLanguage {
 
   }
 
-// <NUM> ... 
+  // <NUM> ... 
   public static final class CharClass extends TerminalSymbol {
 
     public final String name;
@@ -67,15 +67,47 @@ public class SpecLanguage {
       return this.name;
     }
 
-//    @Override
-//    public String toSempreName() {
-//      // TODO
-//      return null;
-//    }
+    @Override
+    public String toSempreName() {
+
+      String ret = null;
+
+      if ("<NUM>".equals(this.name)) {
+        ret = "fb:en.num";
+      } else if ("<CAP>".equals(this.name)) {
+        ret = "fb:en.cap";
+      } else if ("<VOW>".equals(this.name)) {
+        ret = "fb:en.vow";
+      } else if ("<LET>".equals(this.name)) {
+        ret = "fb:en.let";
+      } else if ("<LOW>".equals(this.name)) {
+        ret = "fb:en.low";
+      } else if ("<ANY>".equals(this.name)) {
+        ret = "fb:en.any";
+      } else if ("<M0>".equals(this.name)
+
+          || "<M1>".equals(this.name)
+
+          || "<M2>".equals(this.name)
+
+          || "<M3>".equals(this.name)) {
+        ret = "fb:en.const";
+      } else {
+
+        System.out.println(this.name);
+        throw new RuntimeException();
+
+      }
+
+      assert ret != null;
+
+      return ret;
+
+    }
 
   }
 
-// Contains( Phi ) 
+  // Contains( Phi ) 
   public static final class Contains extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -103,9 +135,14 @@ public class SpecLanguage {
       return "Contains(" + this.arg0 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "contain(" + this.arg0.toSempreName() + ")";
+    }
+
   }
 
-// StartsWith( Phi ) 
+  // StartsWith( Phi ) 
   public static final class StartsWith extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -133,9 +170,14 @@ public class SpecLanguage {
       return "StartsWith(" + this.arg0 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "startwith(" + this.arg0.toSempreName() + ")";
+    }
+
   }
 
-// EndsWith( Phi ) 
+  // EndsWith( Phi ) 
   public static final class EndsWith extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -163,9 +205,14 @@ public class SpecLanguage {
       return "EndsWith(" + this.arg0 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "endwith(" + this.arg0.toSempreName() + ")";
+    }
+
   }
 
-// Repeat( Phi, INT ) 
+  // Repeat( Phi, INT ) 
   public static final class Repeat extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -195,9 +242,14 @@ public class SpecLanguage {
       return "Repeat(" + this.arg0 + "," + this.arg1 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "repeat(" + this.arg0.toSempreName() + "," + this.arg1 + ")";
+    }
+
   }
 
-// FollowedBy( Phi, Phi ) 
+  // FollowedBy( Phi, Phi ) 
   public static final class FollowedBy extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -227,9 +279,14 @@ public class SpecLanguage {
       return "FollowedBy(" + this.arg0 + "," + this.arg1 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "followedby(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
+    }
+
   }
 
-// Not( Phi ) 
+  // Not( Phi ) 
   public static final class Not extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -257,9 +314,14 @@ public class SpecLanguage {
       return "Not(" + this.arg0 + ")";
     }
 
+    @Override
+    public String toSempreName() {
+      return "not(" + this.arg0.toSempreName() + ")";
+    }
+
   }
 
-// And( Phi, Phi ) 
+  // And( Phi, Phi ) 
   public static final class And extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -289,9 +351,14 @@ public class SpecLanguage {
       return this.arg0 + "&" + this.arg1;
     }
 
+    @Override
+    public String toSempreName() {
+      return "and(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
+    }
+
   }
 
-// Or( Phi, Phi ) 
+  // Or( Phi, Phi ) 
   public static final class Or extends NonterminalSymbol {
 
     public final Symbol arg0;
@@ -319,6 +386,11 @@ public class SpecLanguage {
     @Override
     public String toString() {
       return this.arg0 + "|" + this.arg1;
+    }
+
+    @Override
+    public String toSempreName() {
+      return "or(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
     }
 
   }
