@@ -11,7 +11,6 @@
 (rule $OpWord ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.word)))
 
 (rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.cc)))
-(rule $CC ($PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 
 (rule $Ignored ($PHRASE) (ConstantFn null))
 
