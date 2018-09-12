@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 import regex.SpecLanguage.Symbol;
 
-public class Main {
+public class DataMain {
 
   public static String turkInputFilePath = "regex/data/turk/targ-test.txt";
   public static String turkOutputFilePath = "regex/data/turk/spec-test.txt";
@@ -18,7 +18,7 @@ public class Main {
 
   public static void main(String[] args) {
 
-    Main main = new Main();
+    DataMain main = new DataMain();
 
 //    main.generateSpec(turkInputFilePath, turkOutputFilePath);
 
@@ -57,13 +57,19 @@ public class Main {
 
           System.out.println("Output: " + spec);
 
-          sb.append(spec.toSempreName());
+          String sempreName = spec.toSempreName();
+
+          System.out.println("Sempre: " + sempreName);
+
+          sb.append(sempreName);
 
           line = br.readLine();
 
           if (line == null || line.isEmpty()) break;
 
           sb.append("\n");
+
+//          if (i == 5) assert false;
 
         }
 

@@ -233,7 +233,14 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements DeepR
 
     Symbol arg0 = (Symbol) visit(ctx.regex());
 
-    StartsWith ret = new StartsWith(arg0);
+    Symbol ret = null;
+//    StartsWith ret = new StartsWith(arg0);
+    if (arg0 instanceof FollowedBy) {
+      ret = new Contains(arg0);
+    } else {
+      assert false;
+//      ret = new StartsWith(arg0);
+    }
 
     return ret;
 
@@ -245,7 +252,14 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements DeepR
 
     Symbol arg0 = (Symbol) visit(ctx.regex());
 
-    StartsWith ret = new StartsWith(arg0);
+    Symbol ret = null;
+//  StartsWith ret = new StartsWith(arg0);
+    if (arg0 instanceof FollowedBy) {
+      assert false;
+//      ret = new Contains(arg0);
+    } else {
+      ret = new StartsWith(arg0);
+    }
 
     return ret;
 
@@ -269,7 +283,7 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements DeepR
   public Object visitFollowedBy(FollowedByContext ctx) {
 
     Symbol arg0 = mkCharClass(ctx.CC(0).getText());
-    Symbol arg1 = mkCharClass(ctx.CC(0).getText());
+    Symbol arg1 = mkCharClass(ctx.CC(1).getText());
 
     FollowedBy ret = new FollowedBy(arg0, arg1);
 
