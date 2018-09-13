@@ -21,65 +21,16 @@ import fig.basic.LogInfo;
 import fig.exec.Execution;
 
 public class Main implements Runnable {
-
-//  public String filePath = "regex/data/test/src-train.txt";
-//  public String src_filePath = "regex/data/test/src-t-2.txt";
-  public String src_filePath = "";
-//  public String filePath = "regex/data/test/src-c.txt";
-//  public String gt_filePath = "regex/data/test/spec-train.txt";
-//  public String spec_filePath = "regex/data/test/spec-t-2.txt";
-  public String spec_filePath = "";
-//  public String ig_filePath = "regex/data/test/ignore.txt";
-//  public String noCoverage_filePath = "regex/data/test/noCoverage.txt";
-  public String noCoverage_filePath = "";
-//  public String stat_filePath = "regex/data/test/stats.txt";
-  public String stat_filePath = "";
+    
   
-  int currIndx = 1;
-
-  @Override
-  public void run() {
-   
-    Builder builder = new Builder();
-    builder.build();
-
-    Dataset dataset = new Dataset();
-    dataset.read();
-
-    Learner learner = new Learner(builder.parser, builder.params, dataset);
-    learner.learn();
-
-    Master master = new Master(builder);
-
-    Session session = master.getSession("stdin");
+  public void runPrediction(String filePath, String trainSize, String trainMode, int beamSize, Master master, Session session) {
     
-    // findout file path
-    String dPath = Dataset.opts.inPaths.get(0).getSecond();
-    if(dPath.equals("regex/data/turk_1k/regex.examples")) {
-      src_filePath = "regex/data/turk_1k/src-test.txt";
-      spec_filePath = "regex/data/turk_1k/spec-test.txt";
-      
-      noCoverage_filePath = "b" + Parser.opts.beamSize + "ds1k_noCoverage";
-      stat_filePath = "b" + Parser.opts.beamSize + "ds1k_stat";
-      
-    }
+    int currIndx = 1;
     
-    else if(dPath.equals("regex/data/turk/regex.examples")) {
-      src_filePath = "regex/data/turk/src-test.txt";
-      spec_filePath = "regex/data/turk/spec-test.txt";
-      
-      noCoverage_filePath = "b" + Parser.opts.beamSize + "ds10k_noCoverage";
-      stat_filePath = "b" + Parser.opts.beamSize + "ds10k_stat";
-    }
-    // for testing 
-    else if(dPath.equals("regex/data/t/regex.examples")) {
-      src_filePath = "regex/data/t/src-test.txt";
-      spec_filePath = "regex/data/t/spec-test.txt";
-      
-      noCoverage_filePath = "b" + Parser.opts.beamSize + "ds1k_noCoverage";
-      stat_filePath = "b" + Parser.opts.beamSize + "ds1k_stat";
-      
-    }
+    String src_filePath = filePath + "src-" + trainMode + ".txt";
+    String spec_filePath = filePath + "spec-" + trainMode + ".txt";
+    String noCoverage_filePath = "b" + beamSize + "ds" + trainSize + "_noCoverage_" + trainMode;
+    String stat_filePath = "b" + beamSize + "ds" + trainSize + "_stat_" + trainMode;
     
     int coverageCount = 0;
     int accurateCount = 0;
@@ -196,7 +147,59 @@ public class Main implements Runnable {
     catch(Exception e) {
       e.printStackTrace();
     }
+    
+    System.out.println("======== Predict " + trainMode + " Complete =========");
+    
+  }
 
+  @Override
+  public void run() {
+   
+    Builder builder = new Builder();
+    builder.build();
+
+    Dataset dataset = new Dataset();
+    dataset.read();
+
+    Learner learner = new Learner(builder.parser, builder.params, dataset);
+    learner.learn();
+    
+    System.out.println("======== Learning Complete =========");
+
+    Master master = new Master(builder);
+
+    Session session = master.getSession("stdin");
+    
+    String filePath = "";
+    String trainSize = "";
+    
+    // findout file path
+    String dPath = Dataset.opts.inPaths.get(0).getSecond();
+    
+    if(dPath.equals("regex/data/turk_1k/regex.examples")) {
+      filePath = "regex/data/turk_1k/";
+      trainSize = "1k";
+    }
+    
+    else if(dPath.equals("regex/data/turk/regex.examples")) {
+      filePath = "regex/data/turk/";
+      trainSize = "10k";
+    }
+    // for testing 
+    else if(dPath.equals("regex/data/t/regex.examples")) {
+      filePath = "regex/data/t/";
+      trainSize = "10";
+    }
+    else if(dPath.equals("regex/data/t/regex100.examples")) {
+      filePath = "regex/data/t";
+      trainSize = "100";
+    }
+    
+    //runPrediction(String filePath, String trainSize, String trainMode, int beamSize, Master master, Session session) 
+    runPrediction(filePath, trainSize, "train", Parser.opts.beamSize, master, session);
+    runPrediction(filePath, trainSize, "test", Parser.opts.beamSize, master, session);
+    
+    System.out.println("======== Prediction Complete =========");
   }
 
   public static void main(String[] args) {
