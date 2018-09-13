@@ -35,5 +35,5 @@
 (rule $CC ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 (rule $INT ($PHRASE) (NumberFn))
 
-(rule $Ignored ($PHRASE) (ConstantFn null))
+(rule $Ignored ($TOKEN) (ConstantFn null))
 
