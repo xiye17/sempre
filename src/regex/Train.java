@@ -24,9 +24,21 @@ public class Train implements Runnable {
 
   public static void main(String[] args) {
 
-    Execution.execDir = "./tmplog/";
+    Train t = new Train();
+    // parse our own arguments 
+    {
+      String execDir = args[args.length - 1];
 
-    Execution.run(args, "Train", new Train(), Master.getOptionsParser());
+      Execution.execDir = execDir;
+    }
+
+    // parse sempre arguments and run 
+    {
+      String[] args1 = new String[args.length - 1];
+      System.arraycopy(args, 0, args1, 0, args.length - 1);
+      Execution.run(args1, "Train", t, Master.getOptionsParser());
+    }
+
   }
 
 }
