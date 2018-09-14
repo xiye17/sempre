@@ -29,6 +29,10 @@ public class SpecLanguage {
 
     public abstract String toSempreName();
 
+    public abstract String toDeepRegexName();
+
+    public abstract String toRegExp();
+
   }
 
   public static abstract class TerminalSymbol extends Symbol {
@@ -105,6 +109,82 @@ public class SpecLanguage {
 
     }
 
+    @Override
+    public String toDeepRegexName() {
+
+      String ret = null;
+
+      if ("<NUM>".equals(this.name)) {
+        ret = "<NUM>";
+      } else if ("<CAP>".equals(this.name)) {
+        ret = "<CAP>";
+      } else if ("<VOW>".equals(this.name)) {
+        ret = "<VOW>";
+      } else if ("<LET>".equals(this.name)) {
+        ret = "<LET>";
+      } else if ("<LOW>".equals(this.name)) {
+        ret = "<LOW>";
+      } else if ("<ANY>".equals(this.name)) {
+        ret = ".";
+      } else if ("<M0>".equals(this.name)) {
+        ret = "<M0>";
+      } else if ("<M1>".equals(this.name)) {
+        ret = "<M1>";
+      } else if ("<M2>".equals(this.name)) {
+        ret = "<M2>";
+      } else if ("<M3>".equals(this.name)) {
+        ret = "<M3>";
+      } else {
+
+        System.out.println(this.name);
+        throw new RuntimeException();
+
+      }
+
+      assert ret != null;
+
+      return ret;
+
+    }
+
+    @Override
+    public String toRegExp() {
+
+      String ret = null;
+
+      if ("<NUM>".equals(this.name)) {
+        ret = "[0-9]";
+      } else if ("<CAP>".equals(this.name)) {
+        ret = "[A-Z]";
+      } else if ("<VOW>".equals(this.name)) {
+        ret = "[AEIOUaeiou]";
+      } else if ("<LET>".equals(this.name)) {
+        ret = "[A-Za-z]";
+      } else if ("<LOW>".equals(this.name)) {
+        ret = "[a-z]";
+      } else if ("<ANY>".equals(this.name)) {
+        ret = ".";
+      } else if ("<M0>".equals(this.name)) {
+        ret = "M0";
+      } else if ("<M1>".equals(this.name)) {
+        ret = "M1";
+      } else if ("<M2>".equals(this.name)) {
+        ret = "M2";
+      } else if ("<M3>".equals(this.name)) {
+        ret = "M3";
+      } else {
+
+        System.out.println(this.name);
+        throw new RuntimeException();
+
+      }
+
+      assert ret != null;
+
+      return ret;
+
+    }
+
   }
 
   // Contains( Phi ) 
@@ -138,6 +218,16 @@ public class SpecLanguage {
     @Override
     public String toSempreName() {
       return "contain(" + this.arg0.toSempreName() + ")";
+    }
+
+    @Override
+    public String toDeepRegexName() {
+      return "contain( " + this.arg0.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "((.)*)(" + this.arg0.toRegExp() + ")((.)*)";
     }
 
   }
@@ -175,6 +265,16 @@ public class SpecLanguage {
       return "startwith(" + this.arg0.toSempreName() + ")";
     }
 
+    @Override
+    public String toDeepRegexName() {
+      return "startwith( " + this.arg0.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "(" + this.arg0.toRegExp() + ")((.)*)";
+    }
+
   }
 
   // EndsWith( Phi ) 
@@ -208,6 +308,16 @@ public class SpecLanguage {
     @Override
     public String toSempreName() {
       return "endwith(" + this.arg0.toSempreName() + ")";
+    }
+
+    @Override
+    public String toDeepRegexName() {
+      return "endwith( " + this.arg0.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "((.)*)(" + this.arg0.toRegExp() + ")";
     }
 
   }
@@ -247,6 +357,16 @@ public class SpecLanguage {
       return "repeat(" + this.arg0.toSempreName() + "," + this.arg1 + ")";
     }
 
+    @Override
+    public String toDeepRegexName() {
+      return "repeat( " + this.arg0.toDeepRegexName() + " " + this.arg1 + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "(" + this.arg0.toRegExp() + "){" + this.arg1 + ",}";
+    }
+
   }
 
   // FollowedBy( Phi, Phi ) 
@@ -284,6 +404,16 @@ public class SpecLanguage {
       return "followedby(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
     }
 
+    @Override
+    public String toDeepRegexName() {
+      return "followedby( " + this.arg0.toDeepRegexName() + " " + this.arg1.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "(" + this.arg0.toRegExp() + ")(" + this.arg1.toRegExp() + ")";
+    }
+
   }
 
   // Not( Phi ) 
@@ -317,6 +447,16 @@ public class SpecLanguage {
     @Override
     public String toSempreName() {
       return "not(" + this.arg0.toSempreName() + ")";
+    }
+
+    @Override
+    public String toDeepRegexName() {
+      return "not( " + this.arg0.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "~(" + this.arg0.toRegExp() + ")";
     }
 
   }
@@ -356,6 +496,16 @@ public class SpecLanguage {
       return "and(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
     }
 
+    @Override
+    public String toDeepRegexName() {
+      return "and( " + this.arg0.toDeepRegexName() + " " + this.arg1.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "(" + this.arg0.toRegExp() + ")&(" + this.arg1.toRegExp() + ")";
+    }
+
   }
 
   // Or( Phi, Phi ) 
@@ -391,6 +541,16 @@ public class SpecLanguage {
     @Override
     public String toSempreName() {
       return "or(" + this.arg0.toSempreName() + "," + this.arg1.toSempreName() + ")";
+    }
+
+    @Override
+    public String toDeepRegexName() {
+      return "or( " + this.arg0.toDeepRegexName() + " " + this.arg1.toDeepRegexName() + " )";
+    }
+
+    @Override
+    public String toRegExp() {
+      return "(" + this.arg0.toRegExp() + ")|(" + this.arg1.toRegExp() + ")";
     }
 
   }

@@ -9,24 +9,101 @@ import regex.SpecLanguage.Symbol;
 
 public class DataMain {
 
-  public static String turkInputFilePath = "regex/data/turk/targ-test.txt";
-  public static String turkOutputFilePath = "regex/data/turk/spec-test.txt";
+  public static String turkInputFilePath = "../deep-regex/deep-regex-model/data_turk_eval_turk_spec/targ-test.txt";
+  public static String turkOutputFilePath = "../deep-regex/deep-regex-model/data_turk_eval_turk_spec/spec-test.txt";
 
-  public static String utteranceFilePath = "regex/data/turk/utterance.txt";
-  public static String specFilePath = "regex/data/turk/spec.txt";
-  public static String turkExampleFilePath = "regex/data/turk/regex.examples";
+  public static String utteranceFilePath = "regex/data/turk_1k/utterance.txt";
+  public static String specFilePath = "regex/data/turk_1k/spec.txt";
+  public static String turkExampleFilePath = "regex/data/turk_1k/regex.examples";
 
   public static void main(String[] args) {
 
     DataMain main = new DataMain();
 
-//    main.generateSpec(turkInputFilePath, turkOutputFilePath);
+//    main.generateSempreSpec(turkInputFilePath, turkOutputFilePath);
 
-    main.generateTrainExample(utteranceFilePath, specFilePath, turkExampleFilePath);
+    main.generateDeepRegexSpec(turkInputFilePath, turkOutputFilePath);
+
+//    main.generateTrainExample(utteranceFilePath, specFilePath, turkExampleFilePath);
 
   }
 
-  public void generateSpec(String inputFilePath, String outputFilePath) {
+  public void generateDeepRegexSpec(String inputFilePath, String outputFilePath) {
+
+    Generator generator = new Generator();
+
+    StringBuilder sb = new StringBuilder();
+
+    // convert data 
+    {
+      try (BufferedReader br = new BufferedReader(new FileReader(new File(inputFilePath)))) {
+
+        int i = 1;
+
+        for (String line = br.readLine(); line != null;) {
+
+          line = line.replaceAll(" ", "");
+
+          System.out.println("--------------------------");
+
+          System.out.println("Process line " + i ++);
+
+          System.out.println("Input: " + line);
+
+          // change [<NUM>] to <NUM> 
+          line = line.replace("[<", "<");
+          line = line.replace(">]", ">");
+
+          // convert to specification 
+          Symbol spec = (Symbol) generator.generate(line);
+
+          System.out.println("Output: " + spec);
+
+          String deepRegexName = spec.toDeepRegexName();
+
+          System.out.println("DeepRegex: " + deepRegexName);
+
+          sb.append(deepRegexName);
+
+          line = br.readLine();
+
+          if (line == null || line.isEmpty()) break;
+
+          sb.append("\n");
+
+        }
+
+        br.close();
+
+      } catch (Exception exception) {
+
+        exception.printStackTrace();
+
+      }
+
+    }
+
+    // write output 
+    {
+      try {
+
+        PrintWriter out = new PrintWriter(outputFilePath);
+
+        out.println(sb.toString());
+
+        out.close();
+
+      } catch (Exception e) {
+
+        e.printStackTrace();
+
+      }
+
+    }
+
+  }
+
+  public void generateSempreSpec(String inputFilePath, String outputFilePath) {
 
     Generator generator = new Generator();
 
