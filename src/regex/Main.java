@@ -136,7 +136,7 @@ public class Main implements Runnable {
                 //
                 {
 
-                  Automaton gta = (new RegExp(gtLine)).toAutomaton();
+                  Automaton gta = (new RegExp(g.generate(gtLine))).toAutomaton();
 
                   // coverage 
                   {
@@ -145,6 +145,15 @@ public class Main implements Runnable {
                     for (String deriv : derivStringSet) {
                       String s = g.generate(deriv);
                       RegExp r = new RegExp(s);
+
+                      {
+
+                        System.out.println("Derivation: " + deriv);
+                        System.out.println("RegExp: " + r);
+                        System.out.println("GT: " + new RegExp(gtLine));
+
+                      }
+
                       Automaton a = r.toAutomaton();
                       if (a.equals(gta)) {
                         covered = true;

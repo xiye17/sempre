@@ -47,7 +47,6 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements SpecG
 
     ParseTree tree = parser.regex();
 
-    
     assert (tree.getText().equals(spec)) : tree.getText() + " != " + spec;
 
     String ret = (String) this.visit(tree);
