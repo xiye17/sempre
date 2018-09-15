@@ -222,7 +222,7 @@ public class Test implements Runnable {
       {
         String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
         String specFilePath = "regex/data/" + this.dataset + "/spec-train.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/pred-train.txt";
+        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam  + "-pred-train.txt";
         runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
@@ -230,7 +230,7 @@ public class Test implements Runnable {
       {
         String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
         String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/pred-test.txt";
+        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam +"-pred-test.txt";
         runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
