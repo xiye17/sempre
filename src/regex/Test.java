@@ -105,8 +105,17 @@ public class Test implements Runnable {
 
               }
 
-              assert (!derivToCount.isEmpty());
-              assert (!topPred.equals(""));
+              //assert (!derivToCount.isEmpty());
+              //assert (!topPred.equals(""));
+
+		if ((!derivToCount.isEmpty()) || (!topPred.equals(""))) {
+			
+              		utterance = srcFile.readLine();
+
+              		if (utterance == null || utterance.isEmpty()) break;
+
+              		currIndx ++;
+		}
 
               //
               //
