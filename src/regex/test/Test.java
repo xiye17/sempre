@@ -1,4 +1,4 @@
-package regex;
+package regex.test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,6 @@ import dk.brics.automaton.RegExp;
 import edu.stanford.nlp.sempre.Builder;
 import edu.stanford.nlp.sempre.Derivation;
 import edu.stanford.nlp.sempre.Master;
-import edu.stanford.nlp.sempre.Parser;
 import edu.stanford.nlp.sempre.Session;
 import fig.basic.LogInfo;
 import fig.exec.Execution;
@@ -21,18 +20,27 @@ import regex.dataspec.Generator;
 
 public class Test implements Runnable {
 
-  public String dataset = null;
-  public int beam = -1;
+  String specFilePath = "regex/data/t/spec-test.txt";
+  String srcFilePath = "regex/data/t/src-test.txt";
+  String outputFilePath = "regex/data/t/pred-test.txt";
 
-  public void runPrediction(
-      //
-      Master master, Session session,
-      // 
-      String srcFilePath,
-      //
-      String specFilePath,
-      // 
-      String outputFilePath) {
+  public static void main(String[] args) {
+
+    Test t = new Test();
+
+    Execution.run(args, "test.Test", t, Master.getOptionsParser());
+
+  }
+
+  @Override
+  public void run() {
+
+    Builder builder = new Builder();
+    builder.build();
+
+    Master master = new Master(builder);
+
+    Session session = master.getSession("stdin");
 
     int currIndx = 1;
 
@@ -42,18 +50,19 @@ public class Test implements Runnable {
     Generator g = new Generator();
 
     try (PrintWriter outputFile = new PrintWriter(outputFilePath)) {
-      try (BufferedReader specFile = new BufferedReader(new FileReader(new File(specFilePath)))) {
-        try (BufferedReader srcFile = new BufferedReader(new FileReader(new File(srcFilePath)))) {
+
+      try (BufferedReader specFile = new BufferedReader(new FileReader(new File(this.specFilePath)))) {
+        try (BufferedReader srcFile = new BufferedReader(new FileReader(new File(this.srcFilePath)))) {
+
+          //
+          //
+          //
 
           for (String utterance = srcFile.readLine(); utterance != null;) {
 
-//		if (utterance == null) {
-//			break;
-//		}
-
             outputFile.println("=======================================================");
 
-            outputFile.println("Test on utterance " + currIndx + " : " + utterance);
+            outputFile.println("Test on utterance " + currIndx + " \n" + utterance);
 
             String gtLine = specFile.readLine();
 
@@ -73,11 +82,12 @@ public class Test implements Runnable {
               //
               Map<String, Integer> derivToCount = new HashMap<>();
               String topPred = "";
+              List<Derivation> derivs = null;
               {
 
                 Master.Response response = master.processQuery(session, utterance);
 
-                List<Derivation> derivs = response.ex.getPredDerivations();
+                derivs = response.ex.getPredDerivations();
 
                 for (int i = 0; i < derivs.size(); i ++) {
 
@@ -109,18 +119,8 @@ public class Test implements Runnable {
 
               }
 
-              //assert (!derivToCount.isEmpty());
-              //assert (!topPred.equals(""));
-
-              if ((derivToCount.isEmpty()) || (topPred.equals(""))) {
-
-                utterance = srcFile.readLine();
-
-                if (utterance == null || utterance.isEmpty()) break;
-
-                currIndx ++;
-                continue;
-              }
+              assert (!derivToCount.isEmpty());
+              assert (!topPred.equals(""));
 
               //
               //
@@ -148,7 +148,7 @@ public class Test implements Runnable {
                   }
 
                   if (covered) {
-                    outputFile.println("covered");
+                    outputFile.println("Covered");
                     coverageCount ++;
                   } else {
                     outputFile.println("Not covered");
@@ -181,6 +181,30 @@ public class Test implements Runnable {
                 }
               }
 
+              {
+
+                for (Derivation deriv : derivs) {
+
+                  outputFile.println("--------------------------------");
+
+                  outputFile.println(deriv.getFormula());
+
+                  outputFile.println(deriv.getValue());
+
+                  StringBuilder sb = new StringBuilder();
+                  printDeriv(utterance, deriv, "", sb);
+                  outputFile.println(sb.toString());
+
+                  outputFile.println("--------------------------------");
+
+                }
+
+              }
+
+              //
+              //
+              //
+
               utterance = srcFile.readLine();
 
               if (utterance == null || utterance.isEmpty()) break;
@@ -194,6 +218,7 @@ public class Test implements Runnable {
               t.printStackTrace();
 
             }
+
           }
 
           //
@@ -207,6 +232,10 @@ public class Test implements Runnable {
             outputFile.println("Accurate: " + accurateCount);
           }
 
+          //
+          //
+          //
+
         }
       }
     } catch (Exception e) {
@@ -215,58 +244,16 @@ public class Test implements Runnable {
 
   }
 
-  @Override
-  public void run() {
+  public void printDeriv(String utterance, Derivation deriv, String prefix, StringBuilder sb) {
 
-    // parse our arguments 
-    {
-      this.beam = Parser.opts.beamSize;
-    }
+    sb.append(prefix + "|_");
+    sb.append(deriv.getRule());
+    sb.append(" [" + deriv.start + ", " + deriv.end + "]");
+    sb.append("  " + deriv.getFormula());
+    sb.append("\n");
 
-    // run prediction 
-    {
-      Builder builder = new Builder();
-      builder.build();
-
-      Master master = new Master(builder);
-
-      Session session = master.getSession("stdin");
-
-      // test on train set 
-      {
-        String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
-        String specFilePath = "regex/data/" + this.dataset + "/spec-train.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-train.txt";
-        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
-      }
-
-      // test on test set 
-      {
-        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
-        String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
-        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
-      }
-
-    }
-
-  }
-
-  public static void main(String[] args) {
-
-    Test t = new Test();
-
-    // parse our own arguments 
-    {
-      String dataset = args[args.length - 1];
-      t.dataset = dataset;
-    }
-
-    // parse sempre arguments and run 
-    {
-      String[] args1 = new String[args.length - 1];
-      System.arraycopy(args, 0, args1, 0, args.length - 1);
-      Execution.run(args1, "Test", t, Master.getOptionsParser());
+    for (Derivation child : deriv.getChildren()) {
+      printDeriv(utterance, child, prefix + "  ", sb);
     }
 
   }
