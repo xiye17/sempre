@@ -47,6 +47,10 @@ public class Test implements Runnable {
 
           for (String utterance = srcFile.readLine(); utterance != null;) {
 
+//		if (utterance == null) {
+//			break;
+//		}
+
             outputFile.println("=======================================================");
 
             outputFile.println("Test on utterance " + currIndx + " : " + utterance);
@@ -108,13 +112,14 @@ public class Test implements Runnable {
               //assert (!derivToCount.isEmpty());
               //assert (!topPred.equals(""));
 
-		if ((!derivToCount.isEmpty()) || (!topPred.equals(""))) {
+		if ((derivToCount.isEmpty()) || (topPred.equals(""))) {
 			
               		utterance = srcFile.readLine();
 
               		if (utterance == null || utterance.isEmpty()) break;
 
               		currIndx ++;
+			continue;
 		}
 
               //
@@ -232,7 +237,7 @@ public class Test implements Runnable {
         String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
         String specFilePath = "regex/data/" + this.dataset + "/spec-train.txt";
         String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam  + "-pred-train.txt";
-        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
+//        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
       // test on test set 
