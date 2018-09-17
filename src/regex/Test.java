@@ -72,6 +72,7 @@ public class Test implements Runnable {
               //
               //
               Map<String, Integer> derivToCount = new HashMap<>();
+              Map<String, Integer> derivToOrder = new HashMap<>();
               String topPred = "";
               {
 
@@ -95,6 +96,10 @@ public class Test implements Runnable {
                     derivToCount.put(subDeriv, derivToCount.get(subDeriv) + 1);
                   } else {
                     derivToCount.put(subDeriv, 1);
+                  }
+                  
+                  if (!derivToOrder.containsKey(subDeriv)) {
+                    derivToOrder.put(subDeriv, i);
                   }
 
                   // update top prediction 
@@ -136,6 +141,7 @@ public class Test implements Runnable {
                 // coverage 
                 {
                   boolean covered = false;
+                  int coveredIndex = -1;
 
                   for (String deriv : derivToCount.keySet()) {
                     String s = g.generate(deriv);
@@ -143,12 +149,14 @@ public class Test implements Runnable {
                     Automaton a = r.toAutomaton();
                     if (a.equals(gta)) {
                       covered = true;
+                      coveredIndex = derivToOrder.get(deriv);
                       break;
                     }
                   }
 
                   if (covered) {
                     outputFile.println("covered");
+                    outputFile.println("covered at index " + coveredIndex);
                     coverageCount ++;
                   } else {
                     outputFile.println("Not covered");
