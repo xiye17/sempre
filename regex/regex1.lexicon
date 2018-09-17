@@ -21,12 +21,16 @@
 {"lexeme" : "item with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "have", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "contain", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "include", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "containing", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "word", "formula" : "fb:en.opword", "type" : "fb:type.op.word"}
 {"lexeme" : "start", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "begin", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "starting", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "end", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "terminate", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "terminating", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "ending", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "repeat", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
 {"lexeme" : "at least", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}

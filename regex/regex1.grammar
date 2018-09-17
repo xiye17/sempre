@@ -1,4 +1,5 @@
 # Root 
+
 (rule $ROOT ($Regex) (IdentityFn)) 
 (rule $ROOT ($Skip $Regex) (SelectFn 1))
 
@@ -8,21 +9,41 @@
 # Rules for composition 
 
 (rule $Regex ($CC) (IdentityFn))
+
 (rule $Regex ($OpContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.contain (var y)))))
 (rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var x) (var z))))))
 (rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var z) (var x))))))
+
+#added
+(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
+
 (rule $Regex ($OpContain $INT $Regex) (lambda x (lambda y (call regex.RegexFunctions.repeat (var x) (var y)))))
 (rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
 (rule $Regex ($OpStart $Regex) (lambda x (lambda y (call regex.RegexFunctions.startwith (var y)))))
 (rule $Regex ($OpEnd $Regex) (lambda x (lambda y (call regex.RegexFunctions.endwith (var y)))))
+
+#added
+(rule $Regex ($Regex $OpEnd) (lambda x (lambda y (call regex.RegexFunctions.endwith (var x)))))
+
 (rule $Regex ($Regex $OpRepeat $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var z))))))
 (rule $Regex ($OpRepeat $Regex $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z))))))
 (rule $Regex ($Regex $INT $OpRepeat) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y))))))
 (rule $Regex ($Regex $OpFollow $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var z))))))
 (rule $Regex ($Regex $OpFollow $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var x))))))
+
+#added
+(rule $Regex ($OpFollow $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var z))))))
+(rule $Regex ($OpFollow $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var y))))))
+(rule $Regex ($Regex $Regex $OpFollow) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var y))))))
+(rule $Regex ($Regex $Regex $OpFollow) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var x))))))
+
 (rule $Regex ($OpNot $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (var y)))))
 (rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var x) (var z))))))
 (rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
+
+#added
+(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
+
 (rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
 
 
@@ -91,11 +112,7 @@
 
 (rule $OpNotContain ($OpNotContain1 $Skip) (SelectFn 0))
 
-
-
-
-
-# INT rule
+# INT rules
 
 (rule $INT ($INT1) (IdentityFn))
 (rule $INT ($INT1 $Skip) (SelectFn 0))
