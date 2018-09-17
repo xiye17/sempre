@@ -111,6 +111,10 @@ public class Test implements Runnable {
 
                 // prints 
                 outputFile.println("Top prediction: " + topPred);
+                
+                if (derivs.size() >= beam) {
+                  outputFile.println("derivSize == beamSize");
+                }
 
               }
 
