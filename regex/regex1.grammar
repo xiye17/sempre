@@ -94,8 +94,18 @@
 
 
 
+
+# INT rule
+
+(rule $INT ($INT1) (IdentityFn))
+(rule $INT ($INT1 $Skip) (SelectFn 0))
+
+
+
+
+
 # Rules for parsing keywords without skipping 
-# Parsed to CC1 and OpXXX1
+# Parsed to CC1, OpXXX1, and INT1
 
 (rule $CC1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 
@@ -110,15 +120,15 @@
 (rule $OpNotContain1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.notcontain)))
 
 
+(rule $INT1 ($LEMMA_PHRASE) (NumberFn))
+
+
+
+
 
 # Skipping rule
 
 (rule $Skip ($LEMMA_PHRASE) (ConstantFn null))
 
-
-
-# INT rule
-
-(rule $INT ($LEMMA_PHRASE) (NumberFn))
 
 
