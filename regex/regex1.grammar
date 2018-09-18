@@ -15,7 +15,7 @@
 (rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var z) (var x))))))
 
 #added
-(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
+#(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
 
 (rule $Regex ($OpContain $INT $Regex) (lambda x (lambda y (call regex.RegexFunctions.repeat (var x) (var y)))))
 (rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
@@ -42,7 +42,7 @@
 (rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
 
 #added
-(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
+#(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
 
 (rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
 
