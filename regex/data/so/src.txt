@@ -103,19 +103,3 @@ I have one field that is meant to allow a 1 - 3 character string. The first char
 I am trying to implement regex validation for passport number. My requirement is 1. Length should be minimum 3 characters to a maximum of 20 characters. 2. Should not be only 0's
 I have a field that should accept: a) letters [a-zA-Z] b) letters with numbers [a-zA-Z0-9] c) no special characters
 Requirement: 1. First part of the string can be; Min 1 Max 6 char long. Upper case only. 2. Second part of the string can be; Exactly 2 chars long but 00 is not accepted. 3. So all together: It can be min 3 max 8 chars long.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
