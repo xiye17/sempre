@@ -14,8 +14,11 @@ import regex.dataspec.ast.SpecGrammarParser.ContainsContext;
 import regex.dataspec.ast.SpecGrammarParser.EndsWithContext;
 import regex.dataspec.ast.SpecGrammarParser.FollowedByContext;
 import regex.dataspec.ast.SpecGrammarParser.NotContext;
+import regex.dataspec.ast.SpecGrammarParser.OptionalContext;
 import regex.dataspec.ast.SpecGrammarParser.OrContext;
-import regex.dataspec.ast.SpecGrammarParser.RepeatContext;
+import regex.dataspec.ast.SpecGrammarParser.Repeat0Context;
+import regex.dataspec.ast.SpecGrammarParser.Repeat1Context;
+import regex.dataspec.ast.SpecGrammarParser.Repeat2Context;
 import regex.dataspec.ast.SpecGrammarParser.StartsWithContext;
 import regex.dataspec.ast.SpecGrammarVisitor;
 
@@ -23,17 +26,20 @@ import regex.dataspec.ast.SpecGrammarVisitor;
 // Spec language (SEMPRE) 
 //
 // Phi := 
-// fb:en.num | fb:en.let | fb:en.any | fb:en.vow | fb:en.cap | fb:en.low | fb:en.const 
+// fb:en.num | fb:en.let | fb:en.any | fb:en.vow | fb:en.cap | fb:en.low | fb:en.const | fb:en.letnum 
 // | contain( Phi ) 
 // | startwith( Phi ) 
 // | endwith( Phi ) 
-// | repeat( Phi, INT ) 
+// | repeat0( Phi, INT )
+// | repeat1( Phi, INT, )
+// | repeat2( Phi, INT, INT )
 // | followedby( Phi, Phi ) 
 // | not( Phi ) 
 // | and( Phi, Phi ) 
 // | or( Phi, Phi ) 
 // 
-public class Generator extends AbstractParseTreeVisitor<Object> implements SpecGrammarVisitor<Object> {
+public class Generator extends AbstractParseTreeVisitor<Object>
+    implements SpecGrammarVisitor<Object> {
 
   public String generate(String spec) {
 
@@ -79,6 +85,12 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements SpecG
 
     } else if ("fb:en.const".equals(name)) {
       ret = "M0";
+
+    } else if ("fb:en.letnum".equals(name)) {
+      ret = "[A-Za-z0-9]";
+
+    } else if ("fb:en.dp".equals(name)) {
+      ret = "\\.";
 
     } else {
 
@@ -135,18 +147,6 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements SpecG
   }
 
   @Override
-  public Object visitRepeat(RepeatContext ctx) {
-
-    String arg0 = (String) visit(ctx.regex());
-    int arg1 = Integer.valueOf(ctx.INT().getText());
-
-    String ret = "(" + arg0 + "){" + arg1 + ",}";
-
-    return ret;
-
-  }
-
-  @Override
   public Object visitFollowedBy(FollowedByContext ctx) {
 
     String arg0 = (String) visit(ctx.regex(0));
@@ -188,6 +188,53 @@ public class Generator extends AbstractParseTreeVisitor<Object> implements SpecG
     String arg1 = (String) visit(ctx.regex(1));
 
     String ret = "(" + arg0 + ")|(" + arg1 + ")";
+
+    return ret;
+  }
+
+  @Override
+  public Object visitRepeat0(Repeat0Context ctx) {
+
+    String arg0 = (String) visit(ctx.regex());
+    int arg1 = Integer.valueOf(ctx.INT().getText());
+
+    String ret = "(" + arg0 + "){" + arg1 + "}";
+
+    return ret;
+
+  }
+
+  @Override
+  public Object visitRepeat1(Repeat1Context ctx) {
+
+    String arg0 = (String) visit(ctx.regex());
+    int arg1 = Integer.valueOf(ctx.INT().getText());
+
+    String ret = "(" + arg0 + "){" + arg1 + ",}";
+
+    return ret;
+
+  }
+
+  @Override
+  public Object visitRepeat2(Repeat2Context ctx) {
+
+    String arg0 = (String) visit(ctx.regex());
+    int arg1 = Integer.valueOf(ctx.INT(0).getText());
+    int arg2 = Integer.valueOf(ctx.INT(1).getText());
+
+    String ret = "(" + arg0 + "){" + arg1 + "," + arg2 + "}";
+
+    return ret;
+
+  }
+
+  @Override
+  public Object visitOptional(OptionalContext ctx) {
+
+    String arg0 = (String) visit(ctx.regex());
+
+    String ret = "(" + arg0 + ")?";
 
     return ret;
   }

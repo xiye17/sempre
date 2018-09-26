@@ -18,7 +18,7 @@ public class SpecGrammarParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, CC=11, INT=12;
+		T__9=10, T__10=11, T__11=12, CC=13, INT=14;
 	public static final int
 		RULE_regex = 0;
 	public static final String[] ruleNames = {
@@ -27,11 +27,11 @@ public class SpecGrammarParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'contain('", "')'", "'startwith('", "'endwith('", "'repeat('", 
-		"','", "'followedby('", "'not('", "'and('", "'or('"
+		"','", "',)'", "'followedby('", "'not('", "'and('", "'or('", "'optional('"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, "CC", 
-		"INT"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, "CC", "INT"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -132,6 +132,44 @@ public class SpecGrammarParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class Repeat1Context extends RegexContext {
+		public RegexContext regex() {
+			return getRuleContext(RegexContext.class,0);
+		}
+		public TerminalNode INT() { return getToken(SpecGrammarParser.INT, 0); }
+		public Repeat1Context(RegexContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitRepeat1(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class OptionalContext extends RegexContext {
+		public RegexContext regex() {
+			return getRuleContext(RegexContext.class,0);
+		}
+		public OptionalContext(RegexContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitOptional(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class Repeat2Context extends RegexContext {
+		public RegexContext regex() {
+			return getRuleContext(RegexContext.class,0);
+		}
+		public List<TerminalNode> INT() { return getTokens(SpecGrammarParser.INT); }
+		public TerminalNode INT(int i) {
+			return getToken(SpecGrammarParser.INT, i);
+		}
+		public Repeat2Context(RegexContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitRepeat2(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class AndContext extends RegexContext {
 		public List<RegexContext> regex() {
 			return getRuleContexts(RegexContext.class);
@@ -143,6 +181,18 @@ public class SpecGrammarParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitAnd(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class Repeat0Context extends RegexContext {
+		public RegexContext regex() {
+			return getRuleContext(RegexContext.class,0);
+		}
+		public TerminalNode INT() { return getToken(SpecGrammarParser.INT, 0); }
+		public Repeat0Context(RegexContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitRepeat0(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -163,18 +213,6 @@ public class SpecGrammarParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitContains(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RepeatContext extends RegexContext {
-		public RegexContext regex() {
-			return getRuleContext(RegexContext.class,0);
-		}
-		public TerminalNode INT() { return getToken(SpecGrammarParser.INT, 0); }
-		public RepeatContext(RegexContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SpecGrammarVisitor ) return ((SpecGrammarVisitor<? extends T>)visitor).visitRepeat(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -205,10 +243,10 @@ public class SpecGrammarParser extends Parser {
 		RegexContext _localctx = new RegexContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_regex);
 		try {
-			setState(43);
+			setState(61);
 			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case CC:
+			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+			case 1:
 				_localctx = new CharClassContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
@@ -216,7 +254,7 @@ public class SpecGrammarParser extends Parser {
 				match(CC);
 				}
 				break;
-			case T__0:
+			case 2:
 				_localctx = new ContainsContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
@@ -228,7 +266,7 @@ public class SpecGrammarParser extends Parser {
 				match(T__1);
 				}
 				break;
-			case T__2:
+			case 3:
 				_localctx = new StartsWithContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
@@ -240,7 +278,7 @@ public class SpecGrammarParser extends Parser {
 				match(T__1);
 				}
 				break;
-			case T__3:
+			case 4:
 				_localctx = new EndsWithContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
@@ -252,8 +290,8 @@ public class SpecGrammarParser extends Parser {
 				match(T__1);
 				}
 				break;
-			case T__4:
-				_localctx = new RepeatContext(_localctx);
+			case 5:
+				_localctx = new Repeat0Context(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(15);
@@ -268,68 +306,114 @@ public class SpecGrammarParser extends Parser {
 				match(T__1);
 				}
 				break;
-			case T__6:
-				_localctx = new FollowedByContext(_localctx);
+			case 6:
+				_localctx = new Repeat1Context(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(21);
-				match(T__6);
+				match(T__4);
 				setState(22);
 				regex();
 				setState(23);
 				match(T__5);
 				setState(24);
-				regex();
+				match(INT);
 				setState(25);
-				match(T__1);
+				match(T__6);
 				}
 				break;
-			case T__7:
-				_localctx = new NotContext(_localctx);
+			case 7:
+				_localctx = new Repeat2Context(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(27);
-				match(T__7);
+				match(T__4);
 				setState(28);
 				regex();
 				setState(29);
+				match(T__5);
+				setState(30);
+				match(INT);
+				setState(31);
+				match(T__5);
+				setState(32);
+				match(INT);
+				setState(33);
 				match(T__1);
 				}
 				break;
-			case T__8:
-				_localctx = new AndContext(_localctx);
+			case 8:
+				_localctx = new FollowedByContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(31);
-				match(T__8);
-				setState(32);
-				regex();
-				setState(33);
-				match(T__5);
-				setState(34);
-				regex();
 				setState(35);
-				match(T__1);
-				}
-				break;
-			case T__9:
-				_localctx = new OrContext(_localctx);
-				enterOuterAlt(_localctx, 9);
-				{
+				match(T__7);
+				setState(36);
+				regex();
 				setState(37);
-				match(T__9);
+				match(T__5);
 				setState(38);
 				regex();
 				setState(39);
-				match(T__5);
-				setState(40);
-				regex();
-				setState(41);
 				match(T__1);
 				}
 				break;
-			default:
-				throw new NoViableAltException(this);
+			case 9:
+				_localctx = new NotContext(_localctx);
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(41);
+				match(T__8);
+				setState(42);
+				regex();
+				setState(43);
+				match(T__1);
+				}
+				break;
+			case 10:
+				_localctx = new AndContext(_localctx);
+				enterOuterAlt(_localctx, 10);
+				{
+				setState(45);
+				match(T__9);
+				setState(46);
+				regex();
+				setState(47);
+				match(T__5);
+				setState(48);
+				regex();
+				setState(49);
+				match(T__1);
+				}
+				break;
+			case 11:
+				_localctx = new OrContext(_localctx);
+				enterOuterAlt(_localctx, 11);
+				{
+				setState(51);
+				match(T__10);
+				setState(52);
+				regex();
+				setState(53);
+				match(T__5);
+				setState(54);
+				regex();
+				setState(55);
+				match(T__1);
+				}
+				break;
+			case 12:
+				_localctx = new OptionalContext(_localctx);
+				enterOuterAlt(_localctx, 12);
+				{
+				setState(57);
+				match(T__11);
+				setState(58);
+				regex();
+				setState(59);
+				match(T__1);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -344,19 +428,24 @@ public class SpecGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\16\60\4\2\t\2\3\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20B\4\2\t\2\3\2\3"+
+		"\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2"+
 		"\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3"+
 		"\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2"+
-		"\3\2\3\2\3\2\3\2\3\2\5\2.\n\2\3\2\2\2\3\2\2\2\2\66\2-\3\2\2\2\4.\7\r\2"+
-		"\2\5\6\7\3\2\2\6\7\5\2\2\2\7\b\7\4\2\2\b.\3\2\2\2\t\n\7\5\2\2\n\13\5\2"+
-		"\2\2\13\f\7\4\2\2\f.\3\2\2\2\r\16\7\6\2\2\16\17\5\2\2\2\17\20\7\4\2\2"+
-		"\20.\3\2\2\2\21\22\7\7\2\2\22\23\5\2\2\2\23\24\7\b\2\2\24\25\7\16\2\2"+
-		"\25\26\7\4\2\2\26.\3\2\2\2\27\30\7\t\2\2\30\31\5\2\2\2\31\32\7\b\2\2\32"+
-		"\33\5\2\2\2\33\34\7\4\2\2\34.\3\2\2\2\35\36\7\n\2\2\36\37\5\2\2\2\37 "+
-		"\7\4\2\2 .\3\2\2\2!\"\7\13\2\2\"#\5\2\2\2#$\7\b\2\2$%\5\2\2\2%&\7\4\2"+
-		"\2&.\3\2\2\2\'(\7\f\2\2()\5\2\2\2)*\7\b\2\2*+\5\2\2\2+,\7\4\2\2,.\3\2"+
-		"\2\2-\4\3\2\2\2-\5\3\2\2\2-\t\3\2\2\2-\r\3\2\2\2-\21\3\2\2\2-\27\3\2\2"+
-		"\2-\35\3\2\2\2-!\3\2\2\2-\'\3\2\2\2.\3\3\2\2\2\3-";
+		"\3\2\3\2\3\2\3\2\3\2\5\2@\n\2\3\2\2\2\3\2\2\2\2K\2?\3\2\2\2\4@\7\17\2"+
+		"\2\5\6\7\3\2\2\6\7\5\2\2\2\7\b\7\4\2\2\b@\3\2\2\2\t\n\7\5\2\2\n\13\5\2"+
+		"\2\2\13\f\7\4\2\2\f@\3\2\2\2\r\16\7\6\2\2\16\17\5\2\2\2\17\20\7\4\2\2"+
+		"\20@\3\2\2\2\21\22\7\7\2\2\22\23\5\2\2\2\23\24\7\b\2\2\24\25\7\20\2\2"+
+		"\25\26\7\4\2\2\26@\3\2\2\2\27\30\7\7\2\2\30\31\5\2\2\2\31\32\7\b\2\2\32"+
+		"\33\7\20\2\2\33\34\7\t\2\2\34@\3\2\2\2\35\36\7\7\2\2\36\37\5\2\2\2\37"+
+		" \7\b\2\2 !\7\20\2\2!\"\7\b\2\2\"#\7\20\2\2#$\7\4\2\2$@\3\2\2\2%&\7\n"+
+		"\2\2&\'\5\2\2\2\'(\7\b\2\2()\5\2\2\2)*\7\4\2\2*@\3\2\2\2+,\7\13\2\2,-"+
+		"\5\2\2\2-.\7\4\2\2.@\3\2\2\2/\60\7\f\2\2\60\61\5\2\2\2\61\62\7\b\2\2\62"+
+		"\63\5\2\2\2\63\64\7\4\2\2\64@\3\2\2\2\65\66\7\r\2\2\66\67\5\2\2\2\678"+
+		"\7\b\2\289\5\2\2\29:\7\4\2\2:@\3\2\2\2;<\7\16\2\2<=\5\2\2\2=>\7\4\2\2"+
+		">@\3\2\2\2?\4\3\2\2\2?\5\3\2\2\2?\t\3\2\2\2?\r\3\2\2\2?\21\3\2\2\2?\27"+
+		"\3\2\2\2?\35\3\2\2\2?%\3\2\2\2?+\3\2\2\2?/\3\2\2\2?\65\3\2\2\2?;\3\2\2"+
+		"\2@\3\3\2\2\2\3?";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

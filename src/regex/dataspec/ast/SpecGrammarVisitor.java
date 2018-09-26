@@ -39,12 +39,26 @@ public interface SpecGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEndsWith(SpecGrammarParser.EndsWithContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Repeat}
+	 * Visit a parse tree produced by the {@code Repeat0}
 	 * labeled alternative in {@link SpecGrammarParser#regex}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRepeat(SpecGrammarParser.RepeatContext ctx);
+	T visitRepeat0(SpecGrammarParser.Repeat0Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Repeat1}
+	 * labeled alternative in {@link SpecGrammarParser#regex}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeat1(SpecGrammarParser.Repeat1Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Repeat2}
+	 * labeled alternative in {@link SpecGrammarParser#regex}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRepeat2(SpecGrammarParser.Repeat2Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code FollowedBy}
 	 * labeled alternative in {@link SpecGrammarParser#regex}.
@@ -73,4 +87,11 @@ public interface SpecGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOr(SpecGrammarParser.OrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Optional}
+	 * labeled alternative in {@link SpecGrammarParser#regex}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOptional(SpecGrammarParser.OptionalContext ctx);
 }

@@ -354,7 +354,7 @@ public class SpecLanguage {
 
     @Override
     public String toSempreName() {
-      return "repeat(" + this.arg0.toSempreName() + "," + this.arg1 + ")";
+      return "repeat(" + this.arg0.toSempreName() + "," + this.arg1 + ",)";
     }
 
     @Override
@@ -406,7 +406,8 @@ public class SpecLanguage {
 
     @Override
     public String toDeepRegexName() {
-      return "followedby( " + this.arg0.toDeepRegexName() + " " + this.arg1.toDeepRegexName() + " )";
+      return "followedby( " + this.arg0.toDeepRegexName() + " " + this.arg1.toDeepRegexName()
+          + " )";
     }
 
     @Override
