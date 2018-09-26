@@ -14,8 +14,12 @@
 (rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var x) (var z))))))
 (rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var z) (var x))))))
 
+#added2
+# todo: repeat $regex num1 
+(rule $Regex ($OpRepeat $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (number 1 )))))
+
 #added
-#(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
+(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
 
 (rule $Regex ($OpContain $INT $Regex) (lambda x (lambda y (call regex.RegexFunctions.repeat (var x) (var y)))))
 (rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
@@ -42,11 +46,26 @@
 (rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
 
 #added
-#(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
+(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
 
 (rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
 
+(rule $Regex ($INT $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y) (var z))))))
 
+#added
+(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.followedby (var x) (var y)))))
+
+(rule $Regex ($OpOptional $Regex) (lambda x (lambda y (call regex.RegexFunctions.optional (var y)))))
+(rule $Regex ($Regex $OpOptional) (lambda x (lambda y (call regex.RegexFunctions.optional (var x)))))
+
+(rule $Regex ($OpOnly $Regex) (lambda x (lambda y (call regex.RegexFunctions.only (var y)))))
+(rule $Regex ($OpOnly $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.only (var y) (var z))))))
+
+(rule $Regex ($OpUpto $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var y) (var z))))))
+
+(rule $Regex ($INT $OpMore $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.more (var x) (var z))))))
+
+(rule $Regex ($Regex $OpRepeat $INT $INT) (lambda w (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z) (var w)))))))
 
 
 # Rules for parsing keywords with skipping
@@ -88,6 +107,8 @@
 
 (rule $OpRepeat ($OpRepeat1 $Skip) (SelectFn 0))
 
+
+
 ## OpFollow rules 
 
 (rule $OpFollow ($OpFollow1) (IdentityFn))
@@ -112,13 +133,32 @@
 
 (rule $OpNotContain ($OpNotContain1 $Skip) (SelectFn 0))
 
+## added
+
+## OpOptional rules
+(rule $OpOptional ($OpOptional1) (IdentityFn))
+
+(rule $OpOptional ($OpOptional1 $Skip) (SelectFn 0))
+
+## OpOnly rules
+(rule $OpOnly ($OpOnly1) (IdentityFn))
+
+(rule $OpOnly ($OpOnly1 $Skip) (SelectFn 0))
+
+## OpUpto rules
+(rule $OpUpto ($OpUpto1) (IdentityFn))
+
+(rule $OpUpto ($OpUpto1 $Skip) (SelectFn 0))
+
+## OpMore rules
+(rule $OpMore ($OpMore1) (IdentityFn))
+
+(rule $OpMore ($OpMore1 $Skip) (SelectFn 0))
+
 # INT rules
 
 (rule $INT ($INT1) (IdentityFn))
 (rule $INT ($INT1 $Skip) (SelectFn 0))
-
-
-
 
 
 # Rules for parsing keywords without skipping 
@@ -135,6 +175,12 @@
 (rule $OpNot1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.not)))
 (rule $OpOr1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.or)))
 (rule $OpNotContain1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.notcontain)))
+
+# added
+(rule $OpOptional1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.optional)))
+(rule $OpOnly1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.only)))
+(rule $OpUpto1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.upto)))
+(rule $OpMore1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.more)))
 
 
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn))
