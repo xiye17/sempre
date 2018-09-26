@@ -17,6 +17,3 @@ repeat(or(fb:en.let,or(fb:en.num,or(fb:en.const,or(fb:en.const,fb:en.const)))),0
 and(repeat(fb:en.num,10),startwith(fb:en.const))
 repeat(fb:en.letnum,1,)
 not(contain(followedby(fb:en.const,fb:en.const)))
-
-
-

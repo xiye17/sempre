@@ -1,6 +1,3 @@
-repeat(fb:en.let,1,)
-not(contain(fb:en.const))
-repeat(or(fb:en.num,or(fb:en.const,or(fb:en.const,or(fb:en.const,or(fb:en.const,or(fb:en.const,fb:en.const)))))),1,)
 and(followedby(repeat(fb:en.num,2),followedby(fb:en.dp,fb:en.num)),endwith(fb:en.const))
 followedby(repeat(fb:en.num,1,18),optional(followedby(fb:en.dp,fb:en.num)))
 repeat(or(fb:en.const,or(fb:en.const,fb:en.const)),1,)
@@ -17,6 +14,3 @@ repeat(or(fb:en.let,or(fb:en.num,or(fb:en.const,or(fb:en.const,fb:en.const)))),0
 and(repeat(fb:en.num,10),startwith(fb:en.const))
 repeat(fb:en.letnum,1,)
 not(contain(followedby(fb:en.const,fb:en.const)))
-
-
-
