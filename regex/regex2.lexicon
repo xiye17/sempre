@@ -1,0 +1,78 @@
+{"lexeme" : "letter", "formula" : "fb:en.let", "type" : "fb:type.cc"}
+{"lexeme" : "character", "formula" : "fb:en.let", "type" : "fb:type.cc"}
+{"lexeme" : "alphabet", "formula" : "fb:en.let", "type" : "fb:type.cc"}
+{"lexeme" : "capital", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
+{"lexeme" : "upper", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
+{"lexeme" : "lower", "formula" : "fb:en.low", "type" : "fb:type.cc"}
+{"lexeme" : "lower-case", "formula" : "fb:en.low", "type" : "fb:type.cc"}
+{"lexeme" : "small", "formula" : "fb:en.low", "type" : "fb:type.cc"}
+{"lexeme" : "vowel", "formula" : "fb:en.vow", "type" : "fb:type.cc"}
+{"lexeme" : "number", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "numeral", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "digit", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "any", "formula" : "fb:en.any", "type" : "fb:type.cc"}
+{"lexeme" : "word", "formula" : "fb:en.any", "type" : "fb:type.cc"}
+{"lexeme" : "character", "formula" : "fb:en.any", "type" : "fb:type.cc"}
+{"lexeme" : "string", "formula" : "fb:en.any", "type" : "fb:type.cc"}
+{"lexeme" : "<m0>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m1>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m2>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m3>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m4>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m5>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m6>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m7>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m8>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "<m9>", "formula" : "fb:en.const", "type" : "fb:type.cc"}
+{"lexeme" : "decimal", "formula" : "fb:en.dp", "type" : "fb:type.cc"}
+{"lexeme" : "dot", "formula" : "fb:en.dp", "type" : "fb:type.cc"}
+{"lexeme" : "alphanumeric", "formula" : "fb:en.letnum", "type" : "fb:type.cc"}
+{"lexeme" : "as well as", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
+{"lexeme" : "and", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
+{"lexeme" : "or", "formula" : "fb:en.opor", "type" : "fb:type.op.or"}
+{"lexeme" : "line with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "line that", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "line have", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "item with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "have", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "contain", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "include", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "containing", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
+{"lexeme" : "word", "formula" : "fb:en.opword", "type" : "fb:type.op.word"}
+{"lexeme" : "start", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "begin", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "starting", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "with", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "front", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "end", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "terminate", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "terminating", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "ending", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "final", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "finish", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "repeat", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
+{"lexeme" : "at least", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
+{"lexeme" : "length", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
+{"lexeme" : "time", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
+{"lexeme" : "only", "formula" : "fb:en.oponly", "type" : "fb:type.op.only"}
+{"lexeme" : "up to", "formula" : "fb:en.opupto", "type" : "fb:type.op.upto"}
+{"lexeme" : "more", "formula" : "fb:en.opmore", "type" : "fb:type.op.more"}
+{"lexeme" : "followed", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "follow", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "following", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "before", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "then", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "precede", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "preceding", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "after", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "not", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "don't", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "other than", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "without", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "line without", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
+{"lexeme" : "item without", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
+{"lexeme" : "line not", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
+{"lexeme" : "optional", "formula" : "fb:en.opoptional", "type" : "fb:type.op.optional"}
+{"lexeme" : ",", "formula" : "fb:en.or", "type" : "fb:type.op.or"}
+{"lexeme" : ",", "formula" : "fb:en.end", "type" : "fb:type.op.end"}
