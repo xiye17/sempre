@@ -137,7 +137,8 @@ public class Test implements Runnable {
               // measure coverage and accuracy based on semantic equivalence 
               //
               //
-              // 
+              //
+              try
               {
 
                 Automaton gta = (new RegExp(g.generate(gtLine))).toAutomaton();
@@ -180,6 +181,16 @@ public class Test implements Runnable {
                   }
                 }
 
+              }
+              catch(Exception e) {
+                // the GC overhead exception occurs here
+                utterance = srcFile.readLine();
+
+                if (utterance == null || utterance.isEmpty()) break;
+
+                currIndx ++;
+                continue;
+                
               }
 
               //
