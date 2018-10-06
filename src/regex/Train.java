@@ -1,5 +1,8 @@
 package regex;
 
+import java.io.File;
+import java.io.PrintWriter;
+
 import edu.stanford.nlp.sempre.Builder;
 import edu.stanford.nlp.sempre.Dataset;
 import edu.stanford.nlp.sempre.Learner;
@@ -7,12 +10,14 @@ import edu.stanford.nlp.sempre.Master;
 import fig.exec.Execution;
 
 public class Train implements Runnable {
-
+    
   @Override
   public void run() {
 
     Builder builder = new Builder();
     builder.build();
+    
+    System.out.println(builder.params);
 
     Dataset dataset = new Dataset();
     dataset.read();
