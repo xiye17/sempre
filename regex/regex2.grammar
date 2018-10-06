@@ -3,8 +3,10 @@
 (rule $ROOT ($Regex) (IdentityFn)) 
 (rule $ROOT ($Skip $Regex) (SelectFn 1))
 
-
-
+# Ambiguous Rule, only applied once
+#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
+#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
+#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.followedby (var x) (var y)))))
 
 # Rules for composition 
 
@@ -19,8 +21,6 @@
 (rule $Regex ($OpRepeat $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (number 1 )))))
 
 #added
-(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
-
 (rule $Regex ($OpContain $INT $Regex) (lambda x (lambda y (call regex.RegexFunctions.repeat (var x) (var y)))))
 (rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
 (rule $Regex ($OpStart $Regex) (lambda x (lambda y (call regex.RegexFunctions.startwith (var y)))))
@@ -46,15 +46,11 @@
 (rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
 
 #added
-(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
-
 (rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
 
 (rule $Regex ($INT $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y) (var z))))))
 
 #added
-(rule $Regex ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.followedby (var x) (var y)))))
-
 (rule $Regex ($OpOptional $Regex) (lambda x (lambda y (call regex.RegexFunctions.optional (var y)))))
 (rule $Regex ($Regex $OpOptional) (lambda x (lambda y (call regex.RegexFunctions.optional (var x)))))
 
@@ -184,9 +180,6 @@
 
 
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn))
-
-
-
 
 
 # Skipping rule

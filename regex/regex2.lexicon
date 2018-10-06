@@ -30,6 +30,8 @@
 {"lexeme" : "as well as", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
 {"lexeme" : "and", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
 {"lexeme" : "or", "formula" : "fb:en.opor", "type" : "fb:type.op.or"}
+{"lexeme" : ",", "formula" : "fb:en.or", "type" : "fb:type.op.or"}
+{"lexeme" : ",", "formula" : "fb:en.end", "type" : "fb:type.op.end"}
 {"lexeme" : "line with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "line that", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "line have", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
@@ -74,5 +76,3 @@
 {"lexeme" : "item without", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
 {"lexeme" : "line not", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
 {"lexeme" : "optional", "formula" : "fb:en.opoptional", "type" : "fb:type.op.optional"}
-{"lexeme" : ",", "formula" : "fb:en.or", "type" : "fb:type.op.or"}
-{"lexeme" : ",", "formula" : "fb:en.end", "type" : "fb:type.op.end"}
