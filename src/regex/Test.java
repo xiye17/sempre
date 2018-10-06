@@ -263,13 +263,13 @@ public class Test implements Runnable {
         runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
-//      // test on test set 
-//      {
-//        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
-//        String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
-//        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
-//        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
-//      }
+      //test on test set 
+      {
+        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
+        String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
+        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
+        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
+      }
 
     }
 
