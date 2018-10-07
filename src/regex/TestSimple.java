@@ -138,10 +138,18 @@ public class TestSimple implements Runnable {
               currIndx ++;
 
             } catch (Throwable t) {
+              System.out.println("Exception");
 
               while (LogInfo.getIndLevel() > indent)
                 LogInfo.end_track();
               t.printStackTrace();
+              
+              utterance = srcFile.readLine();
+
+              if (utterance == null || utterance.isEmpty()) break;
+
+              currIndx ++;
+              continue;
 
             }
           }
