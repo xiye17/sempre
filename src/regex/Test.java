@@ -182,8 +182,9 @@ public class Test implements Runnable {
                 }
 
               }
-              catch(Exception e) {
+              catch(Throwable t) {
                 // the GC overhead exception occurs here
+		System.out.println("Exception at EC: GC Overhead");
                 utterance = srcFile.readLine();
 
                 if (utterance == null || utterance.isEmpty()) break;
@@ -211,7 +212,7 @@ public class Test implements Runnable {
               currIndx ++;
 
             } catch (Throwable t) {
-
+		System.out.println("Excpetion at the outer try");
               while (LogInfo.getIndLevel() > indent)
                 LogInfo.end_track();
               t.printStackTrace();

@@ -210,7 +210,7 @@ public class TestSimple implements Runnable {
 
   public static void main(String[] args) {
 
-    Test t = new Test();
+    TestSimple t = new TestSimple();
 
     // parse our own arguments 
     {
