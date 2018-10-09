@@ -5,7 +5,7 @@ with the other two values being either numeric or a string
 4
 Need to validate the following string using regular expression: Key = Value ; Key = Value ; Key = Value and so on.
 Key and value can contain anything except <M0> and <M1>
-Key and Value both cannot be blank or empty with sapces
+Key and Value both cannot be blank or empty with <M2>
 Input string does not ends with <M3>
 1
 It should accept numbers only with decimal part 0 or 5 only.
@@ -36,7 +36,7 @@ It must always start with <M0>
 4
 How should I write my regular expressions code to match following criteria? 
 It consists of at least two <M0> - separated names 
-All <M1> - separated names at least 2 characters long 
+All <M1> separated names at least 2 characters long 
 At least one <M2> - separated name is at least 4 characters long
 6
 I'm looking for the perfect regular expression for validation a german car license the number has too look like this:

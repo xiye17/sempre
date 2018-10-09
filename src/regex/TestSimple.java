@@ -36,122 +36,116 @@ public class TestSimple implements Runnable {
 
     try (PrintWriter outputFile = new PrintWriter(outputFilePath)) {
         try (BufferedReader srcFile = new BufferedReader(new FileReader(new File(srcFilePath)))) {
-
-          for (String utterance = srcFile.readLine(); utterance != null;) {
-
-//    if (utterance == null) {
-//      break;
-//    }
-
+          
+          // read # of lines for this utterance
+          for (String lineCount = srcFile.readLine(); lineCount != null;) {
+            
             outputFile.println("=======================================================");
-
-            outputFile.println("Test on utterance " + currIndx + " : " + utterance);
-
+            
+            outputFile.println("Test on utterance " + currIndx + ":");
+            
             int indent = LogInfo.getIndLevel();
+            
+            {
+              try {
+                
+                int lineCount_int = Integer.parseInt(lineCount);
+                
+                if (lineCount_int == 0)
+                  System.out.println("Error: lineCount is 0");
+                
+                for (int line_idx = 0; line_idx < lineCount_int; line_idx ++) {
+                  
+                  {
+                    String line = srcFile.readLine();
+                    
+                    outputFile.println("  " + "Line " + line_idx + ": " + line);
+                    
+                    Map<String, Integer> derivToCount = new HashMap<>();
+                    Map<String, Integer> derivToOrder = new HashMap<>();
+                    String topPred = "";
+                    
+                    {
 
-            try {
+                      Master.Response response = master.processQuery(session, line);
 
-              //
-              //
-              //
-              // construct candidate derivations 
-              // construct top prediction 
-              //
-              //
-              //
-              Map<String, Integer> derivToCount = new HashMap<>();
-              Map<String, Integer> derivToOrder = new HashMap<>();
-              String topPred = "";
-              {
+                      List<Derivation> derivs = response.ex.getPredDerivations();
 
-                Master.Response response = master.processQuery(session, utterance);
+                      for (int i = 0; i < derivs.size(); i ++) {
 
-                List<Derivation> derivs = response.ex.getPredDerivations();
+                        String derivString = ((derivs.get(i)).value).toString();
+                        String subDeriv = "";
+                        if (derivString.contains("\"")) {
+                          subDeriv = derivString.split("\"")[1];
+                        } else {
+                          subDeriv = derivString.split(" ")[1];
+                          subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
+                        }
 
-                for (int i = 0; i < derivs.size(); i ++) {
+                        // update derivation-to-count map 
+                        if (derivToCount.containsKey(subDeriv)) {
+                          derivToCount.put(subDeriv, derivToCount.get(subDeriv) + 1);
+                        } else {
+                          derivToCount.put(subDeriv, 1);
+                        }
+                        
+                        if (!derivToOrder.containsKey(subDeriv)) {
+                          derivToOrder.put(subDeriv, i);
+                        }
 
-                  String derivString = ((derivs.get(i)).value).toString();
-                  String subDeriv = "";
-                  if (derivString.contains("\"")) {
-                    subDeriv = derivString.split("\"")[1];
-                  } else {
-                    subDeriv = derivString.split(" ")[1];
-                    subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
-                  }
+                        // update top prediction 
+                        if (i == 0) {
+                          topPred = subDeriv;
+                        }
 
-                  // update derivation-to-count map 
-                  if (derivToCount.containsKey(subDeriv)) {
-                    derivToCount.put(subDeriv, derivToCount.get(subDeriv) + 1);
-                  } else {
-                    derivToCount.put(subDeriv, 1);
+                      }
+
+                      // prints 
+                      outputFile.println("    " +  "Top prediction: " + topPred);
+                      
+                      if (derivs.size() >= beam) {
+                        outputFile.println("derivSize == beamSize");
+                      }
+
+                    }
+                    
+                    if ((derivToCount.isEmpty()) || (topPred.equals(""))) continue;
+                    
+                    //
+                    // more prints 
+                    // 
+                    {
+                      outputFile.println("    " + "All " + derivToCount.size() + " derivations and their counts: ");
+                      for (String k : derivToCount.keySet()) {
+                        int v = derivToCount.get(k);
+                        outputFile.println("      " + k + " : " + v);
+                      }
+                    }
+                    
                   }
                   
-                  if (!derivToOrder.containsKey(subDeriv)) {
-                    derivToOrder.put(subDeriv, i);
-                  }
-
-                  // update top prediction 
-                  if (i == 0) {
-                    topPred = subDeriv;
-                  }
-
+                  
                 }
-
-                // prints 
-                outputFile.println("Top prediction: " + topPred);
                 
-                if (derivs.size() >= beam) {
-                  outputFile.println("derivSize == beamSize");
-                }
-
               }
+              catch(Throwable t) {
+                System.out.println("Exception");
 
-              //assert (!derivToCount.isEmpty());
-              //assert (!topPred.equals(""));
+                while (LogInfo.getIndLevel() > indent)
+                  LogInfo.end_track();
+                t.printStackTrace();
 
-              if ((derivToCount.isEmpty()) || (topPred.equals(""))) {
-
-                utterance = srcFile.readLine();
-
-                if (utterance == null || utterance.isEmpty()) break;
-
-                currIndx ++;
                 continue;
               }
-
-
-              //
-              // more prints 
-              // 
-              {
-                outputFile.println("All " + derivToCount.size() + " derivations and their counts: ");
-                for (String k : derivToCount.keySet()) {
-                  int v = derivToCount.get(k);
-                  outputFile.println("  " + k + " : " + v);
-                }
-              }
-
-              utterance = srcFile.readLine();
-
-              if (utterance == null || utterance.isEmpty()) break;
-
-              currIndx ++;
-
-            } catch (Throwable t) {
-              System.out.println("Exception");
-
-              while (LogInfo.getIndLevel() > indent)
-                LogInfo.end_track();
-              t.printStackTrace();
               
-              utterance = srcFile.readLine();
-
-              if (utterance == null || utterance.isEmpty()) break;
-
-              currIndx ++;
-              continue;
-
+              
             }
+            
+            lineCount = srcFile.readLine();
+            
+            if (lineCount == null || lineCount.isEmpty()) break;
+            currIndx ++;
+            
           }
 
           //
@@ -187,22 +181,29 @@ public class TestSimple implements Runnable {
       Master master = new Master(builder);
 
       Session session = master.getSession("stdin");
-
-      // test on train set 
+      
       {
-        String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
-        String specFilePath = "regex/data/" + this.dataset + "/spec-train.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-train.txt";
+        String srcFilePath = "regex/data/" + this.dataset + "/src-labeled-chunk.txt";
+        String specFilePath = "";
+        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred.txt";
         runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
-      //test on test set 
-      {
-        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
-        String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
-        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
-      }
+//      // test on train set 
+//      {
+//        String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
+//        String specFilePath = "regex/data/" + this.dataset + "/spec-train.txt";
+//        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-train.txt";
+//        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
+//      }
+//
+//      //test on test set 
+//      {
+//        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
+//        String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
+//        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
+//        runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
+//      }
 
     }
 

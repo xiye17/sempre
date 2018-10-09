@@ -86,6 +86,14 @@ public class RegexFunctions {
     return ret;
   };
   
+  public static NameValue or(Integer arg0, Integer arg1) {
+    String id = "or(" + arg0 + "," + arg1 + ")";
+
+    NameValue ret = new NameValue(id);
+
+    return ret;
+  };
+  
   public static NameValue optional(NameValue arg0) {
     String id = "optional(" + arg0.id + ")";
     
@@ -112,6 +120,14 @@ public class RegexFunctions {
   
   public static NameValue upto(Integer arg0, NameValue arg1) {
     String id = "repeat(" + arg1.id + ",1," + arg0 + ")";
+    
+    NameValue ret = new NameValue(id);
+    
+    return ret;
+  };
+  
+  public static NameValue sep(NameValue arg0) {
+    String id = "sep(" + arg0.id + ")";
     
     NameValue ret = new NameValue(id);
     

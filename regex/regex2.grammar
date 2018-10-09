@@ -3,66 +3,61 @@
 (rule $ROOT ($Regex) (IdentityFn)) 
 (rule $ROOT ($Skip $Regex) (SelectFn 1))
 
-# Ambiguous Rule, only applied once
-#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.and (var x) (var y)))))
-#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.or (var x) (var y)))))
-#(rule $RegexAmbiguous ($Regex $Regex) (lambda x (lambda y (call regex.RegexFunctions.followedby (var x) (var y)))))
-
 # Rules for composition 
 
 (rule $Regex ($CC) (IdentityFn))
 
 (rule $Regex ($OpContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.contain (var y)))))
-(rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var x) (var z))))))
-(rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var z) (var x))))))
-
-#added2
-# todo: repeat $regex num1 
-(rule $Regex ($OpRepeat $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (number 1 )))))
-
-#added
 (rule $Regex ($OpContain $INT $Regex) (lambda x (lambda y (call regex.RegexFunctions.repeat (var x) (var y)))))
-(rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
-(rule $Regex ($OpStart $Regex) (lambda x (lambda y (call regex.RegexFunctions.startwith (var y)))))
-(rule $Regex ($OpEnd $Regex) (lambda x (lambda y (call regex.RegexFunctions.endwith (var y)))))
 
-#added
+(rule $Regex ($OpNotContain $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (call regex.RegexFunctions.contain (var y))))))
+
+(rule $Regex ($OpStart $Regex) (lambda x (lambda y (call regex.RegexFunctions.startwith (var y)))))
+
+(rule $Regex ($OpEnd $Regex) (lambda x (lambda y (call regex.RegexFunctions.endwith (var y)))))
 (rule $Regex ($Regex $OpEnd) (lambda x (lambda y (call regex.RegexFunctions.endwith (var x)))))
 
-(rule $Regex ($Regex $OpRepeat $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var z))))))
-(rule $Regex ($OpRepeat $Regex $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z))))))
-(rule $Regex ($Regex $INT $OpRepeat) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y))))))
-(rule $Regex ($Regex $OpFollow $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var z))))))
-(rule $Regex ($Regex $OpFollow $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var x))))))
-
-#added
-(rule $Regex ($OpFollow $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var z))))))
-(rule $Regex ($OpFollow $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var y))))))
-(rule $Regex ($Regex $Regex $OpFollow) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var y))))))
-(rule $Regex ($Regex $Regex $OpFollow) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var x))))))
-
 (rule $Regex ($OpNot $Regex) (lambda x (lambda y (call regex.RegexFunctions.not (var y)))))
-(rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var x) (var z))))))
-(rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
+(rule $Regex ($Regex $OpNot) (lambda x (lambda y (call regex.RegexFunctions.not (var x)))))
 
-#added
-(rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
 
-(rule $Regex ($INT $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y) (var z))))))
-
-#added
 (rule $Regex ($OpOptional $Regex) (lambda x (lambda y (call regex.RegexFunctions.optional (var y)))))
 (rule $Regex ($Regex $OpOptional) (lambda x (lambda y (call regex.RegexFunctions.optional (var x)))))
 
 (rule $Regex ($OpOnly $Regex) (lambda x (lambda y (call regex.RegexFunctions.only (var y)))))
 (rule $Regex ($OpOnly $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.only (var y) (var z))))))
 
+(rule $Regex ($OpRepeat $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (number 1 )))))
+(rule $Regex ($OpRepeat $Regex $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z))))))
+(rule $Regex ($Regex $OpRepeat $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var z))))))
+(rule $Regex ($Regex $OpRepeat $INT $INT) (lambda w (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z) (var w)))))))
+(rule $Regex ($Regex $INT $OpRepeat) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y))))))
+(rule $Regex ($INT $Regex) (lambda x (lambda y  (call regex.RegexFunctions.repeat (var y) (var x)))))
+(rule $Regex ($INT $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y) (var z))))))
+
 (rule $Regex ($OpUpto $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var y) (var z))))))
+(rule $Regex ($INT $OpUpto $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var y) (var z))))))
 
 (rule $Regex ($INT $OpMore $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.more (var x) (var z))))))
+(rule $Regex ($OpMore $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.more (var y) (var z))))))
 
-(rule $Regex ($Regex $OpRepeat $INT $INT) (lambda w (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var y) (var z) (var w)))))))
+(rule $Regex ($OpSep $CC) (lambda x (lambda y (call regex.RegexFunctions.sep (var y)))))
+(rule $Regex ($CC $OpSep) (lambda x (lambda y (call regex.RegexFunctions.sep (var x)))))
 
+
+(rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var x) (var z))))))
+(rule $Regex ($Regex $OpAnd $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.and (var z) (var x))))))
+
+(rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var x) (var z))))))
+(rule $Regex ($Regex $OpOr $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var z) (var x))))))
+(rule $Regex ($INT $OpOr $INT) (lambda x (lambda y (lambda z (call regex.RegexFunctions.or (var x) (var z))))))
+
+(rule $Regex ($Regex $OpBefore $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var z))))))
+(rule $Regex ($Regex $OpAfter $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var x))))))
+(rule $Regex ($OpBefore $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var z))))))
+(rule $Regex ($OpAfter $Regex $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var z) (var y))))))
+(rule $Regex ($Regex $Regex $OpBefore) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var x) (var y))))))
+(rule $Regex ($Regex $Regex $OpAfter) (lambda x (lambda y (lambda z (call regex.RegexFunctions.followedby (var y) (var x))))))
 
 # Rules for parsing keywords with skipping
 # Parsed to CC and OpXXX
@@ -104,12 +99,17 @@
 (rule $OpRepeat ($OpRepeat1 $Skip) (SelectFn 0))
 
 
+## OpBefore rules 
 
-## OpFollow rules 
+(rule $OpBefore ($OpBefore1) (IdentityFn))
 
-(rule $OpFollow ($OpFollow1) (IdentityFn))
+(rule $OpBefore ($OpBefore1 $Skip) (SelectFn 0))
 
-(rule $OpFollow ($OpFollow1 $Skip) (SelectFn 0))
+## OpAfter rules 
+
+(rule $OpAfter ($OpAfter1) (IdentityFn))
+
+(rule $OpAfter ($OpAfter1 $Skip) (SelectFn 0))
 
 ## OpNot rules 
 
@@ -151,6 +151,13 @@
 
 (rule $OpMore ($OpMore1 $Skip) (SelectFn 0))
 
+## OpSep rules
+(rule $OpSep ($OpSep1) (IdentityFn))
+
+(rule $OpSep ($OpSep1 $Skip) (SelectFn 0))
+
+(rule $OpSep ($Skip $OpSep1) (SelectFn 1))
+
 # INT rules
 
 (rule $INT ($INT1) (IdentityFn))
@@ -167,16 +174,16 @@
 (rule $OpStart1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.startwith)))
 (rule $OpEnd1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.endwith)))
 (rule $OpRepeat1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.repeat)))
-(rule $OpFollow1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.followedby)))
+(rule $OpBefore1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.before)))
+(rule $OpAfter1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.after)))
 (rule $OpNot1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.not)))
 (rule $OpOr1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.or)))
 (rule $OpNotContain1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.notcontain)))
-
-# added
 (rule $OpOptional1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.optional)))
 (rule $OpOnly1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.only)))
 (rule $OpUpto1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.upto)))
 (rule $OpMore1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.more)))
+(rule $OpSep1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.op.sep)))
 
 
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn))

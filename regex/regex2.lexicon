@@ -3,13 +3,16 @@
 {"lexeme" : "alphabet", "formula" : "fb:en.let", "type" : "fb:type.cc"}
 {"lexeme" : "capital", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
 {"lexeme" : "upper", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
+{"lexeme" : "uppercase", "formula" : "fb:en.cap", "type" : "fb:type.cc"}
 {"lexeme" : "lower", "formula" : "fb:en.low", "type" : "fb:type.cc"}
-{"lexeme" : "lower-case", "formula" : "fb:en.low", "type" : "fb:type.cc"}
+{"lexeme" : "lowercase", "formula" : "fb:en.low", "type" : "fb:type.cc"}
 {"lexeme" : "small", "formula" : "fb:en.low", "type" : "fb:type.cc"}
 {"lexeme" : "vowel", "formula" : "fb:en.vow", "type" : "fb:type.cc"}
 {"lexeme" : "number", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "numeral", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "numeric", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "digit", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "numeric digit", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "any", "formula" : "fb:en.any", "type" : "fb:type.cc"}
 {"lexeme" : "word", "formula" : "fb:en.any", "type" : "fb:type.cc"}
 {"lexeme" : "character", "formula" : "fb:en.any", "type" : "fb:type.cc"}
@@ -27,11 +30,10 @@
 {"lexeme" : "decimal", "formula" : "fb:en.dp", "type" : "fb:type.cc"}
 {"lexeme" : "dot", "formula" : "fb:en.dp", "type" : "fb:type.cc"}
 {"lexeme" : "alphanumeric", "formula" : "fb:en.letnum", "type" : "fb:type.cc"}
+{"lexeme" : "special character", "formula" : "fb:en.sp", "type" : "fb:type.cc"}
 {"lexeme" : "as well as", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
 {"lexeme" : "and", "formula" : "fb:en.opand", "type" : "fb:type.op.and"}
 {"lexeme" : "or", "formula" : "fb:en.opor", "type" : "fb:type.op.or"}
-{"lexeme" : ",", "formula" : "fb:en.or", "type" : "fb:type.op.or"}
-{"lexeme" : ",", "formula" : "fb:en.end", "type" : "fb:type.op.end"}
 {"lexeme" : "line with", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "line that", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
 {"lexeme" : "line have", "formula" : "fb:en.opcontain", "type" : "fb:type.op.contain"}
@@ -45,34 +47,49 @@
 {"lexeme" : "start", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "begin", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "starting", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
-{"lexeme" : "with", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "front", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
+{"lexeme" : "leading", "formula" : "fb:en.opstartwith", "type" : "fb:type.op.startwith"}
 {"lexeme" : "end", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "terminate", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "terminating", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "trail", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
+{"lexeme" : "trailing", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "ending", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "final", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "finish", "formula" : "fb:en.opendwith", "type" : "fb:type.op.endwith"}
 {"lexeme" : "repeat", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
-{"lexeme" : "at least", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
 {"lexeme" : "length", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
 {"lexeme" : "time", "formula" : "fb:en.oprepeat", "type" : "fb:type.op.repeat"}
 {"lexeme" : "only", "formula" : "fb:en.oponly", "type" : "fb:type.op.only"}
 {"lexeme" : "up to", "formula" : "fb:en.opupto", "type" : "fb:type.op.upto"}
+{"lexeme" : "maximum", "formula" : "fb:en.opupto", "type" : "fb:type.op.upto"}
+{"lexeme" : "max", "formula" : "fb:en.opupto", "type" : "fb:type.op.upto"}
+{"lexeme" : "less", "formula" : "fb:en.opupto", "type" : "fb:type.op.upto"}
 {"lexeme" : "more", "formula" : "fb:en.opmore", "type" : "fb:type.op.more"}
-{"lexeme" : "followed", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "follow", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "following", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "before", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "then", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "precede", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "preceding", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
-{"lexeme" : "after", "formula" : "fb:en.opfollowedby", "type" : "fb:type.op.followedby"}
+{"lexeme" : "at least", "formula" : "fb:en.opmore", "type" : "fb:type.op.more"}
+{"lexeme" : "minimum", "formula" : "fb:en.opmore", "type" : "fb:type.op.more"}
+{"lexeme" : "min", "formula" : "fb:en.opmore", "type" : "fb:type.op.more"}
+{"lexeme" : "followed", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "follow", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "following", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "before", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "then", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "precede", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "preceding", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
+{"lexeme" : "after", "formula" : "fb:en.opafter", "type" : "fb:type.op.after"}
 {"lexeme" : "not", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "non", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "disallow", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "don't", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "other than", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "without", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "except", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
+{"lexeme" : "never", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "line without", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
 {"lexeme" : "item without", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
 {"lexeme" : "line not", "formula" : "fb:en.opnotcontain", "type" : "fb:type.op.notcontain"}
 {"lexeme" : "optional", "formula" : "fb:en.opoptional", "type" : "fb:type.op.optional"}
+{"lexeme" : "separate", "formula" : "fb:en.opseparate", "type" : "fb:type.op.sep"}
+{"lexeme" : "separator", "formula" : "fb:en.opseparate", "type" : "fb:type.op.sep"}
+{"lexeme" : "delimit", "formula" : "fb:en.opseparate", "type" : "fb:type.op.sep"}
+{"lexeme" : "divide", "formula" : "fb:en.opseparate", "type" : "fb:type.op.sep"}
