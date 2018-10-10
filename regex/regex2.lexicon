@@ -12,6 +12,7 @@
 {"lexeme" : "numeral", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "numeric", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "digit", "formula" : "fb:en.num", "type" : "fb:type.cc"}
+{"lexeme" : "integer", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "numeric digit", "formula" : "fb:en.num", "type" : "fb:type.cc"}
 {"lexeme" : "any", "formula" : "fb:en.any", "type" : "fb:type.cc"}
 {"lexeme" : "word", "formula" : "fb:en.any", "type" : "fb:type.cc"}
@@ -77,6 +78,7 @@
 {"lexeme" : "precede", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
 {"lexeme" : "preceding", "formula" : "fb:en.opbefore", "type" : "fb:type.op.before"}
 {"lexeme" : "after", "formula" : "fb:en.opafter", "type" : "fb:type.op.after"}
+{"lexeme" : "no", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "not", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "non", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}
 {"lexeme" : "disallow", "formula" : "fb:en.opnot", "type" : "fb:type.op.not"}

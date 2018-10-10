@@ -65,7 +65,7 @@ public class TestSimple implements Runnable {
                     Map<String, Integer> derivToOrder = new HashMap<>();
                     String topPred = "";
                     
-                    {
+                    try{
 
                       Master.Response response = master.processQuery(session, line);
 
@@ -108,6 +108,16 @@ public class TestSimple implements Runnable {
                       }
 
                     }
+			catch(Throwable t) {
+
+                		System.out.println("Exception");
+
+		              while (LogInfo.getIndLevel() > indent) LogInfo.end_track();
+		                t.printStackTrace();
+
+				continue;
+				
+			}
                     
                     if ((derivToCount.isEmpty()) || (topPred.equals(""))) continue;
                     
@@ -135,7 +145,7 @@ public class TestSimple implements Runnable {
                   LogInfo.end_track();
                 t.printStackTrace();
 
-                continue;
+		continue;
               }
               
               
