@@ -36,7 +36,7 @@
 (rule $Regex ($INT $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.repeat (var x) (var y) (var z))))))
 
 (rule $Regex ($OpUpto $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var y) (var z))))))
-(rule $Regex ($INT $OpUpto $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var y) (var z))))))
+(rule $Regex ($INT $OpUpto $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.upto (var x) (var z))))))
 
 (rule $Regex ($INT $OpMore $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.more (var x) (var z))))))
 (rule $Regex ($OpMore $INT $Regex) (lambda x (lambda y (lambda z (call regex.RegexFunctions.more (var y) (var z))))))
