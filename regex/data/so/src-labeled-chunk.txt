@@ -19,15 +19,17 @@ What is the regular expression for validating a month with the leading zero?
 The input will be in the form a <M0> separated tuple of three values. 
 The first value will be an integer (potentially a long in terms of size/length)
 with the other two values being either numeric or a string
-4
-Need to validate the following string using regular expression: Key = Value ; Key = Value ; Key = Value and so on. 
+5
+Need to validate the following string using regular expression:
+Key = Value ; Key = Value ; Key = Value and so on. 
 Key and value can contain anything except <M0> and <M1>
 Key and Value both cannot be blank or empty with <M2>
 Input string does not ends with <M3>
 1
 It should accept numbers only with decimal part 0 or 5 only.
-2
-I want this value to accept up to 18 digits before the decimal, and 1 digit after. 
+3
+I want this value to accept up to 18 digits before the decimal,
+and 1 digit after. 
 With the decimal point and the digit after it being optional
 2
 The value should not contain only <M0> and if there is a <M1> the length should be more than 3 characters including <M2>. 
@@ -53,16 +55,18 @@ only single numeric digit should be allowed before <M0>
 only <M1> special character after the numeric digit
 there should be only 3 or less numeric digits after the <M2>
 only <M3> special character should be allowed at the end of the string.
-2
+3
 I want to validate a 10 digit USA style phone number using a Regular Expression in Javascript. 
-It should allow (validate as correct) the following formats: xxx - xxx - xxxx
+It should allow (validate as correct) the following formats:
+xxx - xxx - xxxx
 1
 accept numeric values that are seven or ten digits
 1
 I am trying to write a regular expression which validates a text box to have only digits with length 5 or 9.
-3
+4
 How can i write valid regular expression for Oracle's Number(2,2)
-Also digits after decimal should be either, 1 or 2 but not more than 2, also it can be optional. 
+Also digits after decimal should be either, 1 or 2 but not more than 2,
+also it can be optional. 
 The numer should never start with [ 1 - 9 ] but can start with 0.
 1
 I need a regular expression that validates a number, but doesn't require a digit after the decimal
@@ -71,9 +75,9 @@ I'm trying to write a regular expression to check whether or not a proposed name
 Name must contain at least 3 and no more than 20 letters
 Name must start with a uppercase letter
 Name must never have two uppercase letters in a row
-Spaces are allowed, but must be preceded by a letter and be followed by an uppercase letter
-Hyphens are allowed, but must be preceded by a letter and be followed by a lowercase letter
-All uppercase letters must be followed by a lowercase letter unless they are followed by a space or hyphen
+<M0> are allowed, but must be preceded by a letter and be followed by an uppercase letter
+<M1> are allowed, but must be preceded by a letter and be followed by a lowercase letter
+All uppercase letters must be followed by a lowercase letter unless they are followed by a <M2> or <M3>
 1
 I need a regular expression that can validate an input string to make sure it is a number between 1-30 and up to 2 decimal places.
 1
@@ -92,17 +96,27 @@ How should I write my regular expressions code to match following criteria?
 It consists of at least two <M0> separated names 
 All <M1> separated names at least 2 characters long 
 At least one <M2> separated name is at least 4 characters long
-10
-I need to write a regular expression to verify if a file input follows a rule: A111B2_3_C.exe in which:
-A: compulsory, it must be a ' <M0> '
-111: compulsory, it is a natural number
-B: compulsory, it must be a ' <M1> '
-2: compulsory, it is in range from 1 -> 6
-_: compulsory, it must be ' <M2> '
-3: compulsory, it must be a nature number
-_: optional if C followed, it must be ' <M3> '
-C: optional, C is a natural number
-.exe: is the end extension of the file
+20
+I need to write a regular expression to verify if a file input follows a rule:
+A111B2_3_C.exe in which:
+A:
+compulsory, it must be a ' <M0> '
+111:
+compulsory, it is a natural number
+B:
+compulsory, it must be a ' <M1> '
+2:
+compulsory, it is in range from 1 -> 6
+_:
+compulsory, it must be ' <M2> '
+3:
+compulsory, it must be a nature number
+_:
+optional if C followed, it must be ' <M3> '
+C:
+optional, C is a natural number
+.exe:
+is the end extension of the file
 1
 Can anyone please help me to find the suitable regular expression to validate a string that has <M0> separated numbers
 6
@@ -132,11 +146,12 @@ Valid input are at least two characters with <M0> symbol.
 In other words valid format is < ' <M1> ' or nothing> <at least two characters> < ' <M2> ' or nothing>
 1
 I'm trying to validate a value and that value cannot have a zero and then a number in front of it
-6
+7
 I am trying to create a regular expression which will validate a text. 
 Conditions are as follows:
 Must contain at least one alphanumeric character [A-Z a-z 0-9]
-Can contain allowed special character like [ <M0> <M1> ]. This is optional.
+Can contain allowed special character like [ <M0> <M1> ].
+This is optional.
 No other characters are allowed other than the above mentioned chars[includes <M2> and <M3>].
 Text length should be less than 8.
 4
@@ -190,8 +205,9 @@ I need some help in finding how to write a validation expression to validate a s
 Requirement is that total number of <M0> with the string can only be one.
 1
 I need to match only strings that include one character / between numbers or integer numbers.
-1
-Allows only the following characters: Letters, numbers, spaces and any of the following characters <M0> <M1> <M2> <M3> <M4> <M5> <M6>
+2
+Allows only the following characters:
+Letters, numbers, spaces and any of the following characters <M0> <M1> <M2> <M3> <M4> <M5> <M6>
 1
 User allowed to enter two characters after <M0>
 7
@@ -239,11 +255,13 @@ Also if any character can come before any numerals that can only be a <M10>.
 2
 The name must only consist of letters, numbers and one or more single <M0> (not in the beginning or end). 
 The minimum length is 3 characters.
-5
+7
 I would like to validate a string format that should only contain only numbers with also following conditions both satisfied: 
 If it is a integer number, the maximum number of digits is 5. 
-If it is a number with decimal (or decimal fraction), the maximum digits after decimal mark is two. 
-NOTE: value use <M0> or dot as decimal point. 
+If it is a number with decimal (or decimal fraction),
+the maximum digits after decimal mark is two. 
+NOTE:
+value use <M0> or dot as decimal point. 
 Please bear in mind that both of the two conditions have to be satisfied.
 1
 I need a regular expression to validate single digit within range of [1-5] followed by alphabet [A-C] and followed by optional alphabet [X-Z]
@@ -251,13 +269,14 @@ I need a regular expression to validate single digit within range of [1-5] follo
 I need a regular expression validation expression that will 
 ALLOW positive number ( 0-9 ), , and . 
 DISALLOW letter (a-z), any other letter or symbol except <M0> and <M1>
-6
+7
 at least 6 characters
 no <M0>
 at least one digit
 at least one uppercase
 at least one lowercase
-at least one special character: <M1> <M2> <M3> <M4> <M5> <M6> <M7> <M8> <M9> <M10> <M11>
+at least one special character: 
+<M1> <M2> <M3> <M4> <M5> <M6> <M7> <M8> <M9> <M10> <M11>
 3
 I would like regex to be a whole number with thousands separated with a <M0>. 
 No decimal. 
@@ -273,8 +292,9 @@ valid characters are alpha-numeric and <M0> (period).
 The patterns are %d4% and %t7%. 
 So <M1> is not valid by itself, 
 but has to be part of these specific patterns.
-2
-The input box should accept alphanumeric with no <M0> and it should also allow the user to use the characters like <M1> <M2> <M3> <M4> <M5>  <M6> <M7> any where in the string, except these characters non of the other characters should be allowed like ( <M8>, <M9>, <M10> etc ). 
+3
+The input box should accept alphanumeric with no <M0> and it should also allow the user to use the characters like <M1> <M2> <M3> <M4> <M5>  <M6> <M7> any where in the string,
+except these characters non of the other characters should be allowed like ( <M8>, <M9>, <M10> etc ). 
 It should not allow leading/trailing <M11> also.
 2
 Should allow only alphanumeric with no <M0> and no other characters including ( <M1> ). 
@@ -366,9 +386,11 @@ I have a field that should accept:
 letters [a-zA-Z]
 letters with numbers [a-zA-Z0-9]
 no special characters
-5
+7
 Requirement:
-First part of the string can be; Min 1 Max 6 char long. Upper case only.
-Second part of the string can be; Exactly 2 chars long but 00 is not accepted.
+First part of the string can be; 
+Min 1 Max 6 char long. Upper case only.
+Second part of the string can be; 
+Exactly 2 chars long but 00 is not accepted.
 So all together: 
 It can be min 3 max 8 chars long.
