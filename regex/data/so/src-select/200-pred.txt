@@ -1,0 +1,367 @@
+=======================================================
+Test on utterance 1:
+  Line 0: write a regular expression that
+    Top prediction: 
+  Line 1: ONLY matches strings
+    Top prediction: fb:en.any
+    All 2 derivations and their counts: 
+      fb:en.any : 3
+      repeat(fb:en.any,1,) : 1
+  Line 2: NO NUMBERS
+    Top prediction: fb:en.num
+    All 2 derivations and their counts: 
+      fb:en.num : 2
+      not(fb:en.num) : 1
+  Line 3: NO SPECIAL CHARACTERS
+    Top prediction: fb:en.let
+    All 6 derivations and their counts: 
+      fb:en.sp : 2
+      not(fb:en.any) : 1
+      fb:en.let : 3
+      fb:en.any : 3
+      not(fb:en.let) : 1
+      not(fb:en.sp) : 1
+  Line 4: just letters from A - Z.
+    Top prediction: fb:en.let
+    All 1 derivations and their counts: 
+      fb:en.let : 1
+=======================================================
+Test on utterance 2:
+  Line 0: write regular expression in C# to validate that 
+    Top prediction: 
+  Line 1: the input does not contain double <M0>
+    Top prediction: fb:en.const
+    All 4 derivations and their counts: 
+      not(fb:en.const) : 1
+      not(contain(fb:en.const)) : 1
+      fb:en.const : 7
+      contain(fb:en.const) : 1
+=======================================================
+Test on utterance 3:
+  Line 0: write regular expression that 
+    Top prediction: 
+  Line 1: allows only digits
+    Top prediction: fb:en.num
+    All 2 derivations and their counts: 
+      fb:en.num : 3
+      repeat(fb:en.num,1,) : 1
+  Line 2: characters like <M0> <M1> <M2> <M3> <M4> and <M5>.
+    Top prediction: fb:en.let
+    All 4 derivations and their counts: 
+      and(fb:en.const,fb:en.const) : 1
+      fb:en.let : 1
+      fb:en.any : 1
+      fb:en.const : 6
+=======================================================
+Test on utterance 4:
+  Line 0: validate a textbox with decimal number. 
+    Top prediction: fb:en.dp
+    All 2 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.dp : 1
+  Line 1: First two digit and decimal point and followed by a single digit. 
+    Top prediction: repeat(fb:en.num,1)
+    All 24 derivations and their counts: 
+      repeat(and(fb:en.num,fb:en.num),1) : 1
+      fb:en.num : 2
+      repeat(and(fb:en.num,fb:en.dp),1,2) : 1
+      repeat(fb:en.num,1) : 2
+      and(fb:en.num,fb:en.num) : 1
+      repeat(and(repeat(fb:en.num,2),fb:en.dp),1) : 1
+      fb:en.dp : 1
+      and(repeat(repeat(fb:en.num,2),1),fb:en.dp) : 1
+      and(repeat(fb:en.num,1),fb:en.num) : 1
+      repeat(repeat(fb:en.num,2),1) : 2
+      repeat(fb:en.num,1,2) : 2
+      repeat(and(repeat(fb:en.num,2),fb:en.num),1) : 1
+      repeat(repeat(and(fb:en.num,fb:en.num),2),1) : 1
+      and(fb:en.num,fb:en.dp) : 1
+      repeat(fb:en.dp,1,2) : 1
+      and(repeat(fb:en.num,1),fb:en.dp) : 1
+      and(repeat(repeat(fb:en.num,2),1),fb:en.num) : 1
+      repeat(fb:en.dp,1) : 1
+      and(repeat(fb:en.num,1,2),fb:en.dp) : 1
+      repeat(repeat(and(fb:en.num,fb:en.dp),2),1) : 1
+      repeat(and(fb:en.num,fb:en.dp),1) : 1
+      repeat(and(fb:en.num,fb:en.num),1,2) : 1
+      and(repeat(fb:en.num,1,2),fb:en.num) : 1
+      repeat(repeat(fb:en.dp,2),1) : 1
+  Line 2: i need the exact digit like this two digit.single digit.
+    Top prediction: fb:en.num
+    All 1 derivations and their counts: 
+      fb:en.num : 2
+  Line 3: The final single digit is <M0> only.
+    Top prediction: fb:en.num
+    All 2 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.const : 1
+=======================================================
+Test on utterance 5:
+  Line 0: What is the regular expression for validating a month with the leading zero?
+    Top prediction: 
+=======================================================
+Test on utterance 6:
+  Line 0: The input will be in the form a <M0> separated tuple of three values. 
+    Top prediction: sep(fb:en.const)
+    All 2 derivations and their counts: 
+      sep(fb:en.const) : 1
+      fb:en.const : 1
+  Line 1: The first value will be an integer (potentially a long in terms of size/length)
+    Top prediction: fb:en.num
+    All 1 derivations and their counts: 
+      fb:en.num : 1
+  Line 2: with the other two values being either numeric or a string
+    Top prediction: or(fb:en.num,fb:en.any)
+    All 10 derivations and their counts: 
+      repeat(fb:en.any,2) : 1
+      fb:en.num : 1
+      or(repeat(fb:en.num,2),fb:en.any) : 1
+      contain(fb:en.any) : 1
+      or(contain(fb:en.num),fb:en.any) : 1
+      or(fb:en.num,fb:en.any) : 8
+      fb:en.any : 11
+      repeat(or(fb:en.num,fb:en.any),2) : 1
+      contain(fb:en.num) : 1
+      contain(or(fb:en.num,fb:en.any)) : 1
+=======================================================
+Test on utterance 7:
+  Line 0: Need to validate the following string using regular expression:
+    Top prediction: fb:en.any
+    All 1 derivations and their counts: 
+      fb:en.any : 1
+  Line 1: Key = Value ; Key = Value ; Key = Value and so on. 
+    Top prediction: 
+  Line 2: Key and value can contain anything except <M0> and <M1>
+    Top prediction: fb:en.const
+    All 8 derivations and their counts: 
+      and(contain(fb:en.const),fb:en.const) : 1
+      not(and(fb:en.const,fb:en.const)) : 1
+      not(fb:en.const) : 1
+      and(fb:en.const,fb:en.const) : 8
+      contain(and(fb:en.const,fb:en.const)) : 1
+      and(not(fb:en.const),fb:en.const) : 1
+      fb:en.const : 11
+      contain(fb:en.const) : 1
+  Line 3: Key and Value both cannot be blank or empty with <M2>
+    Top prediction: fb:en.const
+    All 3 derivations and their counts: 
+      not(fb:en.const) : 1
+      fb:en.const : 12
+      contain(fb:en.const) : 1
+  Line 4: Input string does not ends with <M3>
+    Top prediction: fb:en.const
+    All 8 derivations and their counts: 
+      not(endwith(fb:en.const)) : 2
+      not(fb:en.const) : 1
+      endwith(fb:en.const) : 2
+      fb:en.const : 7
+      fb:en.any : 1
+      not(endwith(contain(fb:en.const))) : 1
+      endwith(contain(fb:en.const)) : 1
+      contain(fb:en.const) : 1
+=======================================================
+Test on utterance 8:
+  Line 0: It should accept numbers only with decimal part <M0> or <M1> only.
+    Top prediction: fb:en.num
+    All 4 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.dp : 1
+      fb:en.const : 2
+      or(fb:en.const,fb:en.const) : 1
+=======================================================
+Test on utterance 9:
+  Line 0: I want this value to accept up to 18 digits before the decimal,
+    Top prediction: fb:en.num
+    All 3 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.dp : 1
+      followedby(fb:en.num,fb:en.dp) : 1
+  Line 1: and 1 digit after. 
+    Top prediction: fb:en.num
+    All 1 derivations and their counts: 
+      fb:en.num : 1
+  Line 2: With the decimal point and the digit after it being optional
+    Top prediction: contain(fb:en.dp)
+    All 7 derivations and their counts: 
+      fb:en.num : 1
+      contain(fb:en.dp) : 1
+      fb:en.dp : 1
+      contain(followedby(fb:en.num,fb:en.dp)) : 1
+      contain(fb:en.num) : 1
+      followedby(fb:en.num,contain(fb:en.dp)) : 1
+      followedby(fb:en.num,fb:en.dp) : 1
+=======================================================
+Test on utterance 10:
+  Line 0: The value should not contain only <M0> and if there is a <M1> the length should be more than 3 characters including <M2>. 
+    Top prediction: fb:en.const
+    All 6 derivations and their counts: 
+      and(fb:en.const,fb:en.let) : 1
+      and(fb:en.const,fb:en.const) : 2
+      and(fb:en.const,fb:en.any) : 1
+      fb:en.let : 1
+      fb:en.const : 3
+      fb:en.any : 1
+  Line 1: <M3> can be anywhere in the string (dot is included).
+    Top prediction: fb:en.const
+    All 3 derivations and their counts: 
+      fb:en.dp : 1
+      fb:en.const : 1
+      fb:en.any : 1
+=======================================================
+Test on utterance 11:
+  Line 0: I want to develop one regular expression which 
+    Top prediction: 
+  Line 1: validates only strings which 
+    Top prediction: fb:en.any
+    All 1 derivations and their counts: 
+      fb:en.any : 1
+  Line 2: have " <M0> , <M1> or <M2> "
+    Top prediction: contain(fb:en.const)
+    All 5 derivations and their counts: 
+      contain(or(fb:en.const,fb:en.const)) : 1
+      or(contain(fb:en.const),fb:en.const) : 1
+      fb:en.const : 3
+      contain(fb:en.const) : 3
+      or(fb:en.const,fb:en.const) : 1
+=======================================================
+Test on utterance 12:
+  Line 0: optional number of digits followed by an ' <M0> ' and an optional (' <M1> ' followed by one or more digits)
+    Top prediction: fb:en.num
+    All 10 derivations and their counts: 
+      optional(fb:en.num) : 3
+      optional(followedby(fb:en.num,fb:en.num)) : 2
+      fb:en.num : 3
+      followedby(optional(fb:en.num),fb:en.num) : 2
+      optional(fb:en.const) : 2
+      optional(followedby(fb:en.num,fb:en.const)) : 2
+      followedby(optional(fb:en.num),fb:en.const) : 2
+      followedby(fb:en.num,fb:en.num) : 2
+      fb:en.const : 2
+      followedby(fb:en.num,fb:en.const) : 2
+=======================================================
+Test on utterance 13:
+  Line 0: I wan`t to validate next formats:
+    Top prediction: 
+  Line 1: Decimal numbers with max 3 decimal places
+    Top prediction: fb:en.dp
+    All 2 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.dp : 2
+  Line 2: Exclude <M0>
+    Top prediction: fb:en.const
+    All 1 derivations and their counts: 
+      fb:en.const : 2
+=======================================================
+Test on utterance 14:
+  Line 0: write a Regular Expression validator to accept numbers only with decimal part <M0> or <M1> only and in range 0-5. 
+    Top prediction: fb:en.num
+    All 4 derivations and their counts: 
+      fb:en.num : 1
+      fb:en.dp : 1
+      fb:en.const : 2
+      or(fb:en.const,fb:en.const) : 1
+  Line 1: No matter how many 0 in front or behind the numbers it can be valid.
+    Top prediction: not(fb:en.num)
+    All 2 derivations and their counts: 
+      fb:en.num : 1
+      not(fb:en.num) : 1
+=======================================================
+Test on utterance 15:
+  Line 0: i need a Regular that validate Decimal (18,3) 
+    Top prediction: fb:en.dp
+    All 1 derivations and their counts: 
+      fb:en.dp : 1
+  Line 1: this mean max number of digits before <M0> is 15 and accept 3 numbers after <M1> . 
+    Top prediction: fb:en.num
+    All 11 derivations and their counts: 
+      fb:en.num : 3
+      followedby(followedby(fb:en.num,fb:en.num),fb:en.num) : 1
+      followedby(fb:en.num,followedby(fb:en.num,fb:en.num)) : 1
+      followedby(fb:en.num,followedby(fb:en.const,fb:en.num)) : 1
+      followedby(fb:en.const,followedby(fb:en.num,fb:en.num)) : 1
+      followedby(fb:en.num,fb:en.num) : 4
+      followedby(fb:en.num,followedby(fb:en.num,fb:en.const)) : 2
+      fb:en.const : 2
+      followedby(followedby(fb:en.const,fb:en.num),fb:en.num) : 1
+      followedby(fb:en.const,fb:en.num) : 1
+      followedby(fb:en.num,fb:en.const) : 3
+  Line 2: 18 precision 3 scale .
+    Top prediction: 
+=======================================================
+Test on utterance 16:
+  Line 0: I need to create a regular expression for a string in the format <whole-number> @ <whole-numbers> % 
+    Top prediction: fb:en.any
+    All 1 derivations and their counts: 
+      fb:en.any : 1
+  Line 1: only single numeric digit should be allowed before <M0>
+    Top prediction: fb:en.const
+    All 4 derivations and their counts: 
+      fb:en.num : 3
+      repeat(fb:en.const,1,) : 1
+      repeat(fb:en.num,1,) : 3
+      fb:en.const : 9
+  Line 2: only <M1> special character after the numeric digit
+    Top prediction: followedby(fb:en.num,fb:en.sp)
+    All 29 derivations and their counts: 
+      repeat(fb:en.let,1,) : 1
+      repeat(fb:en.sp,1,) : 1
+      repeat(followedby(fb:en.let,fb:en.const),1,) : 1
+      followedby(fb:en.num,fb:en.num) : 1
+      fb:en.let : 1
+      followedby(fb:en.sp,repeat(fb:en.const,1,)) : 1
+      followedby(fb:en.let,repeat(fb:en.const,1,)) : 1
+      followedby(fb:en.num,repeat(fb:en.any,1,)) : 3
+      fb:en.sp : 1
+      repeat(fb:en.const,1,) : 1
+      followedby(fb:en.any,fb:en.const) : 1
+      followedby(fb:en.any,repeat(fb:en.const,1,)) : 1
+      repeat(followedby(fb:en.num,fb:en.any),1,) : 3
+      repeat(fb:en.any,1,) : 1
+      repeat(followedby(fb:en.any,fb:en.const),1,) : 1
+      repeat(followedby(fb:en.num,fb:en.let),1,) : 3
+      fb:en.num : 16
+      followedby(fb:en.num,repeat(fb:en.sp,1,)) : 3
+      repeat(followedby(fb:en.num,fb:en.sp),1,) : 3
+      repeat(followedby(fb:en.sp,fb:en.const),1,) : 1
+      followedby(fb:en.num,repeat(fb:en.let,1,)) : 3
+      followedby(fb:en.num,fb:en.sp) : 7
+      followedby(fb:en.num,fb:en.let) : 9
+      repeat(fb:en.num,1,) : 3
+      fb:en.const : 1
+      fb:en.any : 1
+      followedby(fb:en.let,fb:en.const) : 1
+      followedby(fb:en.sp,fb:en.const) : 1
+      followedby(fb:en.num,fb:en.any) : 9
+  Line 3: there should be only 3 or less numeric digits after the <M2>
+    Top prediction: followedby(fb:en.const,fb:en.num)
+    All 14 derivations and their counts: 
+      repeat(followedby(fb:en.const,fb:en.num),1,) : 2
+      fb:en.num : 3
+      repeat(fb:en.const,3) : 2
+      repeat(repeat(followedby(fb:en.const,fb:en.num),3),1,) : 2
+      followedby(fb:en.num,fb:en.num) : 1
+      repeat(repeat(fb:en.const,3),1,) : 1
+      followedby(fb:en.const,repeat(fb:en.num,3)) : 4
+      followedby(fb:en.const,repeat(repeat(fb:en.num,3),1,)) : 2
+      repeat(fb:en.const,1,) : 1
+      repeat(followedby(fb:en.const,repeat(fb:en.num,3)),1,) : 2
+      repeat(followedby(fb:en.const,fb:en.num),3) : 4
+      fb:en.const : 12
+      followedby(fb:en.const,fb:en.num) : 17
+      followedby(fb:en.const,repeat(fb:en.num,1,)) : 2
+  Line 4: only <M3> special character should be allowed at the end of the string.
+    Top prediction: fb:en.const
+    All 8 derivations and their counts: 
+      repeat(fb:en.let,1,) : 1
+      fb:en.sp : 1
+      repeat(fb:en.const,1,) : 1
+      repeat(fb:en.sp,1,) : 1
+      fb:en.let : 1
+      fb:en.const : 1
+      fb:en.any : 2
+      repeat(fb:en.any,1,) : 2
+=======================================================
+=======================================================
+=======================SUMMARY=========================
+=======================================================
+Total: 16
