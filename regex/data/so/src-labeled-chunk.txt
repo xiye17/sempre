@@ -71,9 +71,9 @@ I'm trying to write a regular expression to check whether or not a proposed name
 Name must contain at least 3 and no more than 20 letters
 Name must start with a uppercase letter
 Name must never have two uppercase letters in a row
-Spaces are allowed, but must be preceded by a letter and be followed by an uppercase letter
-Hyphens are allowed, but must be preceded by a letter and be followed by a lowercase letter
-All uppercase letters must be followed by a lowercase letter unless they are followed by a space or hyphen
+<M0> are allowed, but must be preceded by a letter and be followed by an uppercase letter
+<M1> are allowed, but must be preceded by a letter and be followed by a lowercase letter
+All uppercase letters must be followed by a lowercase letter unless they are followed by a <M2> or <M3>
 1
 I need a regular expression that can validate an input string to make sure it is a number between 1-30 and up to 2 decimal places.
 1
