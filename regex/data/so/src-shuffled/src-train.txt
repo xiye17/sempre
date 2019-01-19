@@ -1,4 +1,4 @@
-I need a regular expression that satisfy these rules: 1. The maximum number of decimal point is 3 but a number with no decimal point (e.g 12) should be accepted too 2. the value must be at least 0 3. the value must be less or equal to 99999999999.999 4. the radix point is DOT (e.g 2.5, not 2,5)
+I need a regular expression that satisfy these rules: 1. The maximum number of decimal point is 3 but a number with no decimal point (e.g 12) should be accepted too 2. the value must be at least 0 3. the value must be less or equal to 99999999999.999 4. the radix point is <M0> (e.g 2.5, not 2,5)
 I need a regular expression that validates a decimal number which includes <M0>, <M1> sign as well.
 validate a set of double number with <M0> delimeted
 I'm trying to use regular expressions to match a string that does not contain the sequence of characters of a less than symbol <M0> followed by a non <M1>.
@@ -18,16 +18,16 @@ Requirement is that total number of <M0> with the string can only be one.
 I'm trying to devise a regular expression which will accept decimal number up to 4 digits.
 I need to create a regular expression for a string in the format <whole-number> <M0> <whole-numbers> <M1> 1. only single numeric digit should be allowed before <M2> 2. only <M3> special character after the numeric digit 3. there should be only 3 or less numeric digits after the <M4> 4. only <M5> special character should be allowed at the end of the string.
 Can anyone please help me to find the suitable regular expression to validate a string that has <M0> separated numbers
-I'm looking for the perfect regular expression for validation a german car license the number has too look like this: 1. 1-3 Letters 2. a <M0> (i know the minus is now out of date, but the customer want it that way) 3. 1-2 Letters 4. a <M1> 5. 1-4 numbers
+I'm looking for the perfect regular expression for validation a german car license the number has too look like this: 1. 1 - 3 Letters 2. a <M0> (i know the minus is now out of date, but the customer want it that way) 3. 1 - 2 Letters 4. a <M1> 5. 1 - 4 numbers
 The input box should accept only if either (1) first 2 letters <M0> + 6 numeric or (2) 8 numeric
-I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3-25.
+I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3 - 25.
 I'm trying to write a regular expression to validate a number that is either just a 0 OR at least 1000 and that also allows a <M0> for a thousand separator.
 The validation will pass only if 1. the number has precisely two decimal places 2. there is at least one digit before the decimal point. (could be zero) 3. the number before the decimal point can not begin with more than one zero.
 valid characters are alpha-numeric and <M0>. The patterns are %d4% and %t7%. So <M1> is not valid by itself, but has to be part of these specific patterns.
 I'm trying to validate an input field to accept x OR x+y where x and y are whole numbers from 1-10.
 I am now in need of a Reg Exp (for validation putsposes) that checks that the user enters a number according to the following rules. 1. no <M0> characters 2. can have decimal 3. can have <M1> for the thousands, but the <M2> must be correctly placed
 I want to limit mamimum total digit counts are 5. And decimal numbers are 2 positions for maximum, cannot exceed 2 digits, but need to valid total word count is not large than 5.
-I need a regular expression validation expression that will ALLOW 1. positive number(0-9) 2. <M0> and <M1> DISALLOW 1. letter(a-z) 2. any other letter or symbol except <M2> and <M3>
+I need a regular expression validation expression that will ALLOW 1. positive number(0-9) 2. <M0> and <M1> DISALLOW 1. letter (a-z) 2. any other letter or symbol except <M2> and <M3>
 I have one field that is meant to allow a 1 - 3 character string. The first character has got to be <M0>, <M1>, <M2> or <M3> and may optionally be followed by upto 2 characters.
 write regular expression in C# to validate that the input does not contain double <M0>
 I want to develop one regular expression which validates only strings which have <M0>, <M1> or <M2>
