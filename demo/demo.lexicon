@@ -1,0 +1,28 @@
+{"lexeme" : "number", "formula" : "<num>", "type" : "fb:type.cc"}
+{"lexeme" : "numeral", "formula" : "<num>", "type" : "fb:type.cc"}
+{"lexeme" : "decimal", "formula" : "<num>", "type" : "fb:type.cc"}
+{"lexeme" : "alphanumeric", "formula" : "<alphanum>", "type" : "fb:type.cc"}
+{"lexeme" : "comma", "formula" : "<,>", "type" : "fb:type.const"}
+{"lexeme" : "space", "formula" : "<space>", "type" : "fb:type.const"}
+{"lexeme" : "underscore", "formula" : "<_>", "type" : "fb:type.const"}
+{"lexeme" : "dash", "formula" : "<->", "type" : "fb:type.const"}
+{"lexeme" : "letter", "formula" : "<let>", "type" : "fb:type.cc"}
+{"lexeme" : "digit", "formula" : "<num>", "type" : "fb:type.cc"}
+{"lexeme" : ",", "formula" : "fb:en.marker.comma", "type" : "fb:type.marker.comma"}
+{"lexeme" : "not", "formula" : "fb:en.marker.not", "type" : "fb:type.marker.not"}
+{"lexeme" : "non", "formula" : "fb:en.marker.not", "type" : "fb:type.marker.not"}
+{"lexeme" : "not contain", "formula" : "fb:en.marker.notcontain", "type" : "fb:type.marker.notcontain"}
+{"lexeme" : "separate", "formula" : "fb:en.marker.sep", "type" : "fb:type.marker.sep"}
+{"lexeme" : "separator", "formula" : "fb:en.marker.sep", "type" : "fb:type.marker.sep"}
+{"lexeme" : "delimit", "formula" : "fb:en.marker.sep", "type" : "fb:type.marker.sep"}
+{"lexeme" : "between", "formula" : "fb:en.marker.between", "type" : "fb:type.marker.between"}
+{"lexeme" : "end with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
+{"lexeme" : "finish with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
+{"lexeme" : "first", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
+{"lexeme" : "at the begin", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
+{"lexeme" : "start with", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
+{"lexeme" : "follow by", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "next", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "length", "formula" : "fb:en.marker.length", "type" : "fb:type.marker.length"}
+{"lexeme" : "up to", "formula" : "fb:en.marker.atmax", "type" : "fb:type.marker.atmax"}
+{"lexeme" : "at max", "formula" : "fb:en.marker.atmax", "type" : "fb:type.marker.atmax"}
