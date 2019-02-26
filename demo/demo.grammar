@@ -134,7 +134,7 @@
 
 
 # number related
-(rule $INT1 ($LEMMA_PHRASE) (NumberFn))
+(rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))
 
 (rule $PROGRAM ($MARKER_ATMAX1 $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatrangeop (var z) (number 1) (var y))))))
 (rule $PROGRAM ($INT $CC) (lambda x (lambda y (call regex.SketchFunctions.repeatop (var x) (var y)))))

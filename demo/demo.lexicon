@@ -3,6 +3,7 @@
 {"lexeme" : "decimal", "formula" : "<num>", "type" : "fb:type.cc"}
 {"lexeme" : "alphanumeric", "formula" : "<alphanum>", "type" : "fb:type.cc"}
 {"lexeme" : "comma", "formula" : "<,>", "type" : "fb:type.const"}
+{"lexeme" : "colon", "formula" : "<:>", "type" : "fb:type.const"}
 {"lexeme" : "space", "formula" : "<space>", "type" : "fb:type.const"}
 {"lexeme" : "underscore", "formula" : "<_>", "type" : "fb:type.const"}
 {"lexeme" : "dash", "formula" : "<->", "type" : "fb:type.const"}
