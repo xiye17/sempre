@@ -60,6 +60,16 @@
     <jar destfile="${libsempre}/sempre-corenlp.jar" basedir="${classes}/corenlp"/>
   </target>
 
+    <!-- Compile corenlp -->
+  <target name="sketch" depends="init,core,cache">
+    <echo message="Compiling ${ant.project.name}: sketch"/>
+    <mkdir dir="${classes}/sketch"/>
+    <javac srcdir="${src}" destdir="${classes}/sketch" classpathref="lib.path" debug="true" includeantruntime="false" source="${source}" target="${target}">
+      <include name="edu/stanford/nlp/sempre/sketch/"/>
+    </javac>
+    <jar destfile="${libsempre}/sempre-sketch.jar" basedir="${classes}/sketch"/>
+  </target>
+
   <!-- Compile freebase -->
   <target name="freebase" depends="init,core,cache">
     <echo message="Compiling ${ant.project.name}: freebase"/>
