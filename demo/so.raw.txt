@@ -1,21 +1,20 @@
 #	NL	Sketch
-2	write regular expression in C# to validate that the input does not contain double spaces	?{contain(< >)}
+2	write regular expression in C# to validate that the input does not contain double spaces	not(contain(?{< >}))
 3	write regular expression that allows only digits, characters like "&" "|" "." "(" ")" and spaces	?{<num>,or(<&>,or(<|>,or(<.>,or(<(>,or(<)>,< >)))))}
 6	The input will be in the form a colon (:) separated tuple of three values. The first value will be an integer (potentially a long in terms of size/length), with the other two values being either numeric or a string.	
 8	It should accept numbers only with decimal part "0" or "5" only.	sep(?{repeatatleast(<num>,1),or(<0>,<5>)},<.>)
 9	I want this value to accept up to 18 digits before the decimal, and 1 digit after. With the decimal point and the digit after it being optional	sep(?{repeatrange(<num>,1,18),<num>},<.>)
-10		
+10	The value should not contain only "%" and if there is a "%" the length should be more than 3 characters including "%". "%" can be anywhere in the string (dot is included)	TBD
 11	I want to develop one regular expression which validates only strings which have "A", "B" or "C"	?{or(<A>,or(<B>,<C>))}
-12		
-15		
-18	accept numeric values that are seven or ten digits	?{repeat(<num>,7),repeat(<num>,10)}
+12	optional number of digits followed by an "X" and an optional ("^" followed by one or more digits)	TBD
+15	i need a Regular that validate Decimal (18,3) this mean max number of digits before comma is 15 and accept 3 numbers after comma . 18 precision 3 scale.	TBD
+18	accept numeric values that are seven or ten digits	?{or(repeat(<num>,7),repeat(<num>,10))}
 20		
 21	I need a regular expression that validates a number, but doesn't require a digit after the decimal	sep(?{star(<num>),repeatatleast(<num,1>)},<.>)
-24	I need to validate each sub string length is 3 which is split by comma.	sep(repeat(<any>,3),<,>)
+24	I need to validate each sub string length is 3 which is split by comma.	sep(?{repeat(<any>,3)},<,>)
 25	I need a regular expression that can validate that a string is an alphanumeric comma delimited string.	sep(?{<alphanum>},<,>)
 29	Can anyone please help me to find the suitable regular expression to validate a string that has comma separated numbers	sep(?{<num>},<,>))
-31	I want to validate if my input consists starting with 8 hexadecimal characters followed by a underscore, followed by any number of characters with any value.	concat(?{repeat(<hex>,8),<_>,star(<let>)},?{repeat(<hex>,8),<_>,star(<let>)})
-32	I'm trying to devise a regular expression which will accept decimal number up to 4 digits.	sep(?{repeatatleast(<num>,1),repeatrange(<num>,1,4),<num>},?{<.>})
+31	I want to validate if my input consists starting with 8 hexadecimal characters followed by a underscore, followed by any number of characters with any value.	concat(repeat(<hex>,8),concat(<_>,?{<let>}))
 40	i need regular expression for : one or two digits then "." and one or two digits. 	?{or(repeat(<num>,1),repeat(<num>,2)),<.>,or(repeat(<num>,1),repeat(<num>,2))}
 42	I need to validate the next pattern: starts with "C0" and finish with 4 digits exactly	?{concat(<C>,<0>),startwith(concat(<C>,<0>)),repeat(<num>,4)}
 45		
@@ -35,7 +34,7 @@
 77-The input box should accept alphanumeric with no space and it should also allow the user to use the characters like "~" "!" "@" "#" "$" "-" "_" any where in the string, except these characters non of the other characters should be allowed like ("%",  "&", "^" etc). It should not allow leading/trailing whitespace also.	?{<alphanum>,or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))}
 78	Should allow only alphanumeric with no space and no other characters including "_". It should not allow leading/trailing whitespace also.	?{<alphanum>,< >,<_>,not(startwith(< >)),not(endwith(< >))}
 79	I'm trying to use regular expressions to match a string that does not contain the sequence of characters of a less than symbol "<" followed by a non space.	?{concat(<<>,notcc(< >))}
-80	the number with 10 or more digits and that number should not have "$" symbol in front of it.	?{repeatatleast(<num>,10),not(startwith(<$>))}
+80	the number with 10 or more digits and that number should not have "$" symbol in front of it.	?{repeatatleast(<num>,10),<$>}
 81	It should allow only one space between words. That is, total number of spaces between words or characters should only be one.It should ignore leading and trailing spaces.	sep(?{<let>},< >)
 83		
 84	I am trying to make a regular expression that validates letters, numbers and spaces ONLY.	?{<let>,<num>,< >}

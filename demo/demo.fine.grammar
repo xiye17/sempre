@@ -1,0 +1,12 @@
+(include demo.grammar)
+
+(rule $CC1 (string) (ConstantFn <any> fb:type.cc))
+(rule $CC1 (character) (ConstantFn <let> fb:type.cc))
+(rule $CC1 (characters) (ConstantFn <let> fb:type.cc))
+
+# MAX
+(rule $MARKER_MAX ($MARKER_MAX1) (IdentityFn))
+(rule $MARKER_MAX ($MARKER_MAX1 $Skip) (SelectFn 0))
+(rule $MARKER_MAX1 (max) (ConstantFn fb:en.marker.max fb:type.cc))
+
+(rule $PROGRAM ($MARKER_MAX $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatrangeop (var z) (number 1) (var y))))))

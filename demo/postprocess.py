@@ -12,8 +12,8 @@ def _parse_args():
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
     parser.add_argument("--outpath", type=str, dest="outpath", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/demo/")
     parser.add_argument("--dataset", type=str, dest="dataset", default="demo")
-    parser.add_argument("--beam", type=int, dest="beam", default=10)
-    parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=5)
+    parser.add_argument("--beam", type=int, dest="beam", default=1000)
+    parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=50)
 
     args = parser.parse_args()
     return args

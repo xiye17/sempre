@@ -1,0 +1,141 @@
+# Root 
+(rule $ROOT ($SKETCH) (IdentityFn)) 
+(rule $ROOT ($Skip $SKETCH) (SelectFn 1))
+
+# Comosition of Program
+(rule $PROGRAM ($CC) (IdentityFn))
+(rule $PROGRAM ($CONST) (IdentityFn))
+
+# SKETCH only supports common spec rules, 
+# (rule $SKETCH)
+
+# Composition of Program SKETCH OPT
+(rule $SKETCH ($LIST_PROGRAM) (sketch.UnarySketchFn))
+(rule $LIST_PROGRAM ($PROGRAM) (IdentityFn))
+(rule $LIST_PROGRAM ($PROGRAM $LIST_PROGRAM) (sketch.SketchJoinFn))
+
+# rule opt
+
+# sep
+# (rule $SKETCH ($SKETCH $PROGRAM $MARKER_SEP) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var x) (var y))))))
+# (rule $PROGRAM ($PROGRAM $PROGRAM $MARKER_SEP) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var x) (var y))))))
+
+# (rule $SKETCH ($PROGRAM $MARKER_BETWEEN $SKETCH) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var z) (var x))))))
+# (rule $PROGRAM ($PROGRAM $MARKER_BETWEEN $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var z) (var x))))))
+
+# (rule $SKETCH ($MARKER_NOTCONTAIN $SKETCH) (lambda x ( lambda y (call regex.SketchFunctions.notcontainop (var y)))))
+# (rule $PROGRAM ($MARKER_NOTCONTAIN $PROGRAM) (lambda x ( lambda y (call regex.SketchFunctions.notcontainop (var y)))))
+
+# (rule $SKETCH ($MARKER_NOT $SKETCH) (lambda x ( lambda y (call regex.SketchFunctions.notop (var y)))))
+# (rule $PROGRAM ($MARKER_NOT $PROGRAM) (lambda x ( lambda y (call regex.SketchFunctions.notop (var y)))))
+
+# (rule $PROGRAM ($MARKER_STARTWITH $PROGRAM) (lambda x (lambda y (call regex.SketchFunctions.startwithop (var y)))))
+# (rule $PROGRAM ($MARKER_ENDWITH $PROGRAM) (lambda x (lambda y (call regex.SketchFunctions.endwithop (var y)))))
+
+#(rule $PROGRAM ($PROGRAM $MARKER_FOLLOWBY $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
+#(rule $SKETCH ($PROGRAM $MARKER_FOLLOWBY $SKETCH) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
+#(rule $SKETCH ($SKETCH $MARKER_FOLLOWBY $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
+#(rule $SKETCH ($SKETCH $MARKER_FOLLOWBY $SKETCH) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
+
+# (rule $PROGRAM ())
+# (rule $PROGRAM)
+
+
+# dealing skip
+
+(rule $CC ($CC1) (IdentityFn)) 
+(rule $CC ($CC1 $Skip) (SelectFn 0))
+
+(rule $CONST ($CONST1) (IdentityFn))
+(rule $CONST ($CONST1 $Skip) (SelectFn 0))
+
+(rule $INT ($INT1) (IdentityFn))
+(rule $INT ($INT1 $Skip) (SelectFn 0))
+
+# sep
+(rule $MARKER_SEP ($MARKER_SEP1) (IdentityFn)) 
+(rule $MARKER_SEP ($MARKER_SEP1 $Skip) (SelectFn 0))
+
+(rule $MARKER_BETWEEN ($MARKER_BETWEEN1) (IdentityFn)) 
+(rule $MARKER_BETWEEN ($MARKER_BETWEEN1 $Skip) (SelectFn 0))
+
+# contain
+(rule $MARKER_NOTCONTAIN ($MARKER_NOTCONTAIN1) (IdentityFn)) 
+(rule $MARKER_NOTCONTAIN ($MARKER_NOTCONTAIN1 $Skip) (SelectFn 0))
+
+# not
+(rule $MARKER_NOT ($MARKER_NOT1) (IdentityFn)) 
+(rule $MARKER_NOT ($MARKER_NOT1 $Skip) (SelectFn 0))
+
+(rule $MARKER_LENGTH ($MARKER_LENGTH1) (IdentityFn)) 
+(rule $MARKER_LENGTH ($MARKER_LENGTH1 $Skip) (SelectFn 0))
+
+# startend
+(rule $MARKER_STARTWITH ($MARKER_STARTWITH1) (IdentityFn)) 
+(rule $MARKER_STARTWITH ($MARKER_STARTWITH1 $Skip) (SelectFn 0))
+
+(rule $MARKER_ENDWITH ($MARKER_ENDWITH1) (IdentityFn)) 
+(rule $MARKER_ENDWITH ($MARKER_ENDWITH1 $Skip) (SelectFn 0))
+
+(rule $Skip ($LEMMA_PHRASE) (ConstantFn null))
+
+# and or concat
+(rule $MARKER_AND ($MARKER_AND1) (IdentityFn))
+(rule $MARKER_AND ($MARKER_AND1 $Skip) (SelectFn 0))
+(rule $MARKER_OR ($MARKER_OR1) (IdentityFn))
+(rule $MARKER_OR ($MARKER_OR1 $Skip) (SelectFn 0))
+
+# concat
+(rule $MARKER_CONCAT ($MARKER_CONCAT1) (IdentityFn))
+(rule $MARKER_CONCAT ($MARKER_CONCAT1 $Skip) (SelectFn 0))
+(rule $MARKER_FOLLOWBY ($MARKER_FOLLOWBY1) (IdentityFn))
+(rule $MARKER_FOLLOWBY ($MARKER_FOLLOWBY1 $Skip) (SelectFn 0))
+
+# lexicon mapping
+(rule $CC1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
+(rule $CONST1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.const)))
+
+(rule $MARKER_SEP1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.sep)))
+(rule $MARKER_BETWEEN1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.between)))
+(rule $MARKER_NOTCONTAIN1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.notcontain)))
+(rule $MARKER_NOT1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.not)))
+(rule $MARKER_AND1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.and)))
+(rule $MARKER_OR1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.or)))
+(rule $MARKER_CONCAT1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.concat)))
+(rule $MARKER_COMMA1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.comma)))
+(rule $MARKER_STARTWITH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.startwith)))
+(rule $MARKER_ENDWITH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.endwith)))
+(rule $MARKER_FOLLOWBY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.followby)))
+(rule $MARKER_LENGTH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.length)))
+(rule $MARKER_ATMAX1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.atmax)))
+
+# things like x, x, x, and x  x, x, x, or x
+(rule $CC1 ($CONST_SET) (IdentityFn))
+(rule $MAKRKER_CONSTSETUNION1 (,) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
+(rule $MAKRKER_CONSTSETUNION1 ((, optional) or) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
+(rule $MAKRKER_CONSTSETUNION1 ((, optional) and) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
+
+# (rule $MAKRKER_CONSTSETUNION (,) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
+
+# (rule $CONST_SET ($CONST1 $CONST_SET) (lambda x (lambda y (call regex.SketchFunctions.orop (var x) (var y)))))
+# (rule $CONST_SET ($CONST1 $CONST1) (lambda x (lambda y (call regex.SketchFunctions.orop (var x) (var y)))))
+
+# (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (lambda x (lambda y (lambda z (call regex.SketchFunctions.orop (var x) (var z))))))
+# (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST1) (lambda x (lambda y (lambda z (call regex.SketchFunctions.orop (var x) (var z))))))
+
+# string matching
+# (rule $CONST1 ('' $TOKEN '') (lambda x (call regex.SketchFunctions.constop (var x))))
+# (rule $CONST1 (`` $TOKEN '') (lambda x (call regex.SketchFunctions.constop (var x))))
+
+
+
+# number related
+(rule $INT1 ($LEMMA_PHRASE) (NumberFn))
+
+# (rule $PROGRAM ($MARKER_ATMAX1 $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatrangeop (var z) (number 1) (var y))))))
+# (rule $PROGRAM ($INT $CC) (lambda x (lambda y (call regex.SketchFunctions.repeatop (var x) (var y)))))
+# (rule $PROGRAM ($CC $MARKER_LENGTH $INT) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var z) (var x))))))
+# (rule $PROGRAM ($MARKER_LENGTH $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var y) (var z))))))
+
+# x or more, more than x
+

@@ -27,6 +27,8 @@
 (rule $SKETCH ($PROGRAM $MARKER_BETWEEN $SKETCH) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var z) (var x))))))
 (rule $PROGRAM ($PROGRAM $MARKER_BETWEEN $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var z) (var x))))))
 
+(rule $SKETCH ($SKETCH $MARKER_SPLITBY $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.sepop (var x) (var z))))))
+
 (rule $SKETCH ($MARKER_NOTCONTAIN $SKETCH) (lambda x ( lambda y (call regex.SketchFunctions.notcontainop (var y)))))
 (rule $PROGRAM ($MARKER_NOTCONTAIN $PROGRAM) (lambda x ( lambda y (call regex.SketchFunctions.notcontainop (var y)))))
 
@@ -41,9 +43,15 @@
 (rule $SKETCH ($SKETCH $MARKER_FOLLOWBY $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
 (rule $SKETCH ($SKETCH $MARKER_FOLLOWBY $SKETCH) (lambda x (lambda y (lambda z (call regex.SketchFunctions.concatop (var x) (var z))))))
 
-# (rule $PROGRAM ())
-# (rule $PROGRAM)
+# decimal
+(rule $SKETCH ($PROGRAM $MARKER_DECIMAL $PROGRAM) (lambda x (lambda y (lambda z (call regex.SketchFunctions.decimalop (var x) (var z))))))
 
+# only
+(rule $PROGRAM ($MARKER_ONLY1 $CC) (lambda x (lambda y (call regex.SketchFunctions.repeatatleastop (var y) (number 1)))))
+(rule $PROGRAM ($CC1 $MARKER_ONLY) (lambda x (lambda y (call regex.SketchFunctions.repeatatleastop (var x) (number 1)))))
+
+# non
+(rule $PROGRAM ($MARKER_NON1 $CONST) (lambda x (lambda y (call regex.SketchFunctions.notccop (var y)))))
 
 # dealing skip
 
@@ -62,6 +70,9 @@
 
 (rule $MARKER_BETWEEN ($MARKER_BETWEEN1) (IdentityFn)) 
 (rule $MARKER_BETWEEN ($MARKER_BETWEEN1 $Skip) (SelectFn 0))
+
+(rule $MARKER_SPLITBY ($MARKER_SPLITBY1) (IdentityFn)) 
+(rule $MARKER_SPLITBY ($MARKER_SPLITBY1 $Skip) (SelectFn 0))
 
 # contain
 (rule $MARKER_NOTCONTAIN ($MARKER_NOTCONTAIN1) (IdentityFn)) 
@@ -95,14 +106,22 @@
 (rule $MARKER_FOLLOWBY ($MARKER_FOLLOWBY1) (IdentityFn))
 (rule $MARKER_FOLLOWBY ($MARKER_FOLLOWBY1 $Skip) (SelectFn 0))
 
+(rule $MARKER_ONLY ($MARKER_ONLY1) (IdentityFn))
+(rule $MARKER_ONLY ($MARKER_ONLY1 $Skip) (SelectFn 0))
+
+(rule $MARKER_DECIMAL ($MARKER_DECIMAL1) (IdentityFn))
+(rule $MARKER_DECIMAL ($MARKER_DECIMAL1 $Skip) (SelectFn 0))
+
 # lexicon mapping
 (rule $CC1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 (rule $CONST1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.const)))
 
 (rule $MARKER_SEP1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.sep)))
 (rule $MARKER_BETWEEN1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.between)))
+(rule $MARKER_SPLITBY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.splitby)))
 (rule $MARKER_NOTCONTAIN1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.notcontain)))
 (rule $MARKER_NOT1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.not)))
+(rule $MARKER_NON1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.non)))
 (rule $MARKER_AND1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.and)))
 (rule $MARKER_OR1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.or)))
 (rule $MARKER_CONCAT1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.concat)))
@@ -112,10 +131,12 @@
 (rule $MARKER_FOLLOWBY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.followby)))
 (rule $MARKER_LENGTH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.length)))
 (rule $MARKER_ATMAX1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.atmax)))
+(rule $MARKER_ONLY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.only)))
+(rule $MARKER_DECIMAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.decimal)))
 
 # things like x, x, x, and x  x, x, x, or x
 (rule $CC1 ($CONST_SET) (IdentityFn))
-(rule $MAKRKER_CONSTSETUNION1 (,) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
+(rule $MAKRKER_CONSTSETUNION1 (,) (ConstantFn fb:en.marker.constsetunion fb:type.marker.constsetunion))
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) or) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) and) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 
@@ -132,14 +153,17 @@
 (rule $CONST1 (`` $TOKEN '') (lambda x (call regex.SketchFunctions.constop (var x))))
 
 
-
 # number related
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))
 
 (rule $PROGRAM ($MARKER_ATMAX1 $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatrangeop (var z) (number 1) (var y))))))
-(rule $PROGRAM ($INT $CC) (lambda x (lambda y (call regex.SketchFunctions.repeatop (var x) (var y)))))
-(rule $PROGRAM ($CC $MARKER_LENGTH $INT) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var z) (var x))))))
-(rule $PROGRAM ($MARKER_LENGTH $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var y) (var z))))))
+(rule $PROGRAM ($INT $CC) (lambda x (lambda y (call regex.SketchFunctions.repeatop (var y) (var x)))))
+(rule $PROGRAM ($CC $MARKER_LENGTH $INT) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var x) (var z))))))
+(rule $PROGRAM ($MARKER_LENGTH $INT $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatop (var z) (var y))))))
 
+# x or x
+(rule $PROGRAM ($INT1 $MARKER_OR1 $INT1 $CC) (lambda a (lambda b (lambda c (lambda d (call regex.SketchFunctions.repeatintorintop (var d) (var a) (var c)))))))
 # x or more, more than x
+(rule $MARKER_ORMORE1 (or more) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))
+(rule $PROGRAM ($INT1 $MARKER_ORMORE1 $CC) (lambda x (lambda y (lambda z (call regex.SketchFunctions.repeatatleastop (var z) (var x))))))
 
