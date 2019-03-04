@@ -1,4 +1,4 @@
-(include demo.grammar)
+(include demo.lambda.grammar)
 
 (rule $CC1 (string) (ConstantFn <any> fb:type.cc))
 (rule $CC1 (character) (ConstantFn <let> fb:type.cc))

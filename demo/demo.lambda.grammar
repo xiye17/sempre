@@ -14,10 +14,7 @@
 (rule $LIST_PROGRAM ($PROGRAM) (IdentityFn))
 (rule $LIST_PROGRAM ($PROGRAM $LIST_PROGRAM) (lambda x (lambda y (call regex.SketchFunctions.listjoin (var x) (var y)))))
 
-# (rule $SKETCH ($PROGRAM $PROGRAM))
-# (rule $SKETCH ($PROGRAM $PROGRAM $PROGRAM))
 
-# (rule $SKETCH ($LIST_PROGRAM $RPR) ())
 # rule opt
 
 # sep
@@ -139,8 +136,6 @@
 (rule $MAKRKER_CONSTSETUNION1 (,) (ConstantFn fb:en.marker.constsetunion fb:type.marker.constsetunion))
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) or) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) and) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
-
-# (rule $MAKRKER_CONSTSETUNION (,) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 
 (rule $CONST_SET ($CONST1 $CONST_SET) (lambda x (lambda y (call regex.SketchFunctions.orop (var x) (var y)))))
 (rule $CONST_SET ($CONST1 $CONST1) (lambda x (lambda y (call regex.SketchFunctions.orop (var x) (var y)))))

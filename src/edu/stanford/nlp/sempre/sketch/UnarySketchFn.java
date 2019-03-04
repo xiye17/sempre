@@ -15,10 +15,8 @@ public class UnarySketchFn extends SemanticFn {
         Formula formula0 = c.child(0).formula;
         String arg0 = Formulas.getString(formula0);
         String[] programs = arg0.split(" ");
-        System.out.println(programs);
         for (int i =0; i < programs.length; i++) {
           for (int j = i + 1; j < programs.length; j++) {
-            System.out.println(i + " " + j + " " + programs[i] + " " + programs[j]);
             if (programs[i].equals(programs[j])) {
               return null;
             }
