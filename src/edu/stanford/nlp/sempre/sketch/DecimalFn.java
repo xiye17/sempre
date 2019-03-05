@@ -42,7 +42,11 @@ public class DecimalFn extends SemanticFn {
                 if (targetCat.equals("$SKETCH") || targetCat.equals("$PROGRAM")) {
                     // execute
                     String[] args = (arg0 + " " + arg1).split(" ");
-                    formula = new NameValue("sep(?{" + args[position0] + "," + args[position1] + "},<.>)");
+                    if (args[position0].equals(args[position1])) {
+                        formula = new NameValue("sep(?{" + args[position0]+ "},<.>)");
+                    } else {
+                        formula = new NameValue("sep(?{" + args[position0] + "," + args[position1] + "},<.>)");
+                    }
                 } else {
                     // Forwarding parameters
                     formula = new NameValue( arg0 + " " + arg1);

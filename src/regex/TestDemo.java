@@ -17,7 +17,6 @@ import edu.stanford.nlp.sempre.Parser;
 import edu.stanford.nlp.sempre.Session;
 import fig.basic.LogInfo;
 import fig.exec.Execution;
-import regex.dataspec.Generator;
 
 public class TestDemo implements Runnable {
 
@@ -34,41 +33,25 @@ public class TestDemo implements Runnable {
       //
       String outputFilePath) {
 
-    int currIndx = 1;
-
-    Generator g = new Generator();
 
     try (PrintWriter outputFile = new PrintWriter(outputFilePath)) {
       try (BufferedReader srcFile = new BufferedReader(new FileReader(new File(srcFilePath)))) {
 
         for (String lineStr = srcFile.readLine(); lineStr != null;) {
 
-          // if (utterance == null) {
-          // break;
-          // }
           String[] fields = lineStr.split("\t", 2);
           String id = fields[0];
           String utterance = fields[1];
-          // outputFile.println("=======================================================");
-          // outputFile.println("Test on utterance " + currIndx + " : " + utterance);
-          // outputFile.println("ID:"+id);
-          // outputFile.println("Test on utterance " + currIndx + " : " + utterance);
+
 
           int indent = LogInfo.getIndLevel();
-
+          int order = 0;
           try {
 
-            //
-            //
-            //
-            // construct candidate derivations
-            // construct top prediction
-            //
-            //
-            //
             Map<String, Integer> derivToCount = new HashMap<>();
             Map<String, Integer> derivToOrder = new HashMap<>();
             Map<Integer, String> orderToDeriv = new HashMap<>();
+            Map<Integer, Double> orderToScore = new HashMap<>();
 
             String topPred = "";
             {
@@ -96,24 +79,17 @@ public class TestDemo implements Runnable {
                 }
 
                 if (!derivToOrder.containsKey(subDeriv)) {
-                  derivToOrder.put(subDeriv, i);
-                  orderToDeriv.put(i, subDeriv);
+                  derivToOrder.put(subDeriv, order);
                 }
-
+                orderToScore.put(order, derivs.get(i).getScore());
+                orderToDeriv.put(order, subDeriv);
                 // update top prediction
-                if (i == 0) {
+                if (order == 0) {
                   topPred = subDeriv;
                 }
-
+                order += 1;
               }
-
-              // prints
-              // outputFile.println("Top prediction: " + topPred);
-
             }
-
-            // assert (!derivToCount.isEmpty());
-            // assert (!topPred.equals(""));
 
             if ((derivToCount.isEmpty()) || (topPred.equals(""))) {
 
@@ -122,25 +98,14 @@ public class TestDemo implements Runnable {
               if (lineStr == null || lineStr.isEmpty())
                 break;
 
-              currIndx++;
               continue;
             }
 
-            //
-            //
-            //
-            // measure coverage and accuracy based on semantic equivalence
-            //
-            //
-            //
-            //
-            // more prints
-            //
             {
-              outputFile.println(id + "\t" + derivToOrder.size());
-              for (int i = 0; i < derivToOrder.size(); i++) {
+              outputFile.println(id + "\t" + orderToDeriv.size());
+              for (int i = 0; i < orderToDeriv.size(); i++) {
                 String v = orderToDeriv.get(i);
-                outputFile.println(v + "\t" + i);
+                outputFile.println(v + "\t" + i + "\t" + orderToScore.get(i));
               }
             }
 
@@ -148,8 +113,6 @@ public class TestDemo implements Runnable {
 
             if (lineStr == null || lineStr.isEmpty())
               break;
-
-            currIndx++;
 
           } catch (Throwable t) {
             System.out.println("Excpetion at the outer try");
