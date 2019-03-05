@@ -72,6 +72,9 @@ def eval_match(args):
     cnt_total = 0
     cnt_coverage = 0
     cnt_coverage_top = 0
+    covered = set()
+    covered_top = set()
+    id_set = set()
     with open(pred_file) as f:
         while True:
             line = f.readline()
@@ -94,13 +97,28 @@ def eval_match(args):
 
             cnt_total += 1
             flag = False
+            flag_top = False
+            id_set.add(int(id))   
             if id_gt_map[id] in derivs:
                 flag = True
                 cnt_coverage += 1
+                covered.add(int(id))
             if id_gt_map[id] in derivs[:args.maxcnt]:
                 cnt_coverage_top += 1
-            print(id, flag)
+                flag_top = True
+                covered_top.add(int(id))
+            print(id, flag_top, flag)
+    
+    def format_func(x):
+        x = list(x)
+        x.sort()
+        return x
     print("Data: {}, coverage: {}, top {} coverage: {}".format(cnt_total, cnt_coverage, args.maxcnt, cnt_coverage_top))
+    print("Covered Top {}: {}".format(args.maxcnt, format_func(covered_top)))
+    print("Covered: {}".format(format_func(covered)))
+    print("Coverd but not in top: {}".format(format_func(covered - covered_top)))
+    print("Uncovered: {}".format(format_func(id_set - covered)))
+
 
 def make_sketch(args):
     prefix = join("./regex/data/", args.dataset)
