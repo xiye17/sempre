@@ -78,6 +78,12 @@ def read_ready_data(filename):
     line_fields = [x.split("\t") for x in lines]
     return line_fields
 
+def fit_for_exs(x):
+    x = x.replace('\\', '\\\\')
+    x = x.replace(')', '\\)')
+    x = x.replace('"', '\\"')
+    return x
+
 def prepare_dataset(args):
     # regex.examples
     exs = read_ready_data(args.outfile)
@@ -85,11 +91,6 @@ def prepare_dataset(args):
     prefix = join("./regex/data", args.dataset)
     exs_file = join(prefix, "regex.examples")
     lines = []
-    def fit_for_exs(x):
-        x = x.replace('\\', '\\\\')
-        x = x.replace(')', '\\)')
-        x = x.replace('"', '\\"')
-        return x
 
     for ex in exs:
         lines.append('(example (utterance "{0}") (targetValue (name "{1}")))\n'.format(fit_for_exs(ex[1]), ex[2]))

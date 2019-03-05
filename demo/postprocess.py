@@ -30,6 +30,25 @@ def process_sketch(x):
         y = y[:pos] + nex_tok.upper() + y[(end_pos + 1):]
     return y
 
+def read_pred_file(filename):
+    preds = []
+    with open(filename) as f:
+        while True:
+            line = f.readline()
+            if not line:
+                break
+            line = line.strip()
+            line = line.split("\t")
+            id = line[0]
+            num_deriv = int(line[1])
+            # print(id)
+            derivs = []
+            for i in range(num_deriv):
+                line = f.readline().strip()
+                derivs.append(line)
+            preds.append({"id": id, "derivations": derivs})
+    return preds
+    
 def write_derivs(filename, derivs):
     lines = [str(x[0]) + " " + x[1] + "\n" for x in derivs]
     with open(filename, "w") as f:
