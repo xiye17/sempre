@@ -29,6 +29,7 @@
 {"lexeme" : "start with", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
 {"lexeme" : "follow by", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
 {"lexeme" : "next", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "then", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
 {"lexeme" : "length", "formula" : "fb:en.marker.length", "type" : "fb:type.marker.length"}
 {"lexeme" : "up to", "formula" : "fb:en.marker.atmax", "type" : "fb:type.marker.atmax"}
 {"lexeme" : "at max", "formula" : "fb:en.marker.atmax", "type" : "fb:type.marker.atmax"}

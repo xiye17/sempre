@@ -1,0 +1,16 @@
+(include demo.fn.grammar)
+
+(rule $CC1 (string) (ConstantFn <any> fb:type.cc))
+(rule $CC1 (character) (ConstantFn <let> fb:type.cc))
+(rule $CC1 (characters) (ConstantFn <let> fb:type.cc))
+
+# MAX
+(rule $MARKER_MAX ($MARKER_MAX1) (IdentityFn))
+(rule $MARKER_MAX ($MARKER_MAX1 $Skip) (SelectFn 0))
+(rule $MARKER_MAX1 (max) (ConstantFn fb:en.marker.max fb:type.cc))
+
+(rule $PROGRAM ($MARKER_MAX $INT $CC) (sketch.RepeatrangeFn 2 (arg 1) (pos 1)))
+
+(rule $PROGRAM ($INT $CC) (sketch.RepeatrangeFn 1 (arg 1) (pos 0)))
+(rule $SKETCH ($MARKER_DECIMAL $PROGRAM $PROGRAM) (sketch.DecimalFn 1 2))
+(rule $SKETCH ($PROGRAM $PROGRAM $MARKER_DECIMAL ) (sketch.DecimalFn 0 1))
