@@ -37,6 +37,8 @@ public class RepeatFn extends SemanticFn {
                     String[] args = (arg0 + "#DIV#" + arg1).split("#DIV#");
                     arg0 = args[position0];
                     arg1 = type1.equals("arg") ? (value1 + "") : (Double.valueOf(args[value1]).intValue() + "");
+                    if (Integer.parseInt(arg1) == 1)
+                        return  null;
                     formula = new NameValue("repeat(" + arg0 + "," + arg1 + ")");
                 } else {
                     // Forwarding parameters
