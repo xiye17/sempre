@@ -51,21 +51,21 @@ def make_splits(args):
     num_exs = len(exs)
     perms = np.random.permutation(num_exs)
     num_left = num_exs
+    print(perms)
     for fold_id in range(args.nfold):
         fold_prefix = os.path.join("./regex/data", args.dataset + "s" + str(fold_id))
         makedir_f(fold_prefix)
 
         num_this_fold = int(round(num_left * 1.0 / (args.nfold - fold_id)))
         print(num_this_fold)
+        start_idx = num_exs - num_left
         num_left = num_left - num_this_fold
-        start_idx = fold_id * num_this_fold
         end_idx = start_idx + num_this_fold
         if fold_id == args.nfold - 1:
             end_idx = num_exs
-        
         test_idx = perms[start_idx:end_idx].tolist()
         train_idx = perms[:start_idx].tolist() + perms[end_idx:].tolist()
-
+        print(test_idx)
 
         lines = []
         for i in train_idx:
