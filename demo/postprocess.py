@@ -157,7 +157,15 @@ def make_bemchmark(ids, args):
     for id in ids:
         shutil.copyfile(join(src_prefix, id), join(dst_prefix, id))
 
+def makedir_f(dir):
+    if os.path.exists(dir):
+        shutil.rmtree(dir)
+    os.mkdir(dir)
+
 def postprecess(args):
+    # clear 
+    makedir_f(join(args.outpath, "benchmark"))
+    makedir_f(join(args.outpath, "sketch"))
     ids = make_sketch(args)
     make_bemchmark(ids, args)
     eval_match(args)
