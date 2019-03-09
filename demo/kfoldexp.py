@@ -3,6 +3,7 @@ import argparse
 import numpy as np
 from os.path import join
 import shutil
+import math
 
 from preprocess import fit_for_exs
 from postprocess import read_pred_file
@@ -49,14 +50,16 @@ def make_splits(args):
 
     num_exs = len(exs)
     perms = np.random.permutation(num_exs)
-    num_per_fold = num_exs // args.nfold
-    print(num_exs, num_per_fold)
+    num_left = num_exs
     for fold_id in range(args.nfold):
         fold_prefix = os.path.join("./regex/data", args.dataset + "s" + str(fold_id))
         makedir_f(fold_prefix)
 
-        start_idx = fold_id * num_per_fold
-        end_idx = start_idx + num_per_fold
+        num_this_fold = int(round(num_left * 1.0 / (args.nfold - fold_id)))
+        print(num_this_fold)
+        num_left = num_left - num_this_fold
+        start_idx = fold_id * num_this_fold
+        end_idx = start_idx + num_this_fold
         if fold_id == args.nfold - 1:
             end_idx = num_exs
         
