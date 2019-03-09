@@ -38,14 +38,14 @@
 81	It should allow only one space between words. That is, total number of spaces between words or characters should only be one.It should ignore leading and trailing spaces.	sep(?{<let>},< >)
 83		
 84	I am trying to make a regular expression that validates letters, numbers and spaces ONLY.	?{<let>,<num>,< >}
-85		
+85	The input box should accept only if either (1) first 2 letters alpha + 6 numeric or (2) 8 numeric	?{repeat(<let>,2),repeat(<num>,8),repeat(<num>,6)}
 86	a regular expression for validating a string with alphanumeric characters and dashes, while also not allowing leading or trailing dashes	?{<alphanum>,<->}
 87		
 88	The value can have at max 3 decimals (but also none) with comma as the separator.	sep(?{repeatrange(<num>,1,3)},<,>)
 90	I want regex that only validates that the field contains digits, but that does not care about how many.	?{<num>}
 95		
 96	I want a regular expression that validates a string of length 1 which has either the characters "A" or "B" (case insensitive) at the Begin	?{or(<A>,<B>)}
-100	The string must be 9 characters long, starting with "SO-" (case insensitive eg "So-", "so-", "sO-" and "SO-") followed by 6 numbers.	
+100	The string must be 9 characters long, starting with "SO-" (case insensitive eg "So-", "so-", "sO-" and "SO-") followed by 6 numbers.	concat(or(concat(<S>,concat(<o>,<->)),or(concat(<s>,concat(<o>,<->)),or(concat(<s>,concat(<O>,<->)),concat(<S>,concat(<O>,<->))))),?{repeat(<num>,6)})
 101	The first character should be a designated character like "A", "B" or "C" only. and the next 3 characters should be numbers.	?{or(<A>,or(<B>,<C>)),repeat(<num>,3),<num>}
 102	I have one field that is meant to allow a 1 - 3 character string. The first character has got to be "A", "B", "C" or "Z" and may optionally be followed by upto 2 characters.	?{or(<A>,or(<B>,or(<C>,<Z>))),optional(?{repeatrange(<let>,1,2)})}
 104		

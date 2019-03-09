@@ -143,8 +143,7 @@
 
 # string matching
 (rule $CONST1 ('' $TOKEN '') (sketch.ConstFn))
-(rule $CONST1 (`` $TOKEN '') (sketch.ConstFn))
-
+(rule $CONST1 (`` $PHRASE '') (sketch.ConstFn))
 
 # number related
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))

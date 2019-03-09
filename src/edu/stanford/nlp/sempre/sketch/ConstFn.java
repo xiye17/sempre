@@ -4,15 +4,22 @@ import edu.stanford.nlp.sempre.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ConstFn extends SemanticFn {
     public DerivationStream call(Example ex, final Callable c) {
         return new SingleDerivationStream() {
             @Override
             public Derivation createDerivation() {
-
-                Formula formula0 = c.child(0).formula;
-                String arg0 = Formulas.getString(formula0);
+                List<String> tokens = ex.getTokens().subList(c.getStart() + 1, c.getEnd() - 1);
+                if (tokens.contains("``") || tokens.contains("''")){
+                    return null;
+                }
+                StringBuilder builder = new StringBuilder();
+                for (String tok: tokens) {
+                    builder.append(tok);
+                }
+                String arg0 = builder.toString();
                 NameValue formula = new NameValue(transform(arg0));
                 return new Derivation.Builder()
                         .withCallable(c)
