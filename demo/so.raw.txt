@@ -38,7 +38,7 @@
 81	It should allow only one space between words. That is, total number of spaces between words or characters should only be one.It should ignore leading and trailing spaces.	sep(?{<let>},< >)
 83		
 84	I am trying to make a regular expression that validates letters, numbers and spaces ONLY.	?{<let>,<num>,< >}
-85	The input box should accept only if either (1) first 2 letters alpha + 6 numeric or (2) 8 numeric	?{repeat(<let>,2),repeat(<num>,8),repeat(<num>,6)}
+85	The input box should accept only if either (1) first 2 letters alpha + 6 numeric or (2) 8 numeric	?{repeat(<let>,2),repeat(<num>,6),repeat(<num>,8)}
 86	a regular expression for validating a string with alphanumeric characters and dashes, while also not allowing leading or trailing dashes	?{<alphanum>,<->}
 87		
 88	The value can have at max 3 decimals (but also none) with comma as the separator.	sep(?{repeatrange(<num>,1,3)},<,>)
