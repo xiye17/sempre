@@ -12,7 +12,7 @@ public class ConstFn extends SemanticFn {
             @Override
             public Derivation createDerivation() {
                 List<String> tokens = ex.getTokens().subList(c.getStart() + 1, c.getEnd() - 1);
-                if (tokens.contains("``") || tokens.contains("''")){
+                if (tokens.contains("leftquoatation")){
                     return null;
                 }
                 StringBuilder builder = new StringBuilder();

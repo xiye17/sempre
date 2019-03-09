@@ -21,6 +21,7 @@
 {"lexeme" : "separated", "formula" : "fb:en.marker.between", "type" : "fb:type.marker.between"}
 {"lexeme" : "between", "formula" : "fb:en.marker.between", "type" : "fb:type.marker.between"}
 {"lexeme" : "split by", "formula" : "fb:en.marker.splitby", "type" : "fb:type.marker.splitby"}
+{"lexeme" : "divide by", "formula" : "fb:en.marker.splitby", "type" : "fb:type.marker.splitby"}
 {"lexeme" : "end with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
 {"lexeme" : "or", "formula" : "fb:en.marker.or", "type" : "fb:type.marker.or"}
 {"lexeme" : "finish with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}

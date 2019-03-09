@@ -20,8 +20,14 @@ def process_nl(x):
     inquotation = False
     for tok in x:
         if tok == "\"":
+            if inquotation:
+                y.append(" ")
+                y.append("rightquoatation")
+            else:
+                y.append("leftquoatation")
+                y.append(" ")
+
             inquotation = not inquotation
-            y.append(tok)
         else:
             if inquotation and tok.isupper():
                 y.append("upper"+tok.lower())

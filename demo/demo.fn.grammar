@@ -108,7 +108,8 @@
 (rule $MARKER_DECIMAL ($MARKER_DECIMAL1 $Skip) (SelectFn 0))
 
 # lexicon mapping
-(rule $CC1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
+(rule $CC1 ($CCPHRASE1) (IdentityFn))
+(rule $CCPHRASE1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 (rule $CONST1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.const)))
 
 (rule $MARKER_SEP1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.sep)))
@@ -141,9 +142,10 @@
 (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (sketch.ConstUnionFn 0 2))
 (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
 
+(rule $CC1 ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CCPHRASE1) (sketch.ConstUnionFn 0 2))
+
 # string matching
-(rule $CONST1 ('' $TOKEN '') (sketch.ConstFn))
-(rule $CONST1 (`` $PHRASE '') (sketch.ConstFn))
+(rule $CONST1 (leftquoatation $PHRASE rightquoatation) (sketch.ConstFn))
 
 # number related
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))

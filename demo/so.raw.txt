@@ -21,7 +21,7 @@
 46		
 48	I need to validate a string that contains underscore(_) in between the numbers. Underscore character is an optional. Only condition is, it should be between the numbers.	sep(?{<num>},<_>)
 51	I need to match only strings that include one character "/" between numbers or integer numbers.	sep(?{<num>},</>)
-52	Allows only the following characters: Letters, numbers, spaces and any of the following characters "_" "-" "+" "(" ")" "/" "\"	?{<let>,<num>,< >,or(<_>,or(<->,or(<+>,or(<(>,or(<)>,or(</>,<\>))))))}
+52	Allows only the following characters: Letters, numbers, spaces and any of the following characters "_" "-" "+" "(" ")" "/" "\"	?{or(<let>,<num>),< >,or(<_>,or(<->,or(<+>,or(<(>,or(<)>,or(</>,<\>))))))}
 56		
 58	it doesn't start with a space, doesn't contain a space, and doesn't end with a space.	?{not(startwith(< >)),not(contain(< >)),not(endwith(< >))}
 64	What is the regex that matches 6 characters, first is a letter, others are numbers	concat(?{repeat(<any>,6),<let>,<num>},?{repeat(<any>,6),<let>,<num>})
@@ -30,13 +30,13 @@
 73	I would like regex to be a whole number with thousands separated with a comma. No decimal. No "$".	?{<num>,<,>,not(contain(<$>)),not(contain(<.>))}
 74	I'm looking for a regular expression that will match text given the following requirements: contains only 10 digits (only numbers); starts with "9".	?{repeat(<num>,10),startwith(<9>)}
 75	Need a regular expression to validate number with comma separator.	sep(?{<num>},<,>)
-76		
+76	valid characters are alphanumeric and "."(period). The patterns are "%d4%" and "%t7%". So "%" is not valid by itself, but has to be part of these specific patterns.	?{<alphanum>,<.>,or(concat(<%>,concat(<t>,concat(<7>,<%>))),concat(<%>,concat(<d>,concat(<4>,<%>)))))))}
 77-The input box should accept alphanumeric with no space and it should also allow the user to use the characters like "~" "!" "@" "#" "$" "-" "_" any where in the string, except these characters non of the other characters should be allowed like ("%",  "&", "^" etc). It should not allow leading/trailing whitespace also.	?{<alphanum>,or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))}
 78	Should allow only alphanumeric with no space and no other characters including "_". It should not allow leading/trailing whitespace also.	?{<alphanum>,< >,<_>,not(startwith(< >)),not(endwith(< >))}
 79	I'm trying to use regular expressions to match a string that does not contain the sequence of characters of a less than symbol "<" followed by a non space.	?{concat(<<>,notcc(< >))}
 80	the number with 10 or more digits and that number should not have "$" symbol in front of it.	?{repeatatleast(<num>,10),<$>}
 81	It should allow only one space between words. That is, total number of spaces between words or characters should only be one.It should ignore leading and trailing spaces.	sep(?{<let>},< >)
-83		
+83	I'm trying to validate a form using regular expressions, the conditions are: It has to be a numeric value. It CAN have up to three decimal places(0,1,2 are allowed too).It has to be divided by a comma(,).	sep(?{<num>,repeatrange(<num>,1,3)},<,>)
 84	I am trying to make a regular expression that validates letters, numbers and spaces ONLY.	?{<let>,<num>,< >}
 85	The input box should accept only if either (1) first 2 letters alpha + 6 numeric or (2) 8 numeric	?{repeat(<let>,2),repeat(<num>,6),repeat(<num>,8)}
 86	a regular expression for validating a string with alphanumeric characters and dashes, while also not allowing leading or trailing dashes	?{<alphanum>,<->}
