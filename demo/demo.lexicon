@@ -24,7 +24,6 @@
 {"lexeme" : "end with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
 {"lexeme" : "or", "formula" : "fb:en.marker.or", "type" : "fb:type.marker.or"}
 {"lexeme" : "finish with", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
-{"lexeme" : "first", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
 {"lexeme" : "at the begin", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
 {"lexeme" : "start with", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
 {"lexeme" : "follow by", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
