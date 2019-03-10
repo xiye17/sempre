@@ -143,6 +143,7 @@
 (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
 
 (rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CCPHRASE1) (sketch.ConstUnionFn 0 2))
+(rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
 
 # string matching
 (rule $CONST1 (leftquoatation $PHRASE rightquoatation) (sketch.ConstFn))
