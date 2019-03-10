@@ -30,7 +30,7 @@
 73	I would like regex to be a whole number with thousands separated with a comma. No decimal. No "$".	?{<num>,<,>,not(contain(<$>)),not(contain(<.>))}
 74	I'm looking for a regular expression that will match text given the following requirements: contains only 10 digits (only numbers); starts with "9".	?{repeat(<num>,10),startwith(<9>)}
 75	Need a regular expression to validate number with comma separator.	sep(?{<num>},<,>)
-76	valid characters are alphanumeric and "."(period). The patterns are "%d4%" and "%t7%". So "%" is not valid by itself, but has to be part of these specific patterns.	?{<alphanum>,<.>,or(concat(<%>,concat(<t>,concat(<7>,<%>))),concat(<%>,concat(<d>,concat(<4>,<%>)))))))}
+76	valid characters are alphanumeric and "."(period). The patterns are "%d4%" and "%t7%". So "%" is not valid by itself, but has to be part of these specific patterns.	?{<alphanum>,<.>,or(concat(<%>,concat(<t>,concat(<7>,<%>))),concat(<%>,concat(<d>,concat(<4>,<%>))))}
 77-The input box should accept alphanumeric with no space and it should also allow the user to use the characters like "~" "!" "@" "#" "$" "-" "_" any where in the string, except these characters non of the other characters should be allowed like ("%",  "&", "^" etc). It should not allow leading/trailing whitespace also.	?{<alphanum>,or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))}
 78	Should allow only alphanumeric with no space and no other characters including "_". It should not allow leading/trailing whitespace also.	?{<alphanum>,< >,<_>,not(startwith(< >)),not(endwith(< >))}
 79	I'm trying to use regular expressions to match a string that does not contain the sequence of characters of a less than symbol "<" followed by a non space.	?{concat(<<>,notcc(< >))}
