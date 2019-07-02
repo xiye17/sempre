@@ -42,7 +42,7 @@ public class RepeatrangeFn extends SemanticFn {
                     String arg0 = args[position0];
                     String arg1 = determineArg(type1, value1, args);
                     String arg2 = determineArg(type2, value2, args);
-                    if (Integer.parseInt(arg1) == Integer.parseInt(arg2))
+                    if (Integer.parseInt(arg1) >= Integer.parseInt(arg2))
                         return null;
                     formula = new NameValue("repeatrange(" + arg0 + "," + arg1 + "," + arg2 + ")");
                 } else {
