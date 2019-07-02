@@ -10,9 +10,11 @@ def _parse_args():
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
     # parser.add_argument("--outpath", type=str, dest="outpath", default="./exp")
-    parser.add_argument("--dataset", type=str, dest="dataset", default="demo")
+    parser.add_argument("--dataset", type=str, dest="dataset", default="so")
 
     args = parser.parse_args()
+    args.infile = join("demo", "{}.raw.txt".format(args.dataset))
+    args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
     return args
 
 def process_nl(x):
@@ -36,23 +38,29 @@ def process_nl(x):
     y = "".join(y)
     return y
 
-def process_sketch(x):
-    y = []
-    for tok in x:
-        if tok.isupper():
-            y.append("upper"+tok.lower())
-        else:
-            y.append(tok)
-    y = "".join(y)
+def process_sketch(x, dataset):
+    if dataset == "so":
+        y = []
+        for tok in x:
+            if tok.isupper():
+                y.append("upper"+tok.lower())
+            else:
+                y.append(tok)
+        y = "".join(y)
 
-    # replace some tokens
-    y = y.replace("< >", "<space>")
-    y = y.replace("<(>", "<-lrb->")
-    y = y.replace("<)>", "<-rrb->")
-    y = y.replace("\\", "\\\\")
+        # replace some tokens
+        y = y.replace("< >", "<space>")
+        y = y.replace("<(>", "<-lrb->")
+        y = y.replace("<)>", "<-rrb->")
+        y = y.replace("\\", "\\\\")
+    elif dataset == "popl":
+        y = x.replace("<m0>", "<!>")
+        y = y.replace("<m1>", "<@>")
+        y = y.replace("<m2>", "<#>")
+        y = y.replace("<m3>", "<$>")
     return y
 
-def read_raw_data(filename):
+def read_raw_data(filename, dataset):
     with open(filename) as f:
         lines = f.readlines()
     lines = lines[1:]
@@ -63,7 +71,7 @@ def read_raw_data(filename):
     for fields in line_fields:
         ex_id = fields[0]
         ex_nl = process_nl(fields[1])
-        ex_sketch = process_sketch(fields[2])
+        ex_sketch = process_sketch(fields[2], dataset)
         exs.append((ex_id, ex_nl, ex_sketch))
     return exs
 
@@ -74,7 +82,7 @@ def write_ready_data(filename, exs):
 
 def preprocess(args):
 
-    exs = read_raw_data(args.infile)
+    exs = read_raw_data(args.infile, args.dataset)
     write_ready_data(args.outfile, exs)
 
 def read_ready_data(filename):

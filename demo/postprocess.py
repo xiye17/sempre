@@ -10,24 +10,35 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    parser.add_argument("--outpath", type=str, dest="outpath", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/demo/")
-    parser.add_argument("--dataset", type=str, dest="dataset", default="demo")
+    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/")
+    parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--beam", type=int, dest="beam", default=500)
     parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=25)
 
     args = parser.parse_args()
+    args.infile = join("demo", "{}.raw.txt".format(args.dataset))
+    args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
+    args.outpath = join(args.exp_path, "demo" + args.dataset)
     return args
 
-def process_sketch(x):
-    y = x.replace("<space>", "< >")
-    y = y.replace("<-lrb->", "<(>")
-    y = y.replace("<-rrb->", "<)>")
-    y = y.replace("\\\\", "\\")
-    while y.find("upper") != -1:
-        pos = y.find("upper")
-        end_pos = pos + 5
-        nex_tok = y[end_pos]
-        y = y[:pos] + nex_tok.upper() + y[(end_pos + 1):]
+def process_sketch(x, dataset):
+    if dataset == "so":
+        y = x.replace("<space>", "< >")
+        y = y.replace("<-lrb->", "<(>")
+        y = y.replace("<-rrb->", "<)>")
+        y = y.replace("\\\\", "\\")
+        while y.find("upper") != -1:
+            pos = y.find("upper")
+            end_pos = pos + 5
+            nex_tok = y[end_pos]
+            y = y[:pos] + nex_tok.upper() + y[(end_pos + 1):]
+    elif dataset == "popl":
+        y = x.replace("<!>", "<m0>")
+        y = y.replace("<@>", "<m1>")
+        y = y.replace("<#>", "<m2>")
+        y = y.replace("<$>", "<m3>")
+    else:
+        raise ValueError("Not a valid dataset")
     return y
 
 def read_pred_file(filename):
@@ -141,7 +152,7 @@ def make_sketch(args):
                 line = f.readline().strip()
                 line = line.split("\t")
                 print(line[0])
-                sketch = process_sketch(line[0])
+                sketch = process_sketch(line[0], args.dataset)
                 print(sketch)
                 print("-------")
                 rank = int(line[1]) + 1
@@ -152,8 +163,14 @@ def make_sketch(args):
     return ids
 
 def make_bemchmark(ids, args):
-    src_prefix = "/Users/xiye/WorkSpace/DevSpace/resnax/exp/so/benchmark_selected/"
-    dst_prefix = join(args.outpath, "benchmark")
+
+    # tricky
+    if args.dataset == "so":
+        src_prefix = join(args.exp_path, args.dataset, "benchmark")
+        dst_prefix = join(args.output_path, args.dataset, "benchmark")
+    else:
+        return
+
     for id in ids:
         shutil.copyfile(join(src_prefix, id), join(dst_prefix, id))
 
