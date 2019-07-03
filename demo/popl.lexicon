@@ -53,3 +53,4 @@
 {"lexeme" : "vowel", "formula" : "<vow>", "type" : "fb:type.cc"}
 {"lexeme" : "a vowel", "formula" : "<vow>", "type" : "fb:type.cc"}
 {"lexeme" : "precede", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "before", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
