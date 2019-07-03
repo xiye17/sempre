@@ -54,3 +54,7 @@
 {"lexeme" : "a vowel", "formula" : "<vow>", "type" : "fb:type.cc"}
 {"lexeme" : "precede", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
 {"lexeme" : "before", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "prior to", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
+{"lexeme" : "start in", "formula" : "fb:en.marker.startwith", "type" : "fb:type.marker.startwith"}
+{"lexeme" : "terminate", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
+{"lexeme" : "end in", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
