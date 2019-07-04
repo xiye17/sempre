@@ -36,6 +36,7 @@ def process_nl(x):
             else:
                 y.append(tok)
     y = "".join(y)
+    y = y.replace("the string leftquoatation", "leftquoatation")
     return y
 
 def process_sketch(x, dataset):
