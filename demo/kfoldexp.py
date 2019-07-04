@@ -83,7 +83,7 @@ def exp(args):
     for fold_id in range(args.nfold):
         dataset_id = args.dataset + "s" + str(fold_id)
 
-        cmd = "sh ./demo/exp.sh {0} {1} {2} {3}".format(args.beam, dataset_id, "demo.fn.fine.grammar", args.max_iter)
+        cmd = "sh ./demo/exp.sh {0} {1} {2} {3}".format(args.beam, dataset_id, "popl.grammar", args.max_iter)
         print(cmd)
         os.system(cmd)
     
@@ -117,9 +117,6 @@ def main():
     
     if args.action == "exp":
         exp(args)
-    
-    # preprocess(args)
-    # prepare_dataset(args)
 
 
 if __name__ == "__main__":
