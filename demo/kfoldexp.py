@@ -16,7 +16,7 @@ def _parse_args():
     parser.add_argument("--exppath", type=str, dest="exppath", default="./exp")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    parser.add_argument("--dataset", type=str, dest="dataset", default="demo")
+    parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--seed", type=int, dest="seed", default=666)
     parser.add_argument("--nfold", type=int, dest="nfold", default=5)
     parser.add_argument("--beam", type=int, dest="beam", default=500)

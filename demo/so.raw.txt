@@ -31,15 +31,13 @@
 52	Allows only the following characters: Letters, numbers, spaces and any of the following characters "_" "-" "+" "(" ")" "/" "\"	?{or(<let>,<num>),< >,or(<_>,or(<->,or(<+>,or(<(>,or(<)>,or(</>,<\>))))))}
 53	User allowed to enter two characters after "%"	null
 56	the first letter of each string is in upper case	?{<let>}
-57	allow only numbers, maxmium two decimals, max one comma (,) and one "-" symbol in front of the number (optional)
+57	allow only numbers, maxmium two decimals, max one comma (,) and one "-" symbol in front of the number (optional)	null
 58	it doesn't start with a space, doesn't contain a space, and doesn't end with a space.	?{not(startwith(< >)),not(contain(< >)),not(endwith(< >))}
 59	We like to validate following with Regex: bulletpoint string may contain 0 or more alphabets, digits, underscore OR bulletpoint string may contain literals "%sample1%" or "%sample2%" (0 or more times in any order) 	null
 60	I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3-25	null
 62	validate a set of double number with semi-colon delimeted	null
 64	What is the regex that matches 6 characters, first is a letter, others are numbers	concat(?{repeat(<any>,6),<let>,<num>},?{repeat(<any>,6),<let>,<num>})
-67-the expression is a alphanumeric one(where the alphabets are optional) where the alphabets can be only "d" | "D" | "w" | "W" | "m" | "M" | "q" | "Q" | "y" | "Y" and can appear only after the numerals. Also if any character can come before any numerals that can only be a minus.	
 68	The name must only consist of letters, numbers and one or more single spaces (not in the beginning or end). The minimum length is 3 characters.	 ?{<let>,<num>,repeatatleast(< >,1),< >,repeatatleast(<let>,3)}
-73-I would like regex to be a whole number with thousands separated with a comma. No decimal. No "$".	?{<num>,<,>,not(contain(<$>)),not(contain(<.>))}
 74	I'm looking for a regular expression that will match text given the following requirements: contains only 10 digits (only numbers); starts with "9".	?{repeat(<num>,10),startwith(<9>)}
 75	Need a regular expression to validate number with comma separator.	sep(?{<num>},<,>)
 76	valid characters are alphanumeric and "."(period). The patterns are "%d4%" and "%t7%". So "%" is not valid by itself, but has to be part of these specific patterns.	?{or(<alphanum>,<.>),or(concat(<%>,concat(<d>,concat(<4>,<%>))),concat(<%>,concat(<t>,concat(<7>,<%>))))}
@@ -52,9 +50,8 @@
 84	I am trying to make a regular expression that validates letters, numbers and spaces ONLY.	?{<let>,<num>,< >}
 85	The input box should accept only if either (1) first 2 letters alpha + 6 numeric or (2) 8 numeric	?{repeat(<let>,2),repeat(<num>,6),repeat(<num>,8)}
 86	a regular expression for validating a string with alphanumeric characters and dashes, while also not allowing leading or trailing dashes	?{<alphanum>,<->}
-87-Decimal numbers up to 3 decimal places which are greater than zero	sep(?{<num>,repeatrange(<num>,1,3)},<.>)
 88	The value can have at max 3 decimals (but also none) with comma as the separator.	sep(?{repeatrange(<num>,1,3)},<,>)
-89	I want to use a Regular expression validator in my line edit that doesn't allow to write dot(".") right after dot(".")
+89	I want to use a Regular expression validator in my line edit that doesn't allow to write dot(".") right after dot(".")	null
 90	I want regex that only validates that the field contains digits, but that does not care about how many.	?{<num>}
 95	I am writing a regular expression to validate a zip code, where it should have exactly a length of 6 characters, the first 3 characters are digits, the last 2 also, but the character 4 should be a space.	?{repeat(<let>,6),repeat(<num>,3),repeat(<let>,2),< >}
 96	I want a regular expression that validates a string of length 1 which has either the characters "A" or "B" (case insensitive) at the Begin	?{or(<A>,<B>)}
@@ -62,5 +59,5 @@
 100	The string must be 9 characters long, starting with "SO-" (case insensitive eg "So-", "so-", "sO-" and "SO-") followed by 6 numbers.	concat(or(concat(<S>,concat(<o>,<->)),or(concat(<s>,concat(<o>,<->)),or(concat(<s>,concat(<O>,<->)),concat(<S>,concat(<O>,<->))))),?{repeat(<num>,6)})
 101	The first character should be a designated character like "A", "B" or "C" only. and the next 3 characters should be numbers.	?{or(<A>,or(<B>,<C>)),repeat(<num>,3),<num>}
 102	I have one field that is meant to allow a 1 - 3 character string. The first character has got to be "A", "B", "C" or "Z" and may optionally be followed by upto 2 characters.	?{or(<A>,or(<B>,or(<C>,<Z>))),optional(?{repeatrange(<let>,1,2)})}
-103	I am trying to implement regex validation for passport number. My requirement is bulletpoint Length should be minimum 3 characters to a maximum of 20 characters. bulletpoint Should not be only "0" null
+103	I am trying to implement regex validation for passport number. My requirement is bulletpoint Length should be minimum 3 characters to a maximum of 20 characters. bulletpoint Should not be only "0"	null
 104	I have a field that should accept: a) letters [a-zA-Z] b) letters with numbers [a-zA-Z0-9] c) no special characters	?{<let>,or(<let>,<num>)}
