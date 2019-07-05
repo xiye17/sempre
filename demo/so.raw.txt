@@ -34,8 +34,8 @@
 57	allow only numbers, maxmium two decimals, max one comma (,) and one "-" symbol in front of the number (optional)	null
 58	it doesn't start with a space, doesn't contain a space, and doesn't end with a space.	?{not(startwith(< >)),not(contain(< >)),not(endwith(< >))}
 59	We like to validate following with Regex: bulletpoint string may contain 0 or more alphabets, digits, underscore OR bulletpoint string may contain literals "%sample1%" or "%sample2%" (0 or more times in any order) 	null
-60	I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3 - 25	null
-62	validate a set of double number with semi-colon delimeted	null
+60	I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3 - 25	?{endwith(<spec>),repeatrange(<any>,3,25)}
+62	validate a set of double number with semi-colon delimited	sep(sep(?{<num>},<.>),<;>)
 64	What is the regex that matches 6 characters, first is a letter, others are numbers	concat(?{repeat(<any>,6),<let>,<num>},?{repeat(<any>,6),<let>,<num>})
 68	The name must only consist of letters, numbers and one or more single spaces (not in the beginning or end). The minimum length is 3 characters.	 ?{<let>,<num>,repeatatleast(< >,1),< >,repeatatleast(<let>,3)}
 74	I'm looking for a regular expression that will match text given the following requirements: contains only 10 digits (only numbers); starts with "9".	?{repeat(<num>,10),startwith(<9>)}

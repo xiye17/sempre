@@ -6,6 +6,8 @@
 {"lexeme" : "hexadecimal", "formula" : "<hex>", "type" : "fb:type.cc"}
 {"lexeme" : "comma", "formula" : "<,>", "type" : "fb:type.const"}
 {"lexeme" : "colon", "formula" : "<:>", "type" : "fb:type.const"}
+{"lexeme" : "semicolon", "formula" : "<;>", "type" : "fb:type.const"}
+{"lexeme" : "semi colon", "formula" : "<;>", "type" : "fb:type.const"}
 {"lexeme" : "space", "formula" : "<space>", "type" : "fb:type.const"}
 {"lexeme" : "underscore", "formula" : "<_>", "type" : "fb:type.const"}
 {"lexeme" : "dash", "formula" : "<->", "type" : "fb:type.const"}
@@ -62,3 +64,4 @@
 {"lexeme" : "end in", "formula" : "fb:en.marker.endwith", "type" : "fb:type.marker.endwith"}
 {"lexeme" : "special character", "formula" : "<spec>", "type" : "fb:type.cc"}
 {"lexeme" : "special char", "formula" : "<spec>", "type" : "fb:type.cc"}
+{"lexeme" : "double number", "formula" : "fb:en.marker.doublenum", "type" : "fb:type.marker.doublenum"}

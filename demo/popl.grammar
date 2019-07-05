@@ -133,6 +133,7 @@
 (rule $MARKER_ATMAX1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.atmax)))
 (rule $MARKER_ONLY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.only)))
 (rule $MARKER_DECIMAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.decimal)))
+(rule $MARKER_DOUBLENUM1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.doublenum)))
 
 # things like x, x, x, and x  x, x, x, or x
 (rule $CC1 ($CONST_SET) (IdentityFn))
@@ -211,3 +212,4 @@
 
 (rule $MARKER_ORMORETIME1 (or more times) (ConstantFn fb:en.marker.ormore fb:type.marker.ormoretimes))
 (rule $PROGRAM ($PROGRAM $INT1 $MARKER_ORMORETIME1) (sketch.RepeatatleastFn 0 (pos 1)))
+(rule $SKETCH ($MARKER_DOUBLENUM1 ($Skip optional)) (ConstantFn (name "sep(?{<num>},<.>)")))
