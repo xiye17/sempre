@@ -53,6 +53,7 @@
 88	The value can have at max 3 decimals (but also none) with comma as the separator.	sep(?{repeatrange(<num>,1,3)},<,>)
 89	I want to use a Regular expression validator in my line edit that doesn't allow to write dot(".") right after dot(".")	null
 90	I want regex that only validates that the field contains digits, but that does not care about how many.	?{<num>}
+95	I am writing a regular expression to validate a zip code, where it should have exactly a length of 6 characters, the first 3 characters are digits, the last 2 also, but the character 4 should be a space.	?{repeat(<let>,6),repeat(<num>,3),repeat(<let>,2),< >}
 96	I want a regular expression that validates a string of length 1 which has either the characters "A" or "B" (case insensitive) at the Begin	?{or(<A>,<B>)}
 97	start and finish with a percentage sign and can contain any number of characters in-between	null
 100	The string must be 9 characters long, starting with "SO-" (case insensitive eg "So-", "so-", "sO-" and "SO-") followed by 6 numbers.	concat(or(concat(<S>,concat(<o>,<->)),or(concat(<s>,concat(<o>,<->)),or(concat(<s>,concat(<O>,<->)),concat(<S>,concat(<O>,<->))))),?{repeat(<num>,6)})
