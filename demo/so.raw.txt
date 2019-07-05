@@ -34,7 +34,7 @@
 57	allow only numbers, maxmium two decimals, max one comma (,) and one "-" symbol in front of the number (optional)	null
 58	it doesn't start with a space, doesn't contain a space, and doesn't end with a space.	?{not(startwith(< >)),not(contain(< >)),not(endwith(< >))}
 59	We like to validate following with Regex: bulletpoint string may contain 0 or more alphabets, digits, underscore OR bulletpoint string may contain literals "%sample1%" or "%sample2%" (0 or more times in any order) 	null
-60	I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3-25	null
+60	I want to write a regular expression using jQuery to validate input fields which will not allow special char at end and the string length should be in between 3 - 25	null
 62	validate a set of double number with semi-colon delimeted	null
 64	What is the regex that matches 6 characters, first is a letter, others are numbers	concat(?{repeat(<any>,6),<let>,<num>},?{repeat(<any>,6),<let>,<num>})
 68	The name must only consist of letters, numbers and one or more single spaces (not in the beginning or end). The minimum length is 3 characters.	 ?{<let>,<num>,repeatatleast(< >,1),< >,repeatatleast(<let>,3)}
@@ -53,7 +53,6 @@
 88	The value can have at max 3 decimals (but also none) with comma as the separator.	sep(?{repeatrange(<num>,1,3)},<,>)
 89	I want to use a Regular expression validator in my line edit that doesn't allow to write dot(".") right after dot(".")	null
 90	I want regex that only validates that the field contains digits, but that does not care about how many.	?{<num>}
-95	I am writing a regular expression to validate a zip code, where it should have exactly a length of 6 characters, the first 3 characters are digits, the last 2 also, but the character 4 should be a space.	?{repeat(<let>,6),repeat(<num>,3),repeat(<let>,2),< >}
 96	I want a regular expression that validates a string of length 1 which has either the characters "A" or "B" (case insensitive) at the Begin	?{or(<A>,<B>)}
 97	start and finish with a percentage sign and can contain any number of characters in-between	null
 100	The string must be 9 characters long, starting with "SO-" (case insensitive eg "So-", "so-", "sO-" and "SO-") followed by 6 numbers.	concat(or(concat(<S>,concat(<o>,<->)),or(concat(<s>,concat(<o>,<->)),or(concat(<s>,concat(<O>,<->)),concat(<S>,concat(<O>,<->))))),?{repeat(<num>,6)})

@@ -32,6 +32,7 @@
 
 (rule $PROGRAM ($MARKER_STARTWITH $PROGRAM) (sketch.StartwithFn 1))
 (rule $PROGRAM ($MARKER_ENDWITH $PROGRAM) (sketch.EndwithFn 1))
+(rule $PROGRAM ($PROGRAM $MARKER_INEND) (sketch.EndwithFn 0))
 
 (rule $PROGRAM ($PROGRAM $MARKER_FOLLOWBY $PROGRAM) (sketch.ConcatFn 0 2))
 (rule $SKETCH ($PROGRAM $MARKER_FOLLOWBY $SKETCH) (sketch.ConcatFn 0 2))
@@ -86,6 +87,8 @@
 
 (rule $MARKER_ENDWITH ($MARKER_ENDWITH1) (IdentityFn)) 
 (rule $MARKER_ENDWITH ($MARKER_ENDWITH1 $Skip) (SelectFn 0))
+(rule $MARKER_INEND ($MARKER_INEND1) (IdentityFn)) 
+(rule $MARKER_INEND ($MARKER_INEND1 $Skip) (SelectFn 0))
 
 (rule $Skip ($LEMMA_PHRASE) (ConstantFn null))
 
@@ -124,6 +127,7 @@
 (rule $MARKER_COMMA1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.comma)))
 (rule $MARKER_STARTWITH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.startwith)))
 (rule $MARKER_ENDWITH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.endwith)))
+(rule $MARKER_INEND1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.inend)))
 (rule $MARKER_FOLLOWBY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.followby)))
 (rule $MARKER_LENGTH1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.length)))
 (rule $MARKER_ATMAX1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.atmax)))
@@ -158,12 +162,12 @@
 (rule $PROGRAM ($MARKER_LENGTH $INT $CC) (sketch.RepeatFn 2 (pos 1)))
 
 # x or x
-# (rule $PROGRAM ($INT1 $MARKER_OR1 $INT1 $CC) (lambda a (lambda b (lambda c (lambda d (call regex.SketchFunctions.repeatintorintop (var d) (var a) (var c)))))))
 (rule $PROGRAM ($INT1 $MARKER_OR1 $INT1 $CC) (sketch.RepeatintorintFn 3 (pos 0) (pos 2)))
 
 # x or more, more than x
 (rule $MARKER_ORMORE1 (or more) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))
 (rule $PROGRAM ($INT1 $MARKER_ORMORE1 $CC) (sketch.RepeatatleastFn 2 (pos 0)))
+(rule $PROGRAM ($CC $MARKER_LENGTH $INT1 - $INT1) (sketch.RepeatrangeFn 0 (pos 2)  (pos 3)))
 
 (rule $CC1 (string) (ConstantFn <any> fb:type.cc))
 (rule $CC1 (character) (ConstantFn <let> fb:type.cc))
