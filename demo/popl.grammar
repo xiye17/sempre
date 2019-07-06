@@ -45,6 +45,7 @@
 # only
 (rule $PROGRAM ($MARKER_ONLY1 $CC) (sketch.RepeatatleastFn 1 (arg 1)))
 (rule $PROGRAM ($CC1 $MARKER_ONLY) (sketch.RepeatatleastFn 0 (arg 1)))
+(rule $PROGRAM ($MARKER_OPTIONAL1 $CC) (sketch.RepeatatleastFn 1 (arg 0)))
 
 # non
 (rule $PROGRAM ($MARKER_NON1 $CONST) (sketch.NotccFn 1))
@@ -134,6 +135,7 @@
 (rule $MARKER_ONLY1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.only)))
 (rule $MARKER_DECIMAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.decimal)))
 (rule $MARKER_DOUBLENUM1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.doublenum)))
+(rule $MARKER_OPTIONAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.optional)))
 
 # things like x, x, x, and x  x, x, x, or x
 (rule $CC1 ($CONST_SET) (IdentityFn))

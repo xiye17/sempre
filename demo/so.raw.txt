@@ -60,4 +60,4 @@
 101	The first character should be a designated character like "A", "B" or "C" only. and the next 3 characters should be numbers.	?{or(<A>,or(<B>,<C>)),repeat(<num>,3),<num>}
 102	I have one field that is meant to allow a 1 - 3 character string. The first character has got to be "A", "B", "C" or "Z" and may optionally be followed by upto 2 characters.	?{or(<A>,or(<B>,or(<C>,<Z>))),optional(?{repeatrange(<let>,1,2)})}
 103	I am trying to implement regex validation for passport number. My requirement is bulletpoint Length should be minimum 3 characters to a maximum of 20 characters. bulletpoint Should not be only "0"	null
-104	I have a field that should accept: a) letters [a-zA-Z] b) letters with numbers [a-zA-Z0-9] c) no special characters	?{<let>,or(<let>,<num>)}
+104	I have a field that should accept: bulletpoint letters [a-zA-Z] bulletpoint letters with numbers [a-zA-Z0-9] bulletpoint no special characters	?{<let>,or(<let>,<num>)}
