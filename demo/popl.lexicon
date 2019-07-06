@@ -3,9 +3,11 @@
 {"lexeme" : "numeral", "formula" : "<num>", "type" : "fb:type.cc"}
 {"lexeme" : "decimal", "formula" : "<num>", "type" : "fb:type.cc"}
 {"lexeme" : "alphanumeric", "formula" : "<alphanum>", "type" : "fb:type.cc"}
+{"lexeme" : "alphabet", "formula" : "<let>", "type" : "fb:type.cc"}
 {"lexeme" : "hexadecimal", "formula" : "<hex>", "type" : "fb:type.cc"}
 {"lexeme" : "comma", "formula" : "<,>", "type" : "fb:type.const"}
 {"lexeme" : "colon", "formula" : "<:>", "type" : "fb:type.const"}
+{"lexeme" : "percentage sign", "formula" : "<%>", "type" : "fb:type.const"}
 {"lexeme" : "semicolon", "formula" : "<;>", "type" : "fb:type.const"}
 {"lexeme" : "semi colon", "formula" : "<;>", "type" : "fb:type.const"}
 {"lexeme" : "space", "formula" : "<space>", "type" : "fb:type.const"}
