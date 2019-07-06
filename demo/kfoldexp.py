@@ -115,36 +115,13 @@ def single(args):
     target = args.target
     num_exs = len(exs)
     perms = np.random.permutation(num_exs)
-    num_left = num_exs
     print(perms)
     print("Target", target)
-    for fold_id in range(args.nfold):
-        fold_prefix = os.path.join("./regex/data", args.dataset + "s" + str(fold_id))
+    dataset_id = args.dataset + "s" + str(target)
 
-        num_this_fold = int(round(num_left * 1.0 / (args.nfold - fold_id)))
-        print(num_this_fold)
-        start_idx = num_exs - num_left
-        num_left = num_left - num_this_fold
-        end_idx = start_idx + num_this_fold
-        if fold_id == args.nfold - 1:
-            end_idx = num_exs
-        test_idx = perms[start_idx:end_idx].tolist()
-        print(test_idx)
-        
-        if target not in test_idx:
-            continue
-        
-        lines = []
-        for i in test_idx:
-            lines.append(exs[i]["id"] + "\t" + exs[i]["nl"] + "\n")
-        with open(join(fold_prefix, "src-test.txt"), "w") as f:
-            f.writelines(lines)
-        
-        dataset_id = args.dataset + "s" + str(fold_id)
-
-        cmd = "sh ./demo/exp_test.sh {0} {1} {2} {3}".format(args.beam, dataset_id, "popl.grammar", args.max_iter)
-        print(cmd)
-        os.system(cmd)
+    cmd = "sh ./demo/exp_test.sh {0} {1} {2} {3}".format(args.beam, dataset_id, "popl.grammar", args.max_iter)
+    print(cmd)
+    os.system(cmd)
     
     preds = []
     for fold_id in range(args.nfold):
