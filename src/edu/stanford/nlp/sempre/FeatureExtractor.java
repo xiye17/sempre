@@ -86,7 +86,7 @@ public class FeatureExtractor {
   void extractSpanFeatures(Example ex, Derivation deriv) {
     if (!containsDomain("span") || deriv.start == -1) return;
     deriv.addFeature("span", "cat=" + deriv.cat + ",#tokens=" + (deriv.end - deriv.start));
-    deriv.addFeature("span", "cat=" + deriv.cat + ",POS=" + ex.posTag(deriv.start) + "..." + ex.posTag(deriv.end - 1));
+    //deriv.addFeature("span", "cat=" + deriv.cat + ",POS=" + ex.posTag(deriv.start) + "..." + ex.posTag(deriv.end - 1));
   }
 
   // Extract features on the denotation of the logical form produced.
