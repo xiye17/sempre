@@ -44,7 +44,6 @@
 {"lexeme" : "decimal", "formula" : "fb:en.marker.decimal", "type" : "fb:type.marker.decimal"}
 {"lexeme" : "after", "formula" : "fb:en.marker.follows", "type" : "fb:type.marker.follows"}
 {"lexeme" : "bulletpoint", "formula" : "fb:en.marker.follows", "type" : "fb:type.marker.follows"}
-{"lexeme" : "bulletpoint", "formula" : "fb:en.marker.and", "type" : "fb:type.marker.and"}
 {"lexeme" : "a small letter", "formula" : "<low>", "type" : "fb:type.cc"}
 {"lexeme" : "small letter", "formula" : "<low>", "type" : "fb:type.cc"}
 {"lexeme" : "a upper case letter", "formula" : "<cap>", "type" : "fb:type.cc"}
