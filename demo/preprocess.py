@@ -65,7 +65,7 @@ def tricky_process_nl(id, nl, dataset):
     if dataset != "so":
         return nl
 
-    list_id = ["3", "52", "77"]
+    list_id = ["id3", "id52", "id77"]
     if id not in list_id:
         return nl
     src_strings = ['"&" "|" "." "(" ")"', '"_" "-" "+" "(" ")" "/" "\\"', '"~" "!" "@" "#" "$" "-" "_"']
@@ -84,7 +84,7 @@ def read_raw_data(filename, dataset):
     line_fields = [x for x in line_fields if len(x) == 3]
     exs = []
     for fields in line_fields:
-        ex_id = fields[0]
+        ex_id = "id" + fields[0]
         ex_nl = tricky_process_nl(ex_id, fields[1], dataset)
         ex_nl = process_nl(ex_nl)
         ex_sketch = process_sketch(fields[2], dataset)
@@ -123,7 +123,7 @@ def prepare_dataset(args):
     lines = []
 
     for ex in exs:
-        lines.append('(example (utterance "id{0} {1}") (targetValue (name "{2}")))\n'.format(ex[0], fit_for_exs(ex[1]), ex[2]))
+        lines.append('(example (utterance "{0} {1}") (targetValue (name "{2}")))\n'.format(ex[0], fit_for_exs(ex[1]), ex[2]))
     with open(exs_file, "w") as f:
         f.writelines(lines)
     

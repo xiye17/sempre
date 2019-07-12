@@ -184,8 +184,8 @@ def postprecess(args):
     makedir_f(join(args.outpath, "benchmark"))
     makedir_f(join(args.outpath, "sketch"))
     ids = make_sketch(args)
-    make_bemchmark(ids, args)
-    eval_match(args)
+    # make_bemchmark(ids, args)
+    # eval_match(args)
 
 def main():
     args = _parse_args()

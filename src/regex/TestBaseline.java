@@ -81,11 +81,11 @@ public class TestBaseline implements Runnable {
 
         for (String lineStr = srcFile.readLine(); lineStr != null;) {
 
-          String[] fields = lineStr.split("\t", 2);
-          String id = fields[0];
-          String utterance = fields[1];
+          String[] fields = lineStr.split(" ", 2);
+          String id = fields[0].substring(2);
+          String utterance = lineStr;
 
-
+          System.out.println("ID: " + id + ",NL: " + utterance);
           int indent = LogInfo.getIndLevel();
           int order = 0;
           try {
@@ -105,12 +105,14 @@ public class TestBaseline implements Runnable {
               for (int i = 0; i < derivs.size(); i++) {
 
                 String derivString = ((derivs.get(i)).value).toString();
+                System.out.println("Deriv String: " + derivString);
+
                 String subDeriv = "";
                 if (derivString.contains("\"")) {
                   subDeriv = derivString.split("\"")[1];
                 } else {
                   subDeriv = derivString.split(" ")[1];
-                  subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
+//                  subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
                 }
 
                 // update derivation-to-count map

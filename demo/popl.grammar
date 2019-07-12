@@ -1,6 +1,7 @@
 # Root 
-(rule $ROOT ($SKETCH) (IdentityFn)) 
-(rule $ROOT ($Skip $SKETCH) (SelectFn 1))
+(rule $ROOT ($TOKEN $ROOT_SKETCH) (sketch.RootFn))
+(rule $ROOT_SKETCH ($SKETCH) (IdentityFn))
+(rule $ROOT_SKETCH ($Skip $SKETCH) (SelectFn 1))
 
 # Comosition of Program
 (rule $PROGRAM ($CC) (IdentityFn))
@@ -201,16 +202,6 @@
 (rule $SKETCH ($SKETCH $MARKER_AND $PROGRAM) (sketch.AndFn 0 2))
 (rule $SKETCH ($SKETCH $MARKER_AND $SKETCH) (sketch.AndFn 0 2))
 
-
-# added for popl
-
-(rule $PROGRAM ($PROGRAM $MARKER_FOLLOWS $PROGRAM) (sketch.ConcatContainFn 2 0))
-(rule $SKETCH ($SKETCH $MARKER_FOLLOWS $PROGRAM) (sketch.ConcatContainFn 2 0))
-
-# x or more, more than x
-
-(rule $PROGRAM ($PROGRAM $MARKER_FOLLOWBY $PROGRAM) (sketch.ConcatContainFn 0 2))
-(rule $SKETCH ($SKETCH $MARKER_FOLLOWBY $PROGRAM) (sketch.ConcatContainFn 0 2))
 
 (rule $MARKER_ORMORETIME1 (or more times) (ConstantFn fb:en.marker.ormore fb:type.marker.ormoretimes))
 (rule $PROGRAM ($PROGRAM $INT1 $MARKER_ORMORETIME1) (sketch.RepeatatleastFn 0 (pos 1)))
