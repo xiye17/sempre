@@ -4,12 +4,10 @@ from os.path import join
 
 # convert raw format to sth suitable for sempre
 
-
 def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    # parser.add_argument("--outpath", type=str, dest="outpath", default="./exp")
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
 
     args = parser.parse_args()
@@ -63,6 +61,20 @@ def process_sketch(x, dataset):
         y = y.replace("<m3>", "<$>")
     return y
 
+def tricky_process_nl(id, nl, dataset):
+    if dataset != "so":
+        return nl
+
+    list_id = ["3", "52", "77"]
+    if id not in list_id:
+        return nl
+    src_strings = ['"&" "|" "." "(" ")"', '"_" "-" "+" "(" ")" "/" "\\"', '"~" "!" "@" "#" "$" "-" "_"']
+    dst_string = '"enumconsts"'
+
+    idx = list_id.index(id)
+    nl = nl.replace(src_strings[idx], dst_string)
+    return nl
+
 def read_raw_data(filename, dataset):
     with open(filename) as f:
         lines = f.readlines()
@@ -73,7 +85,8 @@ def read_raw_data(filename, dataset):
     exs = []
     for fields in line_fields:
         ex_id = fields[0]
-        ex_nl = process_nl(fields[1])
+        ex_nl = tricky_process_nl(ex_id, fields[1], dataset)
+        ex_nl = process_nl(ex_nl)
         ex_sketch = process_sketch(fields[2], dataset)
         exs.append((ex_id, ex_nl, ex_sketch))
     return exs
@@ -110,7 +123,7 @@ def prepare_dataset(args):
     lines = []
 
     for ex in exs:
-        lines.append('(example (utterance "{0}") (targetValue (name "{1}")))\n'.format(fit_for_exs(ex[1]), ex[2]))
+        lines.append('(example (utterance "id{0} {1}") (targetValue (name "{2}")))\n'.format(ex[0], fit_for_exs(ex[1]), ex[2]))
     with open(exs_file, "w") as f:
         f.writelines(lines)
     
@@ -118,7 +131,7 @@ def prepare_dataset(args):
     test_file = join(prefix, "src-test.txt")
     lines = []
     for ex in exs:
-        lines.append(ex[0] + "\t" + ex[1] + "\n")
+        lines.append(ex[0] + " " + ex[1] + "\n")
     with open(test_file, "w") as f:
         f.writelines(lines)
            
