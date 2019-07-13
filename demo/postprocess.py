@@ -165,7 +165,8 @@ def make_sketch(args):
             for i in range(num_deriv):
                 line = f.readline().strip()
                 line = line.split("\t")
-                sketch = process_sketch(line[0], args.dataset)
+                sketch = tricky_process_sketch(id, line[0], args.dataset)
+                sketch = process_sketch(sketch, args.dataset)
                 rank = int(line[1]) + 1
                 derivs.append((rank, sketch))
             derivs.sort(key=lambda x:x[0])
