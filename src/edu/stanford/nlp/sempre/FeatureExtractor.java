@@ -90,6 +90,10 @@ public class FeatureExtractor {
            deriv.addFeature("rulegram", "a=" + children.get(i).rule.toString() + ",b=" + children.get(i+1).rule.toString());
         }  
       }
+      if (deriv.cat.startsWith("MARKER_") && (deriv.children.size() == 0) && deriv.child(0).cat.equals("$LEMMA_PHRASE")) {
+        List<String> exLemmas = ex.languageInfo.lemmaTokens;
+        deriv.addFeature("lemmarule", "target=" + deriv.cat + ",lemma_phrase=" + String.join(" ", exLemmas.subList(deriv.getStart(), deriv.getEnd())));
+      }
     }
   }
 
