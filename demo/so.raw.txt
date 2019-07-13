@@ -1,7 +1,7 @@
 #	NL	Sketch
 1	write a regular expression that only matches strings, no numbers, no special character, just letters from A - Z.	null
 2	write regular expression in C# to validate that the input does not contain double spaces	not(contain(?{< >}))
-3	write regular expression that allows only digits, characters like "&" "|" "." "(" ")" and spaces	?{<num>,or(<&>,or(<|>,or(<.>,or(<(>,or(<)>,< >)))))}
+3	write regular expression that allows only digits, characters like "&" "|" "." "(" ")" and spaces	?{<num>,or(concat(<e>,concat(<n>,concat(<u>,concat(<m>,concat(<c>,concat(<o>,concat(<n>,concat(<s>,concat(<t>,<s>))))))))),< >)}
 6	The input will be in the form a colon (:) separated tuple of three values. The first value will be an integer (potentially a long in terms of size/length), with the other two values being either numeric or a string.	sep(?{<num>,repeatatleast(<num>,1),<let>},<:>)
 8	It should accept numbers only with decimal part "0" or "5" only.	sep(?{repeatatleast(<num>,1),or(<0>,<5>)},<.>)
 9	I want this value to accept up to 18 digits before the decimal, and 1 digit after. With the decimal point and the digit after it being optional	sep(?{repeatrange(<num>,1,18),<num>},<.>)
@@ -28,7 +28,7 @@
 48	I need to validate a string that contains underscore(_) in between the numbers. Underscore character is an optional. Only condition is, it should be between the numbers.	sep(?{<num>},<_>)
 50	Requirement is that total number of "-" with the string can only be one	null
 51	I need to match only strings that include one character "/" between numbers or integer numbers.	sep(?{<num>},</>)
-52	Allows only the following characters: Letters, numbers, spaces and any of the following characters "_" "-" "+" "(" ")" "/" "\"	?{or(<let>,or(<num>,< >)),or(<_>,or(<->,or(<+>,or(<(>,or(<)>,or(</>,<\>))))))}
+52	Allows only the following characters: Letters, numbers, spaces and any of the following characters "_" "-" "+" "(" ")" "/" "\"	?{or(<let>,or(<num>,< >)),concat(<e>,concat(<n>,concat(<u>,concat(<m>,concat(<c>,concat(<o>,concat(<n>,concat(<s>,concat(<t>,<s>)))))))))}
 53	User allowed to enter two characters after "%"	null
 56	the first letter of each string is in upper case	?{<let>}
 57	allow only numbers, maxmium two decimals, max one comma (,) and one "-" symbol in front of the number (optional)	null
@@ -41,7 +41,7 @@
 74	I'm looking for a regular expression that will match text given the following requirements: contains only 10 digits (only numbers); starts with "9".	?{repeat(<num>,10),startwith(<9>)}
 75	Need a regular expression to validate number with comma separator.	sep(?{<num>},<,>)
 76	valid characters are alphanumeric and "."(period). The patterns are "%d4%" and "%t7%". So "%" is not valid by itself, but has to be part of these specific patterns.	?{or(<alphanum>,<.>),or(concat(<%>,concat(<d>,concat(<4>,<%>))),concat(<%>,concat(<t>,concat(<7>,<%>))))}
-77-The input box should accept alphanumeric with no space and it should also allow the user to use the characters like "~" "!" "@" "#" "$" "-" "_" any where in the string, except these characters non of the other characters should be allowed like ("%",  "&", "^" etc). It should not allow leading/trailing whitespace also.	?{<alphanum>,or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))}
+77	The input box should accept alphanumeric with no space and it should also allow the user to use the characters like "~" "!" "@" "#" "$" "-" "_" any where in the string, except these characters non of the other characters should be allowed like ("%",  "&", "^" etc). It should not allow leading/trailing whitespace also.	?{<alphanum>,concat(<e>,concat(<n>,concat(<u>,concat(<m>,concat(<c>,concat(<o>,concat(<n>,concat(<s>,concat(<t>,<s>)))))))))}
 78	Should allow only alphanumeric with no space and no other characters including "_". It should not allow leading/trailing whitespace also.	?{<alphanum>,< >,<_>,not(startwith(< >)),not(endwith(< >))}
 79	I'm trying to use regular expressions to match a string that does not contain the sequence of characters of a less than symbol "<" followed by a non space.	?{concat(<<>,notcc(< >))}
 80	the number with 10 or more digits and that number should not have "$" symbol in front of it.	?{repeatatleast(<num>,10),<$>}
