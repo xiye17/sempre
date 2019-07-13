@@ -41,6 +41,22 @@ def process_nl(x):
 
     return y
 
+def tricky_process_nl(id, nl, dataset):
+    if dataset != "so":
+        return nl
+
+    list_id = ["3", "52", "77"]
+    if id not in list_id:
+        return nl
+    src_strings = ['"&" "|" "." "(" ")"', '"_" "-" "+" "(" ")" "/" "\\"', '"~" "!" "@" "#" "$" "-" "_"']
+    dst_string = '"enumconsts"'
+
+    idx = list_id.index(id)
+    print(id, nl)
+    nl = nl.replace(src_strings[idx], dst_string)
+    print(id, nl)
+    return nl
+
 def process_sketch(x, dataset):
     if dataset == "so":
         y = []
@@ -73,7 +89,8 @@ def read_raw_data(filename, dataset):
     exs = []
     for fields in line_fields:
         ex_id = fields[0]
-        ex_nl = process_nl(fields[1])
+        ex_nl = tricky_process_nl(ex_id, fields[1], dataset)
+        ex_nl = process_nl(ex_nl)
         ex_sketch = process_sketch(fields[2], dataset)
         exs.append((ex_id, ex_nl, ex_sketch))
     return exs

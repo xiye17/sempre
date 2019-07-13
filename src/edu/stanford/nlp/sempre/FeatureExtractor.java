@@ -76,8 +76,20 @@ public class FeatureExtractor {
   void extractRuleFeatures(Example ex, Derivation deriv) {
     if (!containsDomain("rule")) return;
     if (deriv.rule != Rule.nullRule) {
-      deriv.addFeature("rule", "fire");
+//      deriv.addFeature("rule", "fire");
       deriv.addFeature("rule", deriv.rule.toString());
+      List<Derivation> children = deriv.children;
+
+      for (int i = 0; i < children.size(); ++i) {
+         if (children.get(i).rule != Rule.nullRule) {
+            deriv.addFeature("ruletree", "a=" + deriv.rule.toString() + ",b=" + children.get(i).rule.toString());
+         }
+      }
+      for (int i = 0; i < children.size() - 1; ++i) {
+        if ((children.get(i).rule != Rule.nullRule) && (children.get(i+1).rule != Rule.nullRule)) {
+           deriv.addFeature("rulegram", "a=" + children.get(i).rule.toString() + ",b=" + children.get(i+1).rule.toString());
+        }  
+      }
     }
   }
 
@@ -85,7 +97,7 @@ public class FeatureExtractor {
   // (Not applicable for floating rules)
   void extractSpanFeatures(Example ex, Derivation deriv) {
     if (!containsDomain("span") || deriv.start == -1) return;
-    deriv.addFeature("span", "cat=" + deriv.cat + ",#tokens=" + (deriv.end - deriv.start));
+    //deriv.addFeature("span", "cat=" + deriv.cat + ",#tokens=" + (deriv.end - deriv.start));
     //deriv.addFeature("span", "cat=" + deriv.cat + ",POS=" + ex.posTag(deriv.start) + "..." + ex.posTag(deriv.end - 1));
   }
 

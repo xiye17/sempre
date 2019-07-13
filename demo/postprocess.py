@@ -10,7 +10,7 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/")
+    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/home/xiye/resnax/exp/")
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--beam", type=int, dest="beam", default=500)
     parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=25)
@@ -20,6 +20,20 @@ def _parse_args():
     args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
     args.outpath = join(args.exp_path, "demo" + args.dataset)
     return args
+
+def tricky_process_sketch(id, x, dataset):
+    if dataset != "so":
+        return x
+    list_id = ["3", "52", "77"]
+    if id not in list_id:
+        return x
+    src_string = 'concat(<e>,concat(<n>,concat(<u>,concat(<m>,concat(<c>,concat(<o>,concat(<n>,concat(<s>,concat(<t>,<s>)))))))))'  
+    dst_strings = ['or(<&>,or(<|>,or(<.>,or(<-lrb->,or(<-rrb>,<space>))))))', 'or(<_>,or(<->,or(<+>,or(<-lrb->,or(<-rrb->,or(</>,<\\\\>))))))', 'or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))']
+    idx = list_id.index(id)
+    print(id, x)
+    x = x.replace(src_string, dst_strings[idx])
+    print(id, x)
+    return x
 
 def process_sketch(x, dataset):
     if dataset == "so":
@@ -151,10 +165,7 @@ def make_sketch(args):
             for i in range(num_deriv):
                 line = f.readline().strip()
                 line = line.split("\t")
-                print(line[0])
                 sketch = process_sketch(line[0], args.dataset)
-                print(sketch)
-                print("-------")
                 rank = int(line[1]) + 1
                 derivs.append((rank, sketch))
             derivs.sort(key=lambda x:x[0])
@@ -184,7 +195,7 @@ def postprecess(args):
     makedir_f(join(args.outpath, "benchmark"))
     makedir_f(join(args.outpath, "sketch"))
     ids = make_sketch(args)
-    make_bemchmark(ids, args)
+    # make_bemchmark(ids, args)
     eval_match(args)
 
 def main():
