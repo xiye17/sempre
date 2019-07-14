@@ -28,7 +28,7 @@ def tricky_process_sketch(id, x, dataset):
     if id not in list_id:
         return x
     src_string = 'concat(<e>,concat(<n>,concat(<u>,concat(<m>,concat(<c>,concat(<o>,concat(<n>,concat(<s>,concat(<t>,<s>)))))))))'  
-    dst_strings = ['or(<&>,or(<|>,or(<.>,or(<-lrb->,or(<-rrb>,<space>))))))', 'or(<_>,or(<->,or(<+>,or(<-lrb->,or(<-rrb->,or(</>,<\\\\>))))))', 'or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))']
+    dst_strings = ['or(<&>,or(<|>,or(<.>,or(<-lrb->,<-rrb->))))', 'or(<_>,or(<->,or(<+>,or(<-lrb->,or(<-rrb->,or(</>,<\\\\>))))))', 'or(<~>,or(<!>,or(<@>,or(<#>,or(<$>,or(<->,<_>))))))']
     idx = list_id.index(id)
     x = x.replace(src_string, dst_strings[idx])
     return x
