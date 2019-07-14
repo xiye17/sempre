@@ -19,7 +19,7 @@ def _parse_args():
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--seed", type=int, dest="seed", default=666)
     parser.add_argument("--nfold", type=int, dest="nfold", default=5)
-    parser.add_argument("--beam", type=int, dest="beam", default=500)
+    parser.add_argument("--beam", type=int, dest="beam", default=200)
     parser.add_argument("--max_iter", type=int, dest="max_iter", default=5)
     parser.add_argument("--target", type=int, dest="target", default=-1)
 
