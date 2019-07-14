@@ -43,7 +43,7 @@ def makedir_f(dir):
     os.mkdir(dir)
 
 def get_exs_formula(ex):
-    return '(example (utterance "{0}") (targetValue (name "{1}")))'.format(fit_for_exs(ex["nl"]), ex["sketch"])
+    return '(example (utterance "{0} {1}") (targetValue (name "{2}")))'.format(ex['id'], fit_for_exs(ex['nl']), ex['sketch'])
 
 def make_splits(args):
     exs = read_ready_file(args.outfile)
