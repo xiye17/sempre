@@ -76,7 +76,7 @@ public class FeatureExtractor {
   void extractRuleFeatures(Example ex, Derivation deriv) {
     if (!containsDomain("rule")) return;
     if (deriv.rule != Rule.nullRule) {
-//      deriv.addFeature("rule", "fire");
+      deriv.addFeature("rule", "fire");
       deriv.addFeature("rule", deriv.rule.toString());
       List<Derivation> children = deriv.children;
 
@@ -90,10 +90,10 @@ public class FeatureExtractor {
            deriv.addFeature("rulegram", "a=" + children.get(i).rule.toString() + ",b=" + children.get(i+1).rule.toString());
         }  
       }
-     // if (deriv.cat.startsWith("$MARKER_") && (deriv.children.size() == 1) && deriv.child(0).cat.equals("$LEMMA_PHRASE")) {
-     //   List<String> exLemmas = ex.languageInfo.lemmaTokens;
-     //   deriv.addFeature("lemmarule", "target=" + deriv.cat + ",lemma_phrase=" + String.join(" ", exLemmas.subList(deriv.getStart(), deriv.getEnd())));
-     // }
+      if (deriv.cat.startsWith("$MARKER_") && (deriv.children.size() == 1) && deriv.child(0).cat.equals("$LEMMA_PHRASE")) {
+        List<String> exLemmas = ex.languageInfo.lemmaTokens;
+        deriv.addFeature("lemmarule", "target=" + deriv.cat + ",lemma_phrase=" + String.join(" ", exLemmas.subList(deriv.getStart(), deriv.getEnd())));
+      }
     }
   }
 
