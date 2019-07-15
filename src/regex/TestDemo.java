@@ -40,8 +40,9 @@ public class TestDemo implements Runnable {
         for (String lineStr = srcFile.readLine(); lineStr != null;) {
 
           String[] fields = lineStr.split("\t", 2);
-          String id = fields[0];
-          String utterance = fields[1];
+          String id = fields[0].substring(2);
+          System.out.println("IDID" +  fields[0] + " ,IDID" + id);
+          String utterance = fields[0] + " " + fields[1];
 
 
           int indent = LogInfo.getIndLevel();
@@ -68,7 +69,7 @@ public class TestDemo implements Runnable {
                   subDeriv = derivString.split("\"")[1];
                 } else {
                   subDeriv = derivString.split(" ")[1];
-                  subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
+//                  subDeriv = subDeriv.substring(0, subDeriv.indexOf(")"));
                 }
 
                 // update derivation-to-count map
