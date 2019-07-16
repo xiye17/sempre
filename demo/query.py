@@ -112,7 +112,6 @@ def main(timeout, id, sketch):
         result = pre_result
     # print(result)
 
-    # updating
     if pre_result is None:
         cache.add(id, result["sketch"], result)
         cache.rewrite()
@@ -125,23 +124,7 @@ def main(timeout, id, sketch):
                 cache.rewrite()
         else:
             # take less time
-            if pre_result["time"] > result["time"]:
-                cache.add(id, result["sketch"], result)
-                cache.rewrite()
-    
-    if pre_result is None:
-        cache.add(id, result["sketch"], result)
-        cache.rewrite()
-    else:
-        # time out
-        if pre_result["timeout"] > 0:
-            # tested for longer time
-            if result["timeout"] == 0 or pre_result["timeout"] < result["timeout"]:
-                cache.add(id, result["sketch"], result)
-                cache.rewrite()
-        else:
-            # take less time
-            if pre_result["time"] > result["time"]:
+            if pre_result["time"] > result["time"] and result["timeout"] == 0:
                 cache.add(id, result["sketch"], result)
                 cache.rewrite()
 
