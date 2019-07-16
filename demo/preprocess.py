@@ -72,7 +72,7 @@ def process_sketch(x, dataset):
         y = y.replace("<(>", "<-lrb->")
         y = y.replace("<)>", "<-rrb->")
         y = y.replace("\\", "\\\\")
-    elif dataset == "popl":
+    elif dataset == "popl" or dataset == "turk" or dataset == "kb13":
         y = x.replace("<m0>", "<!>")
         y = y.replace("<m1>", "<@>")
         y = y.replace("<m2>", "<#>")

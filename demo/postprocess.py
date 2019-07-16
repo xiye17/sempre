@@ -10,7 +10,7 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/home/xiye/resnax/exp/")
+    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/")
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--beam", type=int, dest="beam", default=500)
     parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=25)
@@ -46,7 +46,7 @@ def process_sketch(x, dataset):
             end_pos = pos + 5
             nex_tok = y[end_pos]
             y = y[:pos] + nex_tok.upper() + y[(end_pos + 1):]
-    elif dataset == "popl":
+    elif dataset == "popl" or dataset == "turk" or dataset == "kb13":
         y = x.replace("<!>", "<m0>")
         y = y.replace("<@>", "<m1>")
         y = y.replace("<#>", "<m2>")
