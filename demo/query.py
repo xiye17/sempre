@@ -101,37 +101,13 @@ def main(timeout, id, sketch):
     # check cache first
     pre_result = cache.query(id, sketch)
     if pre_result is None:
-        print("NOT IN")
-        result = sythesis(RESNAX_PATH, timeout, id, sketch)
-    elif pre_result["timeout"] > 0 and pre_result["timeout"] < timeout:
-        print("NOT TIME")
-        result = sythesis(RESNAX_PATH, timeout, id, sketch)
+        print("false")
     else:
         # make a log file
-        print("FOUND")
-        result = pre_result
-    # print(result)
-
-    if pre_result is None:
-        cache.add(id, result["sketch"], result)
-        cache.rewrite()
-    else:
-        # time out
-        if pre_result["timeout"] > 0:
-            # tested for longer time
-            if result["timeout"] == 0 or pre_result["timeout"] < result["timeout"]:
-                cache.add(id, result["sketch"], result)
-                cache.rewrite()
+        if pre_result["match"] == "true":
+            print("true")
         else:
-            # take less time
-            if pre_result["time"] > result["time"] and result["timeout"] == 0:
-                cache.add(id, result["sketch"], result)
-                cache.rewrite()
-
-    if result["match"] == "true":
-        print("true")
-    else:
-        print("false")
+            print("false")
 
 if __name__ == "__main__":
     main(int(sys.argv[1]), sys.argv[2][2:], sys.argv[3])
