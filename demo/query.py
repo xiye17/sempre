@@ -5,7 +5,7 @@ import subprocess
 import time
 
 DATASEET = "so"
-RESNAX_PATH = "/Users/xiye/WorkSpace/DevSpace/resnax"
+RESNAX_PATH = "/home/xiye/resnax"
 
 # dirty for now!
 def parse_java_command(prefix, sketch, benchmark):
