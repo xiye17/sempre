@@ -76,6 +76,8 @@ public class FeatureExtractor {
   void extractRuleFeatures(Example ex, Derivation deriv) {
     if (!containsDomain("rule")) return;
     if (deriv.rule != Rule.nullRule) {
+      String ruleString = deriv.rule.toString();
+      if (ruleString.contains("$Skip")) return;
       deriv.addFeature("rule", "fire");
       deriv.addFeature("rule", deriv.rule.toString());
       List<Derivation> children = deriv.children;
