@@ -30,13 +30,12 @@ public class TestBaseline implements Runnable {
 
     if (deriv.children.size() == 0) {
 //      System.out.println("ret " + (deriv.end - deriv.start));
-        return (deriv.end - deriv.start) + 1000;
-//        return 1;
+      return (deriv.end - deriv.start);
     }
 
 
     List<Derivation> children = deriv.children;
-    Integer x = new Integer(1000);
+    Integer x = new Integer(0);
     for (int i = 0; i < children.size(); ++i) {
       x = x + countCoverage(children.get(i));
     }
