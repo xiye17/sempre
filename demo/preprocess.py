@@ -58,7 +58,7 @@ def tricky_process_nl(id, nl, dataset):
     return nl
 
 def process_sketch(x, dataset):
-    if dataset == "so":
+    if dataset == "so" or dataset == "real":
         y = []
         for tok in x:
             if tok.isupper():

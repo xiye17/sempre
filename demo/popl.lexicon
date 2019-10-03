@@ -20,6 +20,8 @@
 {"lexeme" : "non", "formula" : "fb:en.marker.non", "type" : "fb:type.marker.non"}
 {"lexeme" : "not contain", "formula" : "fb:en.marker.notcontain", "type" : "fb:type.marker.notcontain"}
 {"lexeme" : "not allow", "formula" : "fb:en.marker.notcontain", "type" : "fb:type.marker.notcontain"}
+{"lexeme" : "allow", "formula" : "fb:en.marker.allow", "type" : "fb:type.marker.allow"}
+{"lexeme" : "consist of", "formula" : "fb:en.marker.allow", "type" : "fb:type.marker.allow"}
 {"lexeme" : "optional", "formula" : "fb:en.marker.optional", "type" : "fb:type.marker.optional"}
 {"lexeme" : "separate", "formula" : "fb:en.marker.sep", "type" : "fb:type.marker.sep"}
 {"lexeme" : "separator", "formula" : "fb:en.marker.sep", "type" : "fb:type.marker.sep"}

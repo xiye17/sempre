@@ -27,6 +27,8 @@
 (rule $SKETCH ($MARKER_NOTCONTAIN $SKETCH) (sketch.NotContainFn 1))
 (rule $PROGRAM ($MARKER_NOTCONTAIN $PROGRAM) (sketch.NotContainFn 1))
 
+(rule $PROGRAM ($MARKER_ALLOW $PROGRAM) (sketch.AllowFn 1))
+
 (rule $SKETCH ($MARKER_NOT $SKETCH) (sketch.NotFn 1))
 (rule $PROGRAM ($MARKER_NOT $PROGRAM) (sketch.NotFn 1))
 
@@ -111,10 +113,15 @@
 (rule $MARKER_DECIMAL ($MARKER_DECIMAL1) (IdentityFn))
 (rule $MARKER_DECIMAL ($MARKER_DECIMAL1 $Skip) (SelectFn 0))
 
+# allow
+(rule $MARKER_ALLOW ($MARKER_ALLOW1) (IdentityFn))
+(rule $MARKER_ALLOW ($MARKER_ALLOW1 $Skip) (IdentityFn))
+
 # lexicon mapping
 (rule $CC1 ($CCPHRASE1) (IdentityFn))
 (rule $CCPHRASE1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.cc)))
 (rule $CONST1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.const)))
+
 
 (rule $MARKER_SEP1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.sep)))
 (rule $MARKER_BETWEEN1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.between)))
@@ -136,6 +143,7 @@
 (rule $MARKER_DECIMAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.decimal)))
 (rule $MARKER_DOUBLENUM1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.doublenum)))
 (rule $MARKER_OPTIONAL1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.optional)))
+(rule $MARKER_ALLOW1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.allow)))
 
 # things like x, x, x, and x  x, x, x, or x
 (rule $CC1 ($CONST_SET) (IdentityFn))
@@ -171,6 +179,11 @@
 (rule $MARKER_ORMORE1 (or more) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))
 (rule $PROGRAM ($INT1 $MARKER_ORMORE1 $CC) (sketch.RepeatatleastFn 2 (pos 0)))
 (rule $PROGRAM ($CC $MARKER_LENGTH $INT1 - $INT1) (sketch.RepeatrangeFn 0 (pos 2)  (pos 3)))
+
+# length
+(rule $PROGRAM ($MARKER_LENGTH $INT1 and $INT1) (sketch.LengthrangeFn (pos 2) (pos 3)))
+(rule $PROGRAM ($MARKER_LENGTH $INT1 to $INT1) (sketch.LengthrangeFn (pos 1) (pos 2)))
+(rule $PROGRAM ($MARKER_LENGTH $INT1 - $INT1) (sketch.LengthrangeFn (pos 1) (pos 2)))
 
 (rule $CC1 (string) (ConstantFn <any> fb:type.cc))
 (rule $CC1 (character) (ConstantFn <let> fb:type.cc))

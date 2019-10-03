@@ -1,0 +1,87 @@
+#	NL	Sketch
+0	The string must be four to eight characters in length, cannot start with a letter and cannot end with two lowercase letters.	NONE
+1	The string must not begin with a letter, and must not end with two lower case letters. The overall length of the string must be between four and eight.	NONE
+2	A string that has a length of 4-8 characters, and that must not start with a letter, and must not end with 2 lowercase letters.	NONE
+3	A single string that starts with a letter. It is 4-8 characters long.	NONE
+4	A string which has a length of 4-8 characters and that starts with letter.	NONE
+5	The string must start with a letter and be of a length between four and eight.	NONE
+6	The entire string must not contain any lower case letters. The end of the strong must contain an upper case letter.	NONE
+7	A string which does not contain lowercase letters, and it ends with letter	NONE
+8	The string can be of any length and contains any characters other than lowercase letters. It must end with a capital letter.	NONE
+9	The string consists of a string of capital letters, digits or symbols that is five to nine characters long. There cannot be any lowercase letters.	NONE
+10	A string which should have 5-9 characters but must not contain lowercase letters	NONE
+11	The string can be any combination of uppercase letters, numbers, and special characters and must be between five and nine characters long.	NONE
+12	A string which has a special character that must be after a letter.	NONE
+13	Contains a special character that must be after a letter	NONE
+14	The string can be of any length and can contain any character. It must contain a special character that must follow a letter.	NONE
+15	The string consists of any character and can be of any length. It must start with a lowercase followed by a letter.	NONE
+16	A string of one lowercase letter followed any letter, then any amount of additional characters	NONE
+17	A string which starts with a lowercase letter which is followed by a letter.	NONE
+18	A string that doesn't start with a digit and doesn't end with "-"	NONE
+19	The string can be of any length and have any character. It cannot start with a digit nor end with a dash.	NONE
+20	A series can be any sequence of letters, digits or special characters, but may not begin with a digit nor end with a dash.	NONE
+21	The string can be of any length and have any character. It must start with a lower case.	NONE
+22	A single string that starts with a lowercase letter. It may then contain any amount of characters.	NONE
+23	A string which must begin with a lowercase letter	NONE
+24	A string which consists of capital letters and number "0", and that must contain "AA"	NONE
+25	A series consists of any number of capital letters and may also include the digit "0".  The series must contain two adjacent capital "A"s	NONE
+26	The string consists of a double capital "A", can have capital letters and the only digit allowed is a "0". It can be of any length.	NONE
+27	The string is of any length and contains anything but lowercase letters.	NONE
+28	This set of string cannot contain any lower case letters. The entire string can be any length. It can only be upper case letters. It can contain any set of numerals or characters.	NONE
+29	A string that does not contain lowercase letters.	NONE
+30	A string which has a length of 5-8 characters and contains digits, letters and dash	NONE
+31	A single string that allows digits, letters, and dashes. It is 5-8 characters long.	NONE
+32	The string can have digits, letters and dashes, and must be five to eight characters long.	NONE
+33	A series consists of 4 to 9 capital letters.  It may not contain the letter "A".	NONE
+34	A string which has a length of 4-9 characters and contains capital letters but does not contain "A".	NONE
+35	The string consists of capital letters expect the letter "A" and be four to nine characters in length.	NONE
+36	It is a string which allows lowercase letters, digits, and capital letters, and it also contains digit which must be after lowercase letter.	NONE
+37	The string consists of digits, lowercase or capital letters. It must have a digit preceded by a lowercase letter. It can be of any length.	NONE
+38	The string can contain any number of lowercase, digits, or capital letters. If it contains a digit, the digit must be after a lower case letter.	NONE
+39	A string which contains capital letters, lowercase letters, digits, and special character which must be before digit but it doesn't start with a lowercase letter, and doesn't end with a special character or lowercase letter	NONE
+40	The string can have any number of any characters. It cannot start with a lowercase letter, nor end with a special character or lowercase letter. It must contain a special character preceding a digit.	NONE
+42	A string which should have a length of 6-8 characters, and that contains special character that must be before a capital letter, and also it contains letter, and the string must not end with "0"	NONE
+45	A single string that allows digits and lowercase letters. It must start with 2 lowercase letters and then has an optional 2-3 digits followed by an optional "h". Then it must have 2 lowercase letters followed by 2-3 digits. The string must end with an "h".	NONE
+46	The first string contains 2 lowercase letters and the second string which is optional must have 2-3 digits. Then there is an optional letter "h" which is followed by a string that contains 2 lowercase letters and the string after it must have 2-3 digits and in the end there is a letter "h"	NONE
+47	The string consists of lowercase letters and digits. It must start with two lowercase letters and end with an "h". It can have two or three digits following the first letters, and/or have an "h" in the middle. It must then have two lowercase letters followed by two or three digits before the final "h".	NONE
+48	A list of 2 strings separated by a fixed "h". The first string starts with 1-3 capital letters, followed by a fixed "9" or "4" and 2 lowercase letters. The last string starts with a fixed "9" or "4", followed by a lowercase letter	NONE
+49	The start of the strong must contain one to three capital letters, followed by either a numeral "9" or a "4", but not both. The next part of the strong must contain two lower case letters followed by a lower case "h". The next part of the strong must be either a numeral "9" or "4", but not both. The end of the strong must be a single lower case letter.	NONE
+50	The string start with one to three capital letters, followed by a digit "9" or "4", two lowercase letters, an obligatory lowercase "h", another digit "9" or "4" and must end with a lowercase letter.	NONE
+51	The string consists of capital letters, lowercase letters and an optional "7" at the end. It must start with two capital "M", followed by two or three other capital letters. It has to then have three lowercase letters and can be followed by two or three letters.	NONE
+52	A list of four strings with a fifth one being an optional 7. The first string should be 2 "M", and the second string is 2-3 capital letters. The third string is 3 lowercase letters and the fourth one is optional 2-3 letters.	NONE
+53	A single string containing only letters. It begins with 2 capital "M"s followed by 2-3 capital letters and then 3 lowercase letters. It ends with an optional 2-3 letters followed by an optional "7".	NONE
+54	The string must start with one to three letters followed by one to three lowercase "b".	NONE
+55	Two strings, with the first string having 1-3 letters, and the second string contains 1-3 letter "b"	NONE
+56	The start of the strong must be between one and three letters. The end of the string must end with one to three lower case "b".	NONE
+57	The first part of the string is 2 digits followed by letter T or letter P and then 2-3 capital letters and then there is a letter c which is followed by optional 1-2 capital letters and in the last part there is a 1-3 letters.	NONE
+58	The string has to start with two digits, followed by a capital "T" or "P", followed by two to three capital letters and a lowercase "c". It can then be followed by one to two capital letters but must end with one to three letters.	NONE
+59	The string must begin with two numeral digits, followed by either a capital "T" or "P." Two or three capital letters must come next followed by a lowercase "c." The next string is optional, but it must contain one to two capital letters if used. The end of the string must be between one to three letters.	NONE
+60	A string contains 4 to 6 letters.  The first 1 to 3 letters may be capitalized or lowercase.  The next two letters are capitalized, and the final letter is lowercase.	NONE
+61	The string must start with one to three letter, followed by two capital letters and end with a lowercase.	NONE
+62	Three strings, with the first string having 1-3 letters, the second string has 2 capital letters, and the last string has lowercase letters	NONE
+63	The first string has lowercase letter, and the second string which is optional has 1-2 letters. Third string has lowercase letter and at the end there is a "4"	NONE
+64	One lowercase letter with one optional string in the middle consisting of one or two letters. Following that is one lowercase letter and then then the number "4"	NONE
+65	The string must start with a lowercase letter, can optionally have one to two letters following it, then must end with a lowercase letter followed by the digit "4".	NONE
+66	The begining of the string is option, but if used, must start with three letters. Following the prior string, there must be between one and three digits, followed by either a "7" or "9" but not both. The end of the string must end with either two or three lower case "r".	NONE
+67	The string must have one to three digits followed by a "7" or a "9" and ends with two to three "r"s. It can start with an option three letter.	NONE
+68	First string is optional and with 3 letters followed by 1-3 digits, and then the number "7" or "9" with the last part being 2-3 letter "r".	NONE
+69	A list of five strings, with the first string being 2-3 letters, and the second string being 2-3 digit which then is separated by "B" from the third string which is 2-3 capital letters followed by the fourth string which is optional with 2-3 letters, and the last string being 1-2 digits	NONE
+70	The string start with two to three letters, followed by two to three digits. It then has a capital "B", followed by two to three capital letters, an optional two to three letters and ends with one to two digits.	NONE
+71	The series consists of 5 to 6 sets of characters with no separating punctuation.  The first set is made up of 2 to 3 capital or lowercase letters.  Second are 2-3 digits, followed by third, a capital "B".  Fourth are 2 to 3 capital letters, followed optionally by 2 to 3 capital or lowercase letters.  Lastly are 1 to 2 digits.	NONE
+72	This string consists of one, two, or three lowercase letters followed by "p" or "r".	NONE
+73	One string of three lowercase letters followed by either a lowercase "p" or a lowercase "r"	NONE
+74	The string must start with one to three lowercase letter and then ends with a lowercase "p" or "r".	NONE
+75	The string is three letters with an optional dash at the start.	NONE
+76	There is an optional dash in the beginning which is followed by a string with 3 letters.	NONE
+77	This string starts with an optional dash followed by three letters.	NONE
+78	A string contains 4 to 5 letters, and the last 3 letters in the string must be capitalized.  The string may end with no digits or with 2 to 3 digits.	NONE
+79	Three strings, with the first one containing 1-2 letters followed by second string which has 3 capital letters and the last string which is optional must contain 2-3 digits.	NONE
+80	The string must start with one to two letters, followed by three capital letters. It can end with an optional two to three digits.	NONE
+81	A string consists of at least 2 to 3 capital or lowercase letters.  The end of the string may contain an additional lowercase letter followed by 2 digits.	NONE
+82	The string must have two to three letters at the beginning. It can then have a lowercase letter followed by two digits.	NONE
+83	Three strings, with the first string containing 2-3 letters, and the following string is optional and contains lowercase letters, and the last string which is also optional has 2 digits	NONE
+84	The string must start with two to three letters, followed by one to two digits. It then has to have three letters, followed by an option capital letter, an obligatory capital "A" and must end with two "e"s.	NONE
+85	The first string has 2-3 letters, and the second string has 1-2 digits followed by another string with 3 letters, and the fourth string which is optional has capital letters then the letter "A" and the last string has 2 letter e	NONE
+86	One string composed of 2-3 letters, followed by 1-2 digits, 3 letters, an optional capital letter, then followed by a capital "A" and two lowercase "E"s	NONE
+87	The series begins with a lowercase letter followed by 1 to 2 capital or lowercase letters.  Next are two "2"s followed by a final lowercase letter.	NONE
+88	The string must start with a lowercase, followed by one to two letters. It then has to have two "2" and ends with a lowercase letter.	NONE

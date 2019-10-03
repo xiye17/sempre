@@ -36,7 +36,7 @@ def tricky_process_sketch(id, x, dataset):
     return x
 
 def process_sketch(x, dataset):
-    if dataset == "so":
+    if dataset == "so" or dataset == "real":
         y = x.replace("<space>", "< >")
         y = y.replace("<-lrb->", "<(>")
         y = y.replace("<-rrb->", "<)>")
