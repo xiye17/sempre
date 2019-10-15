@@ -7,14 +7,17 @@ from os.path import join
 
 def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
-    parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
-    parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
+    parser.add_argument("--running_dir", type=str, dest="dir", default=".")
+    parser.add_argument("--infile", type=str, dest="infile", default="demo/so.raw.txt")
+    parser.add_argument("--outfile", type=str, dest="outfile", default="demo/so.ready.txt")
     # parser.add_argument("--outpath", type=str, dest="outpath", default="./exp")
-    parser.add_argument("--dataset", type=str, dest="dataset", default="so")
+    parser.add_argument("--dataset", type=str, dest="dataset", default="pldi")
 
     args = parser.parse_args()
-    args.infile = join("demo", "{}.raw.txt".format(args.dataset))
-    args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
+    args.infile = "{}/demo/{}.raw.txt".format(args.dir, args.dataset)
+    args.outfile = "{}/demo/{}.ready.txt".format(args.dir, args.dataset)
+    # args.infile = join(args.dir,"demo", "{}.raw.txt".format(args.dataset))
+    # args.outfile = join(args.dir, "demo", "{}.ready.txt".format(args.dataset))
     return args
 
 def process_nl(x):
@@ -58,7 +61,7 @@ def tricky_process_nl(id, nl, dataset):
     return nl
 
 def process_sketch(x, dataset):
-    if dataset == "so":
+    if dataset == "so" or dataset =="pldi":
         y = []
         for tok in x:
             if tok.isupper():
@@ -121,8 +124,9 @@ def fit_for_exs(x):
 def prepare_dataset(args):
     # regex.examples
     exs = read_ready_data(args.outfile)
-
-    prefix = join("./regex/data", args.dataset)
+    prefix = "{}/regex/data/{}".format(args.dir, args.dataset)
+    
+    # join(args.dir, "./regex/data", args.dataset)
     exs_file = join(prefix, "regex.examples")
     lines = []
 
@@ -130,7 +134,7 @@ def prepare_dataset(args):
         lines.append('(example (utterance "{0}") (targetValue (name "{1}")))\n'.format(fit_for_exs(ex[1]), ex[2]))
     with open(exs_file, "w") as f:
         f.writelines(lines)
-    
+
     # src-test.txt
     test_file = join(prefix, "src-test.txt")
     lines = []
@@ -138,7 +142,7 @@ def prepare_dataset(args):
         lines.append(ex[0] + "\t" + ex[1] + "\n")
     with open(test_file, "w") as f:
         f.writelines(lines)
-           
+
 def main():
     args = _parse_args()
     print(args)

@@ -36,7 +36,7 @@ def tricky_process_sketch(id, x, dataset):
     return x
 
 def process_sketch(x, dataset):
-    if dataset == "so":
+    if dataset == "so" or dataset == "pldi":
         y = x.replace("<space>", "< >")
         y = y.replace("<-lrb->", "<(>")
         y = y.replace("<-rrb->", "<)>")
@@ -197,7 +197,7 @@ def postprecess(args):
     makedir_f(join(args.outpath, "sketch"))
     ids = make_sketch(args)
     # make_bemchmark(ids, args)
-    eval_match(args)
+    # eval_match(args)
 
 def main():
     args = _parse_args()
