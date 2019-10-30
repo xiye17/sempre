@@ -44,6 +44,12 @@ public class ConstFn extends SemanticFn {
             } else if (arg0.startsWith("-rrb-", pos)) {
                 splits.add("-rrb-");
                 pos += 5;
+            } else if (arg0.startsWith("-lcb-", pos)) {
+                splits.add("{");
+                pos += 5;
+            } else if (arg0.startsWith("-rcb-", pos)) {
+                splits.add("}");
+                pos += 5;
             } else  {
                 splits.add("" + arg0.charAt(pos));
                 pos += 1;
