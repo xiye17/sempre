@@ -1,0 +1,570 @@
+#	NL	Sketch
+1	lines that have a capital "!" , but not a lowercase "!" .	?{contain(<m0>),not(contain(<m0>))}
+2	lines that have "!"	?{<m0>}
+3	lines that use only 4 words	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+4	lines that contain the word "!" .	?{<m0>}
+5	lines that have words ending with "!" .	?{concat(star(<let>),<m0>)}
+6	lines using only 3 words	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+7	lines with an "!" that comes after a "@" .	?{contain(<m1>),startwith(<m0>)}
+8	lines that have words with 7 letters .	?{repeat(<let>,7)}
+9	lines containing words starting with the letter "!" .	?{concat(<m0>,star(<let>))}
+10	lines where there is only 1 word .	?{star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>)))}
+11	lines containing the word "!" .	?{<m0>}
+12	lines containing words using a vowel .	?{concat(star(<let>),concat(<vow>,star(<let>)))}
+13	lines that use words ending with "!" .	?{concat(star(<let>),<m0>)}
+14	lines that have 3 or more words containing the letters "!" .	?{contain(and(repeatatleast(<let>,1),contain(<m0>)))}
+15	lines that have words ending with "!" .	?{and(endwith(<m0>),repeatatleast(<let>,1))}
+16	lines using a word starting with a vowel and ending with "!"	?{concat(<vow>,concat(star(<let>),<m0>))}
+17	lines which contain a word using 2 or more letters	?{repeatatleast(<let>,2)}
+18	lines that use "!" and "@" .	?{contain(<m0>),contain(<m1>)}
+19	lines that contain at least 1 number .	?{<num>}
+20	lines that mention "!" .	?{<m0>}
+21	lines using a word which contains at least 5 letters .	?{repeatatleast(<let>,5)}
+22	lines containing the word "!" or the word "@"	?{or(<m0>,<m1>)}
+23	lines that do not use the word "!"	?{contain(<m0>)}
+24	lines that contain a word starting with a vowel .	?{concat(<vow>,star(<let>))}
+25	lines that contain words ending in "!"	?{concat(star(<let>),<m0>)}
+26	lines beginning with the letter "!" and ending with the letter "@"	?{startwith(<m0>),<m1>}
+27	lines that have the word "!" preceeding the word "@" .	?{contain(<m0>),startwith(<m1>)}
+28	lines where the  word "!" precedes the word "@"	?{contain(<m0>),startwith(<m1>)}
+29	lines with the word "!" between "@" and "#"	?{concat(contain(<m1>),concat(startwith(<m0>),startwith(<m2>))),concat(contain(<m2>),concat(startwith(<m0>),startwith(<m1>)))}
+30	lines which contain the word "!" and the letter "@" .	?{contain(<m0>),contain(<m1>)}
+31	lines using the word "!" next to a number .	?{contain(<m0>),contain(<num>)}
+32	lines that contain at least 1 vowel and at least 2 numbers .	?{contain(<vow>),repeat(contain(<num>),2)}
+33	lines that contain the word "!"	?{<m0>}
+34	lines that have at least 3 "!" .	?{contain(<m0>)}
+35	lines which contain only an uppercase letter	?{<cap>}
+36	lines containing 3 or more vowels and 5 or more words	?{repeatatleast(contain(<vow>),3),repeatatleast(contain(repeatatleast(<let>,1)),5)}
+37	lines that contain the word "!"	?{<m0>}
+38	lines having the letters "!" .	?{and(<m0>,star(<let>))}
+39	lines that contain words ending in "!"	?{concat(star(<let>),<m0>)}
+40	lines which begin with "!" , has a "@" in the middle and end in a number .	?{startwith(<m0>),concat(startwith(<m1>),<num>)}
+41	lines with words that end in "!" .	?{concat(star(<let>),<m0>)}
+42	lines that include "!" and "@" but not "#" .	?{contain(<m0>),and(contain(<m1>),not(contain(<m2>)))}
+43	lines containing the letter "!" but not the letter "@" .	?{contain(<m0>),not(contain(<m1>))}
+44	lines where numbers exist only after a sequence of "!" and "@"	?{star(notcc(<num>)),startwith(and(star(notcc(<num>)),and(contain(<m0>),contain(<m1>))))}
+45	lines using at least 2 instances of "!"	?{contain(<m0>)}
+46	lines using the vowel combination "!" .	?{<m0>}
+47	lines using more than 1 character	?{repeatatleast(<any>,2)}
+48	lines with all words beginning with "!" .	?{contain(and(repeatatleast(<let>,1),not(startwith(<m0>))))}
+49	lines using the word "!" and the number "@" .	?{endwith(contain(<m0>)),startwith(contain(<m1>))}
+50	lines that have "!" .	?{<m0>}
+51	lines that contain at least 2 capital letters .	?{contain(<cap>)}
+52	lines that begin with "!" and end with "@"	?{startwith(<m0>),<m1>}
+53	lines which mention "!" with the word "@" .	?{endwith(contain(<m0>)),startwith(contain(<m1>))}
+54	lines containing any number with an "!" in it .	?{<m0>}
+55	lines that contain "!" and contain "@" .	?{contain(<m0>),contain(<m1>)}
+56	lines that contain words ending with "!" .	?{concat(star(<let>),<m0>)}
+57	lines that contain the text "!" .	?{<m0>}
+58	lines that contain5vowels	?{contain(<vow>)}
+59	lines which have at least 1 numeric character .	?{<num>}
+60	lines with 3 numbers and the word "!" .	?{repeat(contain(<num>),3),startwith(contain(<m0>))}
+61	lines that contain 5 or more letters	?{repeatatleast(contain(<let>),5)}
+62	lines containing "!" and "@" .	?{contain(<m0>),contain(<m1>)}
+63	lines that carry the word "!" located in between "@" and "#" .	?{concat(contain(<m1>),concat(startwith(<m0>),startwith(<m2>))),concat(contain(<m2>),concat(startwith(<m0>),startwith(<m1>)))}
+64	lines that end in a number	?{<num>}
+65	lines that contain the text "!"	?{<m0>}
+66	lines which contain only lowercase letters .	?{<low>}
+67	lines using words that begin with "!" but do not have a "@" .	?{and(repeatatleast(<let>,1),and(startwith(<m0>),not(contain(<m1>))))}
+68	lines with 7 or more words	?{contain(repeatatleast(<let>,1))}
+69	lines that contain "!" in each word .	?{contain(and(repeatatleast(<let>,1),star(notcc(<m0>))))}
+70	lines using 3 instances of "!"	?{repeat(contain(<m0>),3)}
+71	lines containing 2 or more words containing "!" .	?{contain(concat(star(<let>),concat(<m0>,star(<let>))))}
+72	lines that have no instances of "!" but at least 1 instance of "@" .	?{not(contain(<m0>)),repeatatleast(contain(<m1>),1)}
+73	lines using "!" before "@"	?{contain(<m0>),startwith(<m1>)}
+74	lines that have all of its letters capitalized .	?{contain(<low>)}
+75	lines beginning with words that have a vowel as the first letter .	?{concat(<vow>,star(<let>))}
+76	lines starting with "!" followed by words starting with "@" .	?{startwith(<m0>),startwith(concat(<m1>,star(<let>)))}
+77	lines that contain 2 repetitions of the word "!"	?{contain(<m0>)}
+78	lines that does not contain any vowels .	?{contain(<vow>)}
+79	lines that have "!" after "@"	?{contain(<m1>),startwith(<m0>)}
+80	lines having words starting with "!" .	?{and(concat(<let>,star(<let>)),startwith(<m0>))}
+81	lines that contain the word "!"	?{<m0>}
+82	lines that have 4 characters	?{<any>}
+83	lines containing the word "!" .	?{<m0>}
+84	lines with instances of "!" .	?{<m0>}
+85	lines that contain "!"	?{<m0>}
+86	lines that have words ending with "!" .	?{concat(star(<let>),<m0>)}
+87	lines that have words ending with a "!"	?{and(endwith(<m0>),repeatatleast(<let>,1))}
+88	lines that contain a digit .	?{<num>}
+89	lines that contain "!"	?{<m0>}
+90	lines that have at least 5 numbers .	?{contain(<num>)}
+91	lines that start with "!" and end with "@"	?{startwith(<m0>),<m1>}
+92	lines containing "!" after "@" or "#" .	?{contain(or(<m1>,<m2>)),startwith(<m0>)}
+93	lines that contain a word with5or more vowels .	?{and(concat(<let>,star(<let>)),repeat(contain(<vow>),5))}
+94	lines containing "!" and "@" that do not have a "#" anywhere .	?{contain(<m0>),and(contain(<m1>),not(contain(<m2>)))}
+95	lines that have "!" after "@" or "#" .	?{contain(or(<m1>,<m2>)),startwith(<m0>)}
+96	lines with the word "!" followed by words that start with "@"	?{contain(<m0>),startwith(concat(<m1>,star(<let>)))}
+97	lines that contain words ending in "!"	?{concat(star(<let>),<m0>)}
+98	lines that contain 3 "!" .	?{contain(<m0>)}
+99	lines containing "!" , or "@"	?{or(<m0>,<m1>)}
+100	lines that contain at least 1 numeric in it .	?{<num>}
+101	lines with "!" but not "@" .	?{contain(<m0>),not(contain(<m1>))}
+102	lines using 4 or more words	?{contain(repeatatleast(<let>,1))}
+103	lines that contain a number .	?{<num>}
+104	lines that include words starting with "!" .	?{concat(<m0>,star(<let>))}
+105	lines composed of at least 3 words of 4 or more letters	?{contain(repeatatleast(<let>,4))}
+106	lines that include 3 capital letters	?{contain(<cap>)}
+107	lines that start with "!" but do not contain any numbers .	?{startwith(<m0>),not(contain(<num>))}
+108	lines that have a word ending with the letters "!" .	?{concat(star(<let>),<m0>)}
+109	lines using 2 instances of "!"	?{repeat(contain(<m0>),2)}
+110	lines containing the country name "!" .	?{<m0>}
+111	lines that begin with a numeral	?{<num>}
+112	lines that have at least 1 capital letter .	?{<cap>}
+113	lines with "!"	?{<m0>}
+114	lines that utilize the number "!" .	?{<m0>}
+115	lines containing words that start with and end with "!"	?{<m0>,optional(endwith(<m0>))}
+116	lines using 5 "!"	?{contain(<m0>)}
+117	lines containing words that start with "!" .	?{concat(<m0>,star(<let>))}
+118	lines where there are 2 consecutive capital letters	?{endwith(<cap>),startwith(<cap>)}
+119	lines containing the word "!" .	?{<m0>}
+120	lines using 4 instances of "!"	?{repeat(contain(<m0>),4)}
+121	lines that contain the word "!" but do not contain the word "@" .	?{contain(<m0>),not(contain(<m1>))}
+122	lines that feature "!" followed by the word "@" .	?{contain(<m0>),startwith(<m1>)}
+123	lines that contain words ending with "!" .	?{and(concat(<let>,star(<let>)),endwith(<m0>))}
+124	lines that have 2 vowels	?{contain(<vow>)}
+125	lines which do not begin with an uppercase letter .	?{startwith(<cap>)}
+126	lines that have a word of 3 letters	?{repeat(<let>,3)}
+127	lines containing the word "!"	?{<m0>}
+128	lines that contain the word "!" .	?{<m0>}
+129	lines beginning with the letter "!"	?{<m0>}
+130	6 letter lines	?{<let>}
+131	lines that do not have any word consisting of 4 letters .	?{contain(repeat(<let>,4))}
+132	lines that begin with the word "!" .	?{<m0>}
+133	lines that end with "!" and contain words that begin with "@"	?{contain(concat(<m1>,star(<let>))),<m0>}
+134	lines containing words ending in "!"	?{concat(star(<let>),<m0>)}
+135	lines with "!"	?{<m0>}
+136	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+137	lines that begin with a vowel and end with a vowel	?{<vow>,optional(endwith(<vow>))}
+138	lines that have 2 words using 4 letters	?{contain(repeat(<let>,4))}
+139	lines that contain a word and5numbers .	?{contain(concat(<let>,star(<let>))),repeat(contain(<num>),5)}
+140	lines with words matching the word "!" .	?{<m0>}
+141	lines containing words that end with "!"	?{startwith(and(endwith(<m0>),repeatatleast(<let>,1)))}
+142	lines that do not have "!" in them	?{contain(<m0>)}
+143	lines that have at least5words that start with a vowel .	?{contain(concat(<vow>,star(<let>)))}
+144	lines that have at least 3 words beginning with a vowel .	?{contain(concat(<vow>,star(<let>)))}
+145	lines that end in "!"	?{<m0>}
+146	lines that have "!" between "@" and "#"	?{concat(contain(<m1>),concat(startwith(<m0>),startwith(<m2>))),concat(contain(<m2>),concat(startwith(<m0>),startwith(<m1>)))}
+147	lines containing any mention of the word "!" .	?{<m0>}
+148	lines that contain the symbol "!" .	?{<m0>}
+149	lines using "!" after "@"	?{contain(<m1>),startwith(<m0>)}
+150	lines using words starting with "!" .	?{concat(<m0>,star(<let>))}
+151	lines that contain words with "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+152	lines which have at least 7 numbers .	?{repeat(contain(<num>),7)}
+153	lines that contain at least 1 vowel in each word .	?{contain(and(repeatatleast(<let>,1),star(notcc(<vow>))))}
+154	lines that end in "!"	?{<m0>}
+155	lines that contain words using the letters "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+156	lines that contain the phrase "!" .	?{contain(<m0>)}
+157	lines that use the number "!" .	?{<m0>}
+158	lines with "!" as a stand alone word .	?{<m0>}
+159	lines which mention "!" .	?{<m0>}
+160	lines that contain 4 or more "!"	?{contain(<m0>)}
+161	lines that contain 7 or more words	?{contain(repeatatleast(<let>,1))}
+162	lines that contain numbers .	?{<num>}
+163	lines using 1 number and 2 letters	?{endwith(contain(<num>)),startwith(repeat(contain(<let>),2))}
+164	lines that contain a word using at most 6 letters	?{repeatrange(<let>,1,6)}
+165	lines that contain words starting with "!" .	?{and(repeatatleast(<let>,1),startwith(<m0>))}
+166	lines that do not contain the letter "!" .	?{contain(<m0>)}
+167	lines that have only 2 words in them .	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+168	lines composed with a word	?{repeatatleast(<let>,1)}
+169	lines that use words starting with "!" .	?{concat(<m0>,star(<let>))}
+170	lines that contain at least 2 vowels in a word .	?{and(repeatatleast(<let>,1),repeat(contain(<vow>),2))}
+171	lines that have no letters .	?{contain(<let>)}
+172	lines containing "!" and containing "@" too	?{contain(<m0>),contain(<m1>)}
+173	lines which have 3 words .	?{repeat(contain(repeatatleast(<let>,1)),3)}
+174	lines which begin with the letter "!" .	?{<m0>}
+175	lines that contain any 3 vowels	?{contain(<vow>)}
+176	lines that contain "!" before "@" or "#" .	?{contain(<m0>),startwith(or(<m1>,<m2>))}
+177	lines that have 2 or more numbers .	?{contain(<num>)}
+178	lines using "!" after "@"	?{contain(<m1>),startwith(<m0>)}
+179	lines that contain words using "!" in them .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+180	lines that contain 2 words that have 2 letters .	?{contain(repeat(<let>,2))}
+181	lines which contain only the number "!" .	?{<m0>}
+182	lines which contain the letter "!" and the letter "@"	?{contain(<m0>),contain(<m1>)}
+183	lines that do not contain any number	?{contain(<num>)}
+184	lines which start with the word "!"	?{<m0>}
+185	lines which have "!" , but no instances of "@" between the letters "#" and "$"	?{contain(<m0>),not(or(concat(contain(<m2>),concat(startwith(<m1>),startwith(<m3>))),concat(contain(<m3>),concat(startwith(<m1>),startwith(<m2>)))))}
+186	lines which have words beginning with "!" .	?{concat(<m0>,star(<let>))}
+187	lines that contain the text , "!" .	?{<m0>}
+188	lines that have "!"	?{<m0>}
+189	lines that contain more than5words .	?{contain(repeatatleast(<let>,1))}
+190	lines that contain the words "!" and  "@" .	?{contain(<m0>),contain(<m1>)}
+191	lines that contain words starting with "!" .	?{and(startwith(<m0>),repeatatleast(<let>,1))}
+192	lines that contain 4 or more capital letters	?{repeat(contain(<cap>),4)}
+193	lines that contain the word "!"	?{<m0>}
+194	lines which contain a 3 letter string	?{repeat(<let>,3)}
+195	lines that mention "!" and also contain "@"	?{contain(<m0>),contain(<m1>)}
+196	lines containing vowels	?{<vow>}
+197	lines that contain words beginning in "!"	?{concat(<m0>,star(<let>))}
+198	lines containing a 6 letter sequence	?{repeat(<let>,6)}
+199	lines that contain the letter "!" in the middle of a word .	?{concat(repeatatleast(<let>,1),concat(<m0>,repeatatleast(<let>,1)))}
+200	lines using "!" or "@"	?{or(<m0>,<m1>)}
+201	lines that contain both a "!" and a "!" .	?{contain(<m0>),contain(<m0>)}
+202	lines using "!" before "@"	?{contain(<m0>),startwith(<m1>)}
+203	lines comprised of 5 or more words containing 5 or fewer letters	?{contain(and(repeatatleast(<let>,1),repeatrange(<let>,0,5)))}
+204	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+205	lines which contain a word starting with the letter "!" and a word starting with the letter "@" .	?{contain(concat(<m0>,star(<let>))),contain(concat(<m1>,star(<let>)))}
+206	lines containing 3 or more vowels .	?{contain(<vow>)}
+207	lines that have within them words ending in "!" .	?{concat(star(<let>),<m0>)}
+208	lines that contain at least 2 digits .	?{contain(<num>)}
+209	lines that contain "!" or "@"	?{or(<m0>,<m1>)}
+210	lines using more than 5 characters	?{repeatatleast(<any>,6)}
+211	lines which contain a word starting with "!"	?{concat(<m0>,star(<let>))}
+212	lines ending in "!"	?{<m0>}
+213	lines beginning with "!"	?{<m0>}
+214	lines starting and ending with "!"	?{<m0>,optional(endwith(<m0>))}
+215	lines ending with "!"	?{<m0>}
+216	lines end in an "!"	?{<m0>}
+217	lines that utilize words starting with "!" .	?{and(repeatatleast(<let>,1),startwith(<m0>))}
+218	lines that have "!"	?{<m0>}
+219	lines that end containing the letter "!" .	?{<m0>}
+220	lines using 4 letter words	?{repeat(<let>,4)}
+221	lines that contain 2 numbers that contain "!" .	?{contain(<m0>)}
+222	lines which have "!" and "@" but not "#" or "$" .	?{contain(<m0>),and(contain(<m1>),not(contain(or(<m2>,<m3>))))}
+223	lines utilizing the word "!" .	?{endwith(<m0>)}
+224	2 letter lines	?{<let>}
+225	lines using 2 or more words comprised of 5 letters	?{contain(repeat(<let>,5))}
+226	lines that contain5letter words .	?{repeat(<let>,5)}
+227	lines containing only 4 words .	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+228	lines that have at least 3 , but not more that 6 words .	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+229	lines containing at least 3 words	?{contain(repeatatleast(<let>,1))}
+230	lines containing "!" before "@"	?{contain(<m0>),startwith(<m1>)}
+231	lines that end with "!"	?{<m0>}
+232	lines which feature the word "!" .	?{<m0>}
+233	lines that contain5words that begin with "!" .	?{repeat(contain(concat(<m0>,star(<let>))),5)}
+234	lines that contain at least5words .	?{contain(concat(<let>,star(<let>)))}
+235	lines that utilize words starting with "!" .	?{concat(<m0>,star(<let>))}
+236	lines that contain the word "!"	?{<m0>}
+237	lines using words with "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+238	lines using "!" or "@"	?{or(<m0>,<m1>)}
+239	lines that contain the numbers "!" , and "@"	?{or(concat(startwith(<m0>),<m1>),concat(startwith(<m1>),<m0>))}
+240	lines containing the word "!" .	?{<m0>}
+241	lines that contain the phrase "!" but not "@" .	?{contain(<m0>),not(contain(<m1>))}
+242	lines that contain words with "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+243	lines that contain words starting with "!" .	?{and(concat(<let>,star(<let>)),startwith(<m0>))}
+244	lines that have the word "!" included	?{<m0>}
+245	lines using "!" between "@" and "#"	?{or(concat(startwith(<m1>),concat(startwith(<m0>),<m2>)),concat(startwith(<m2>),concat(startwith(<m0>),<m1>)))}
+246	lines having words ending with "!" .	?{and(repeatatleast(<let>,1),endwith(<m0>))}
+247	lines that only contain vowels .	?{<vow>}
+248	lines that include the string "!"	?{<m0>}
+249	lines that end with "!"	?{<m0>}
+250	lines that match "!" or "@" .	?{or(<m0>,<m1>)}
+251	lines using at least 4 "!"	?{contain(<m0>)}
+252	lines ending with the letter "!"	?{<m0>}
+253	lines that contain words with "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+254	lines that do not have the letter "!"	?{contain(<m0>)}
+255	lines that contain only 3 words .	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+256	lines using "!" before "@"	?{contain(<m0>),startwith(<m1>)}
+257	lines that have "!" but not the word "@"	?{contain(<m0>),not(contain(<m1>))}
+258	lines ending with "!"	?{<m0>}
+259	lines that contain words starting with "!" .	?{and(concat(<let>,star(<let>)),startwith(<m0>))}
+260	lines that have more than 6 numbers .	?{contain(<num>)}
+261	lines that have words ending in "!" .	?{concat(star(<let>),<m0>)}
+262	lines that contain the word "!" in them .	?{<m0>}
+263	lines using the string "!"	?{<m0>}
+264	lines that contain exactly 2 words .	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+265	lines that contain "!" but do not contain "@" .	?{contain(<m0>),not(contain(<m1>))}
+266	lines that have a number in them	?{<num>}
+267	lines that have 5 characters and no vowels .	?{repeat(<any>,5),not(contain(<vow>))}
+268	lines using more than 4 characters	?{repeatatleast(<any>,5)}
+269	lines that have 3 numbers between "!" and "@" .	?{or(concat(startwith(<m0>),concat(startwith(repeat(contain(<num>),3)),<m1>)),concat(contain(<m1>),concat(startwith(repeat(contain(<num>),3)),<m0>)))}
+270	lines that contain "!" and mention "@" .	?{contain(<m0>),contain(<m1>)}
+271	lines that are 20 characters or less	?{<any>}
+272	lines that utilize only 3 words	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+273	lines that end with the number "!" .	?{<m0>}
+274	lines that contain 5 or less words that have 4 or more letters where 1 of those letters is an "!" .	?{concat(star(notcc(<let>)),concat(and(repeatatleast(<let>,1),and(repeatatleast(<let>,4),contain(<m0>))),star(notcc(<let>))))}
+275	lines which have at least 1 word which has6or more letters .	?{repeatatleast(<let>,6)}
+276	lines where "!" is between "@" and "#"	?{concat(contain(<m1>),concat(startwith(<m0>),startwith(<m2>))),concat(contain(<m2>),concat(startwith(<m0>),startwith(<m1>)))}
+277	lines that begin with the phrase "!"	?{<m0>}
+278	lines that begin with the word "!"	?{<m0>}
+279	lines that begin with a number and end with "!" or "@" .	?{startwith(<num>),or(<m0>,<m1>)}
+280	lines which have the word "!"	?{<m0>}
+281	lines that contain at least 1 vowel and at least 2 numbers	?{contain(<vow>),repeat(contain(<num>),2)}
+282	lines that have only 3 words	?{concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>))))}
+283	lines using "!" before "@"	?{contain(<m0>),startwith(<m1>)}
+284	lines that use words starting with "!" .	?{concat(<m0>,star(<let>))}
+285	lines that use words starting with "!" .	?{concat(<m0>,star(<let>))}
+286	lines containing the word "!" .	?{<m0>}
+287	lines that have words starting with "!" .	?{concat(<m0>,star(<let>))}
+288	lines that contain both the word "!" and the word "@"	?{endwith(contain(<m0>)),startwith(contain(<m1>))}
+289	lines that have instances of a number and a vowel	?{contain(<num>),contain(<vow>)}
+290	lines that end in "!"	?{<m0>}
+291	lines containing words that start with "!"	?{concat(<m0>,star(<let>))}
+292	lines which have 3 words .	?{contain(repeatatleast(<let>,1))}
+293	lines containing "!" , or "@"	?{or(<m0>,<m1>)}
+294	lines using an instance of "!"	?{<m0>}
+295	lines that mention both "!" and "@" .	?{contain(<m0>),contain(<m1>)}
+296	lines containing words using the letters "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+297	lines ending with "!"	?{<m0>}
+298	lines starting with "!"	?{<m0>}
+299	lines containing "!" , or "@"	?{or(<m0>,<m1>)}
+300	lines utilizing the number "!" .	?{<m0>}
+301	lines that contain words starting with the letter "!"	?{concat(<m0>,star(<let>))}
+302	lines using words ending with "!" .	?{and(endwith(<m0>),repeatatleast(<let>,1))}
+303	lines where there are 3 characters between instances of "!" and "@"	?{concat(contain(<m0>),concat(startwith(repeat(<any>,3)),startwith(<m1>))),concat(contain(<m1>),concat(startwith(repeat(<any>,3)),startwith(<m0>)))}
+304	lines using a word	?{repeatatleast(<let>,1)}
+305	lines containing 3 letter words starting with "!"	?{concat(<m0>,repeat(<let>,2))}
+306	lines ending in "!"	?{<m0>}
+307	lines containing "!" and containing "@" too	?{contain(<m0>),contain(<m1>)}
+308	lines that contain only 2 words , and , begin with the letter "!" .	?{startwith(<m0>),repeat(concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>)))),2)}
+309	lines that contain 1 to 5 numbers and 1 letter .	?{repeatrange(concat(star(notcc(<num>)),concat(<num>,star(notcc(<num>)))),1,5),contain(<let>)}
+310	lines composed of 3 or more characters	?{repeatatleast(<any>,3)}
+311	lines which contain "!" or "@"	?{or(<m0>,<m1>)}
+312	lines that start with "!"	?{<m0>}
+313	lines which do not contain a vowel .	?{contain(<vow>)}
+314	lines that show the letter "!" and number "@" .	?{contain(<m0>),contain(<m1>)}
+315	lines that have 3 characters before the sequence "!"	?{endwith(repeat(<any>,3)),startwith(<m0>)}
+316	lines containing only 1 word	?{star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>)))}
+317	lines that have words with "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+318	lines that contain either of "!" or "@"	?{or(<m0>,<m1>)}
+319	lines that utilize the letters "!" .	?{<m0>}
+320	lines containing "!" , but not "@"	?{contain(<m0>),not(contain(<m1>))}
+321	lines that are composed of the letters "!" , "@" , and "#" .	?{or(<m0>,or(<m1>,<m2>))}
+322	lines using a 3 letter sequence	?{repeat(<let>,3)}
+323	lines containing "!"	?{contain(<m0>)}
+324	lines using at least 2 numbers , "!" , and "@" .	?{repeat(contain(<num>),2),and(contain(<m0>),contain(<m1>))}
+325	lines containing both letters and numbers , but no capitals .	?{contain(<let>),and(contain(<num>),not(contain(<cap>)))}
+326	lines that utilize words starting with "!" .	?{and(repeatatleast(<let>,1),startwith(<m0>))}
+327	lines which contain "!" or "@"	?{or(<m0>,<m1>)}
+328	lines using at least 5 characters	?{repeat(<any>,5)}
+329	lines that end with numbers .	?{<num>}
+330	lines that contain at least 4 words .	?{contain(repeatatleast(<let>,1))}
+331	lines that contain the word "!" within 5 characters of the word "@" .	?{or(concat(<m0>,concat(repeatrange(<any>,1,5),<m1>)),concat(<m1>,concat(repeatrange(<any>,1,5),<m0>)))}
+332	lines containing 4 words .	?{contain(repeatatleast(<let>,1))}
+333	lines that contain words ending with a vowel .	?{concat(star(<let>),<vow>)}
+334	lines that have 3 words comprised of 4 characters each .	?{repeat(contain(repeat(<let>,4)),3)}
+335	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+336	lines where "!" is between a number and "@"	?{concat(contain(<num>),concat(startwith(<m0>),startwith(<m1>))),concat(contain(<m1>),concat(startwith(<m0>),startwith(<num>)))}
+337	lines using "!" after "@" or "#" .	?{contain(or(<m1>,<m2>)),startwith(<m0>)}
+338	lines that contain words ending with "!" .	?{and(repeatatleast(<let>,1),endwith(<m0>))}
+339	lines containing "!"	?{<m0>}
+340	lines that contain "!" before "@" or "#" .	?{contain(<m0>),startwith(or(<m1>,<m2>))}
+341	lines having the letter "!" .	?{<m0>}
+342	lines that have "!"	?{<m0>}
+343	lines using the letter sequence "!" followed by a word ending in "@" .	?{contain(<m0>),startwith(concat(star(<let>),<m1>))}
+344	lines that do not contain a number .	?{contain(<num>)}
+345	lines that have 5 or more words of 3 or fewer letters .	?{contain(repeatrange(<let>,1,3))}
+346	lines that contain 3 letter words in them .	?{repeat(<let>,3)}
+347	lines utilizing words starting with "!" .	?{and(startwith(<m0>),concat(<let>,star(<let>)))}
+348	lines using the word "!" .	?{contain(<m0>)}
+349	lines ending in "!" preceded by a word that ends in "@"	?{contain(concat(star(<let>),<m1>)),<m0>}
+350	lines where there are exactly 2 words and 7 characters .	?{repeat(concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>)))),2),repeat(<any>,7)}
+351	lines that contain an "!"	?{<m0>}
+352	lines using a capital letter followed by a number	?{contain(<cap>),startwith(<num>)}
+353	lines that have the numbers "!" and "@" .	?{contain(<m0>),contain(<m1>)}
+354	lines using the word "!" and "@" .	?{endwith(contain(<m0>)),contain(<m1>)}
+355	lines using a word having the string "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+356	lines that contain words ending with "!" .	?{and(concat(<let>,star(<let>)),endwith(<m0>))}
+357	lines which do have numbers .	?{<num>}
+358	lines using words which have a vowel .	?{concat(star(<let>),concat(<vow>,star(<let>)))}
+359	lines containing "!" , or "@"	?{or(<m0>,<m1>)}
+360	lines that contain 3 words .	?{contain(repeatatleast(<let>,1))}
+361	lines with "!" between "@" and "#" .	?{concat(contain(<m1>),concat(startwith(<m0>),startwith(<m2>))),concat(contain(<m2>),concat(startwith(<m0>),startwith(<m1>)))}
+362	lines using 6 "!"	?{contain(<m0>)}
+363	lines that contain words with at least 3 vowels	?{and(repeatatleast(<let>,1),repeat(contain(<vow>),3))}
+364	lines containing words that  have 5 letters in them .	?{repeat(<let>,5)}
+365	lines that contain words starting with "!" .	?{and(concat(<let>,star(<let>)),startwith(<m0>))}
+366	lines ending with "!" that use the word "@" .	?{contain(<m1>),<m0>}
+367	lines with a word ending in "!" that contain only 1 word	?{star(notcc(<let>)),concat(concat(star(<let>),<m0>),star(notcc(<let>)))}
+368	lines which start with "!"	?{<m0>}
+369	lines that use words with "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+370	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+371	lines that begin with "!" or "@" .	?{or(<m0>,<m1>)}
+372	lines that have words ending in "!" or "@" .	?{concat(star(<let>),or(<m0>,<m1>))}
+373	lines that contain digits .	?{<num>}
+374	lines that contain at least 3 words and at least 1 number .	?{repeat(contain(concat(<let>,star(<let>))),3),contain(<num>)}
+375	lines containing the word "!" .	?{<m0>}
+376	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+377	lines that start with "!"	?{<m0>}
+378	lines which contain 2 or more "!" .	?{contain(<m0>)}
+379	lines that contain "!" and the word "@" .	?{contain(<m0>),contain(<m1>)}
+380	lines that contain "!" before "@" or "#" .	?{contain(<m0>),startwith(or(<m1>,<m2>))}
+381	lines using the word "!" followed by the letters "@"	?{contain(<m0>),startwith(<m1>)}
+382	lines that contain the phrase "!" .	?{<m0>}
+383	lines that contain text made up of more than 6 letters total .	?{contain(<let>)}
+384	lines which contain 3 or more vowels .	?{contain(<vow>)}
+385	lines using the word "!"	?{<m0>}
+386	lines that contain a word using the letters "!"	?{and(repeatatleast(<let>,1),contain(<m0>))}
+387	lines using at least 3 characters	?{repeat(<any>,3)}
+388	lines containing "!" and containing "@" too	?{contain(<m0>),contain(<m1>)}
+389	lines that have 3 words and 2 numbers .	?{repeat(contain(repeatatleast(<let>,1)),3),repeat(contain(<num>),2)}
+390	lines that use words ending with "!" .	?{concat(star(<let>),<m0>)}
+391	lines that include words with "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+392	lines which contain "!" at the start	?{<m0>}
+393	lines that do not contain numerical characters .	?{contain(<num>)}
+394	lines that have the word "!" , and at least 1 number .	?{contain(<m0>),contain(<num>)}
+395	lines that have at least 3 words .	?{contain(repeatatleast(<let>,1))}
+396	lines that end in a digit	?{<num>}
+397	lines using the word "!" followed by "@" .	?{contain(<m0>),startwith(<m1>)}
+398	lines that end with "!"	?{<m0>}
+399	lines of words whose last letters are "!" .	?{concat(star(<let>),<m0>)}
+400	lines with the word "!" in them .	?{and(repeatatleast(<let>,1),<m0>)}
+401	lines that end with "!"	?{<m0>}
+402	lines that use words that are only 4 letters long .	?{repeat(<let>,4)}
+403	lines starting with "!" followed by a word with "@" .	?{startwith(<m0>),startwith(and(repeatatleast(<let>,1),contain(<m1>)))}
+404	lines containing "!" after "@" or "#" .	?{contain(or(<m1>,<m2>)),startwith(<m0>)}
+405	lines that include 1 word using at least 2 letters	?{repeatatleast(<let>,2)}
+406	lines which do not have numbers .	?{contain(<num>)}
+407	lines with words that contain 3 letters	?{repeat(<let>,3)}
+408	lines that feature the word "!" , and at least 3 words of 6 letters or more .	?{contain(<m0>),repeatatleast(contain(repeatatleast(<let>,6)),3)}
+409	lines using "!" after "@"	?{contain(<m1>),startwith(<m0>)}
+410	lines which contain "!" .	?{<m0>}
+411	lines that contain at least 1 word which is 8 characters or longer	?{and(repeatatleast(<let>,1),repeatatleast(<any>,8))}
+412	lines that end with "!"	?{<m0>}
+413	lines that contain words that end in "!" that do not begin with "@"	?{and(repeatatleast(<let>,1),and(endwith(<m0>),not(startwith(<m1>))))}
+414	lines which contain a mix of uppercase letters and lowercase letters	?{contain(<cap>),contain(<low>)}
+415	lines using any instance of "!" or "@" followed by "#" or "$"	?{contain(or(<m0>,<m1>)),startwith(or(<m2>,<m3>))}
+416	lines that contain 5 numbers and 2 words that contain "!" .	?{endwith(repeat(contain(<num>),5)),startwith(repeat(contain(concat(star(<let>),concat(<m0>,star(<let>)))),2))}
+417	lines that start with "!"	?{<m0>}
+418	lines where the letter "!" appears exactly 4 times	?{concat(star(notcc(<m0>)),concat(<m0>,star(notcc(<m0>))))}
+419	lines that contain the number "!" .	?{<m0>}
+420	lines with "!"	?{<m0>}
+421	lines with "!" before "@" .	?{contain(<m0>),startwith(<m1>)}
+422	lines using words beginning with the letter "!" .	?{concat(<m0>,star(<let>))}
+423	lines using "!" after "@" or "#" .	?{contain(or(<m1>,<m2>)),startwith(<m0>)}
+424	lines that start with the letter "!" and end with the letter "@"	?{startwith(<m0>),<m1>}
+425	lines containing the word "!"	?{<m0>}
+426	lines having words ending with "!" .	?{and(endwith(<m0>),repeatatleast(<let>,1))}
+427	lines using a word that ends in "!"	?{and(repeatatleast(<let>,1),endwith(<m0>))}
+428	lines using words that have "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+429	lines using words that end with a vowel .	?{concat(star(<let>),<vow>)}
+430	lines containing "!" or "@" before "#" or "$"	?{contain(or(<m0>,<m1>)),startwith(or(<m2>,<m3>))}
+431	lines using "!" or "@"	?{or(<m0>,<m1>)}
+432	lines that contain "!" and contain "@" .	?{contain(<m0>),contain(<m1>)}
+433	lines which end with "!"	?{<m0>}
+434	lines using "!"	?{<m0>}
+435	lines using the vowel combination "!" and "@" .	?{contain(<m0>),contain(<m1>)}
+436	lines that use numbers .	?{<num>}
+437	lines that contain "!" written in words .	?{<m0>}
+438	lines that contain "!" and contain "@"	?{contain(<m0>),contain(<m1>)}
+439	lines that use the word "!" followed by words starting with "@"	?{contain(<m0>),startwith(concat(<m1>,star(<let>)))}
+440	lines that contain 4 letter words ending in "!"	?{concat(repeat(<let>,3),<m0>)}
+441	lines that have a word containing the string "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+442	lines that contain the word "!" but not the word "@" .	?{contain(<m0>),not(contain(<m1>))}
+443	lines containing words ending with "!" .	?{concat(star(<let>),<m0>)}
+444	lines utilizing the number "!" .	?{<m0>}
+445	lines that contain words starting with "!" .	?{and(repeatatleast(<let>,1),startwith(<m0>))}
+446	lines containing the word "!" .	?{<m0>}
+447	lines that contain "!" or "@"	?{or(<m0>,<m1>)}
+448	lines that start with "!" .	?{startwith(<m0>)}
+449	lines that have at least 2 words of 3 or more letters	?{contain(repeatatleast(<let>,3))}
+450	lines that have "!" followed by the word "@"	?{contain(<m0>),startwith(<m1>)}
+451	lines starting with the word "!" .	?{<m0>}
+452	lines that contain "!" or "@"	?{or(<m0>,<m1>)}
+453	lines that have6letter words ending in "!" .	?{concat(repeat(<let>,4),<m0>)}
+454	lines containing a word using "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+455	lines that mention "!" in the same line as "@" .	?{concat(contain(<m0>),startwith(<m1>)),concat(contain(<m1>),startwith(<m0>))}
+456	lines that start with the letter "!" followed by the word "@" .	?{startwith(<m0>),startwith(<m1>)}
+457	lines that contain the word "!" but not "@" .	?{contain(<m0>),not(contain(<m1>))}
+458	lines with capital letters	?{<cap>}
+459	lines that have the letter "!" at the end of a word .	?{concat(star(<let>),<m0>)}
+460	lines using the word "!" followed by the word "@" .	?{contain(<m0>),contain(<m1>)}
+461	lines having words ending with "!" .	?{and(repeatatleast(<let>,1),endwith(<m0>))}
+462	lines containing "!" or "@"	?{or(<m0>,<m1>)}
+463	lines using at least 3 numerical characters	?{contain(<num>)}
+464	lines that utilize words starting with "!" .	?{concat(<m0>,star(<let>))}
+465	lines that contain 3 words that start with the letter "!" .	?{contain(concat(<m0>,star(<let>)))}
+466	lines that contain 4 letter words .	?{repeat(<let>,4)}
+467	lines that begin with a number	?{<num>}
+468	lines starting with "!"	?{<m0>}
+469	lines with "!" and not "@" .	?{contain(<m0>),not(contain(<m1>))}
+470	lines using a 3 letter sequence starting with "!"	?{endwith(<m0>),startwith(repeat(<let>,2))}
+471	lines starting with "!"	?{<m0>}
+472	lines that contain between 2 to 7 words .	?{concat(star(notcc(<let>)),concat(concat(<let>,star(<let>)),star(notcc(<let>))))}
+473	lines that have 2 or more words ending in "!" .	?{repeat(contain(concat(star(<let>),<m0>)),2)}
+474	lines that have 6 words .	?{contain(repeatatleast(<let>,1))}
+475	lines that utilize the number "!"	?{<m0>}
+476	lines which start with a number .	?{<num>}
+477	lines containing a word	?{repeatatleast(<let>,1)}
+478	lines using a word which has uppercase letters and has lowercase letters	?{and(concat(star(<let>),concat(<cap>,star(<let>))),concat(star(<let>),concat(<low>,star(<let>))))}
+479	lines utilizing words with "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+480	lines that have words starting with "!" .	?{and(concat(<let>,star(<let>)),startwith(<m0>))}
+481	lines using5letter words .	?{repeat(<let>,5)}
+482	lines that use words with "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+483	lines that end with the letter "!"	?{<m0>}
+484	lines that contain words ending with "!" .	?{concat(star(<let>),<m0>)}
+485	lines using words that begin with "!" .	?{concat(<m0>,star(<let>))}
+486	lines that have 1 word in them	?{concat(<let>,star(<let>))}
+487	lines using numbers that show 2 or more "!" .	?{repeatatleast(contain(<m0>),2)}
+488	lines starting with a "!" .	?{<m0>}
+489	lines with numbers	?{<num>}
+490	lines that have the word "!"	?{<m0>}
+491	lines that have 4 words or less where at least 1 of those words contains the letter sequence "!" .	?{repeatrange(concat(star(notcc(<let>)),concat(repeatatleast(<let>,1),star(notcc(<let>)))),0,4),repeatatleast(contain(and(repeatatleast(<let>,1),contain(<m0>))),1)}
+492	lines that ends with "!" and contain 2 numbers .	?{repeat(contain(<num>),2),<m0>}
+493	lines beginning with "!"	?{<m0>}
+494	lines that have a "!" in them	?{<m0>}
+495	lines using words that contain the letter "!" .	?{and(repeatatleast(<let>,1),contain(<m0>))}
+496	lines with words ending in "!" .	?{concat(star(<let>),<m0>)}
+497	lines that contain 3 or more digits	?{contain(<num>)}
+498	lines that contain a word starting with "!" and ending with "!"	?{concat(<m0>,optional(concat(star(<let>),<m0>)))}
+499	lines that contain 3 words and have at least 2 numbers .	?{endwith(repeat(contain(repeatatleast(<let>,1)),3)),startwith(repeat(contain(<num>),2))}
+500	lines using at least 4 characters	?{repeat(<any>,4)}
+501	lines with words that contain 3 vowels .	?{and(repeatatleast(<let>,1),repeat(contain(<vow>),3))}
+502	lines with "!" and "@"	?{contain(<m1>),contain(<m0>)}
+503	lines that show "!" and "@" .	?{endwith(contain(<m0>)),startwith(contain(<m1>))}
+504	lines having words starting with "!" .	?{concat(<m0>,star(<let>))}
+505	lines utilizing the phrase "!" .	?{<m0>}
+506	lines using "!"	?{<m0>}
+507	lines which start with "!"	?{<m0>}
+508	lines using 2 or more words containing the letters "!" .	?{contain(and(repeatatleast(<let>,1),contain(<m0>)))}
+509	lines using words  ending in "!" .	?{concat(star(<let>),<m0>)}
+510	lines containing both "!" and "@"	?{contain(<m0>),contain(<m1>)}
+511	lines containing "!" and also containing "@"	?{contain(<m0>),contain(<m1>)}
+512	lines that contain words between "!" and "@"	?{concat(contain(<m0>),concat(startwith(repeatatleast(<let>,1)),startwith(<m1>))),concat(contain(<m1>),concat(startwith(repeatatleast(<let>,1)),startwith(<m0>)))}
+513	lines which contain a word ending in "!" .	?{concat(star(<let>),<m0>)}
+514	lines that have 3 words of5letters each .	?{contain(repeat(<let>,5))}
+515	lines which end with "!"	?{<m0>}
+516	lines ending with "!"	?{<m0>}
+517	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+518	lines using a word that contains the letters "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+519	lines that contain a word in all uppercase .	?{repeatatleast(<cap>,1)}
+520	lines that contain only the letters "!" .	?{<m0>}
+521	lines that contain words ending in "!"	?{and(concat(<let>,star(<let>)),endwith(<m0>))}
+522	lines which contain "!" but do not contain the letter "@" .	?{contain(<m0>),not(contain(<m1>))}
+523	lines ending with "!"	?{<m0>}
+524	lines that contain 5 or more words .	?{repeat(contain(concat(<let>,star(<let>))),5)}
+525	lines that have5words that all end with the letter "!" .	?{contain(and(endwith(<m0>),repeatatleast(<let>,1)))}
+526	lines utilizing words ending with "!" .	?{and(repeatatleast(<let>,1),endwith(<m0>))}
+527	lines that contain at least 35letter words	?{contain(repeat(<let>,5))}
+528	lines that have any instance of "!" .	?{<m0>}
+529	lines starting with "!"	?{<m0>}
+530	lines using 3 character words begining with the letters "!" .	?{concat(<m0>,<let>)}
+531	lines with words that end with "!" before words that end with "@"	?{contain(concat(star(<let>),<m0>)),startwith(concat(star(<let>),<m1>))}
+532	lines that start with a vowel and ends in an "!" .	?{startwith(<vow>),<m0>}
+533	lines which contain5or more "!"	?{contain(<m0>)}
+534	lines that are only comprised of uppercase letters .	?{<cap>}
+535	lines in which all words start with the letter "!" .	?{contain(and(repeatatleast(<let>,1),startwith(notcc(<m0>))))}
+536	lines that contain words using "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+537	lines which start with "!" and end with "@"	?{startwith(<m0>),endwith(<m1>)}
+538	lines using "!" between "@" and "#"	?{contain(<m1>),concat(startwith(<m0>),startwith(<m2>))}
+539	lines which contain the letter "!" twice .	?{contain(<m0>)}
+540	lines using the word "!" at least once .	?{<m0>}
+541	lines using words that end in "!" or "@" .	?{concat(star(<let>),or(<m0>,<m1>))}
+542	lines that have words containing "!"	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+543	lines that use words starting with "!" .	?{concat(<m0>,star(<let>))}
+544	lines that start with "!"	?{<m0>}
+545	lines that have a number , but only if it is followed by "!"	?{contain(<num>),startwith(<m0>)}
+546	lines using at least 6 characters	?{repeat(<any>,6)}
+547	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+548	lines that utilize words starting with "!" .	?{concat(<m0>,star(<let>))}
+549	lines that have the word "!"	?{<m0>}
+550	lines that use "!" followed by words starting with "@"	?{contain(<m0>),startwith(and(repeatatleast(<let>,1),startwith(<m1>)))}
+551	lines using words ending with "!" .	?{concat(star(<let>),<m0>)}
+552	lines that ends with letter "!"	?{<m0>}
+553	lines that contain a 3 letter word and a 2 letter word .	?{endwith(contain(repeat(<let>,3))),startwith(contain(repeat(<let>,2)))}
+554	lines which have both uppercase letters and lowercase letters .	?{contain(<cap>),contain(<low>)}
+555	lines using the word "!"	?{<m0>}
+556	lines using words that begin with the letter "!" .	?{concat(<m0>,star(<let>))}
+557	lines that contain at least 1 "!"	?{<m0>}
+558	lines which contain 5 words starting with "!"	?{contain(concat(<m0>,star(<let>)))}
+559	lines that do not contain the letter "!"	?{contain(<m0>)}
+560	lines using 3 letter words .	?{repeat(<let>,3)}
+561	lines that contain a word containing 5 or more letters .	?{repeatatleast(<let>,5)}
+562	lines containing words which begin with "!" and end with "@"	?{concat(<m0>,concat(star(<let>),<m1>))}
+563	lines that have no vowels .	?{contain(<vow>)}
+564	lines having words ending with "!" .	?{concat(star(<let>),<m0>)}
+565	lines using words containing "!" .	?{concat(star(<let>),concat(<m0>,star(<let>)))}
+566	lines that contain the letters "!" .	?{<m0>}
+567	lines that contain words starting with "!" .	?{concat(<m0>,star(<let>))}
+568	lines that contain "!" or "@"	?{or(<m0>,<m1>)}
+569	lines that contain words and 4 numbers .	?{contain(repeatatleast(<let>,1)),repeat(contain(<num>),4)}
