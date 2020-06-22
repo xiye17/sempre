@@ -15,6 +15,13 @@ def _parse_args():
     args = parser.parse_args()
     args.infile = join("demo", "{}.raw.txt".format(args.dataset))
     args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
+    if args.dataset.startswith('kb13') or args.dataset.startswith('turk'):
+        if '.' in args.dataset:
+            args.split = args.dataset.split('.')[1]
+            args.dataset = args.dataset.split('.')[0]
+        else:
+            args.split = None
+
     return args
 
 def process_nl(x):
@@ -72,7 +79,7 @@ def process_sketch(x, dataset):
         y = y.replace("<(>", "<-lrb->")
         y = y.replace("<)>", "<-rrb->")
         y = y.replace("\\", "\\\\")
-    elif dataset == "popl" or dataset == "turk" or dataset == "kb13":
+    elif dataset.startswith("turk") or dataset.startswith("kb13"):
         y = x.replace("<m0>", "<!>")
         y = y.replace("<m1>", "<@>")
         y = y.replace("<m2>", "<#>")
@@ -118,12 +125,21 @@ def fit_for_exs(x):
     x = x.replace('"', '\\"')
     return x
 
+def makedir_p(dir):
+    if not os.path.exists(dir):
+        # shutil.rmtree(dir)
+        os.mkdir(dir)
+
 def prepare_dataset(args):
     # regex.examples
     exs = read_ready_data(args.outfile)
 
     prefix = join("./regex/data", args.dataset)
-    exs_file = join(prefix, "regex.examples")
+    makedir_p(prefix)
+    if args.split:
+        exs_file = join(prefix, "regex.{}.examples".format(args.split))
+    else:   
+        exs_file = join(prefix, "regex.examples")
     lines = []
 
     for ex in exs:
@@ -132,7 +148,11 @@ def prepare_dataset(args):
         f.writelines(lines)
     
     # src-test.txt
-    test_file = join(prefix, "src-test.txt")
+    if args.split:
+        test_file = join(prefix, "src-{}.txt".format(args.split))
+    else:
+        test_file = join(prefix, "src-test.txt")
+
     lines = []
     for ex in exs:
         lines.append(ex[0] + "\t" + ex[1] + "\n")
