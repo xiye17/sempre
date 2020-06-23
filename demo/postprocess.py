@@ -10,14 +10,20 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
     parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
-    parser.add_argument("--exp_path", type=str, dest="exp_path", default="/Users/xiye/WorkSpace/DevSpace/resnax/exp/")
+    parser.add_argument("--exp_path", type=str, dest="exp_path", default="./decodes/")
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
-    parser.add_argument("--beam", type=int, dest="beam", default=500)
+    parser.add_argument("--beam", type=int, dest="beam", default=200)
     parser.add_argument("--maxcnt", type=int, dest="maxcnt", default=25)
 
     args = parser.parse_args()
     args.infile = join("demo", "{}.raw.txt".format(args.dataset))
     args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
+    if args.dataset.startswith('kb13') or args.dataset.startswith('turk'):
+        if '.' in args.dataset:
+            args.split = args.dataset.split('.')[1]
+            args.dataset = args.dataset.split('.')[0]
+        else:
+            args.split = None
     args.outpath = join(args.exp_path, "demo" + args.dataset)
     return args
 
@@ -189,11 +195,12 @@ def make_bemchmark(ids, args):
 def makedir_f(dir):
     if os.path.exists(dir):
         shutil.rmtree(dir)
-    os.mkdir(dir)
+    # os.mkdir(dir)
+    os.makedirs(dir)
 
 def postprecess(args):
     # clear 
-    makedir_f(join(args.outpath, "benchmark"))
+    # makedir_f(join(args.outpath, "benchmark"))
     makedir_f(join(args.outpath, "sketch"))
     ids = make_sketch(args)
     # make_bemchmark(ids, args)
