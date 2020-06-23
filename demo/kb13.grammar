@@ -164,14 +164,18 @@
 # number related
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))
 
+(rule $PROGRAM ($MARKER_ATMAX1 $INT $CC) (sketch.RepeatrangeFn 2 (arg 1) (pos 1)))
+(rule $PROGRAM ($INT $CC) (sketch.RepeatFn 1 (pos 0)))
+(rule $PROGRAM ($CC $MARKER_LENGTH $INT) (sketch.RepeatFn 0 (pos 2)))
+(rule $PROGRAM ($MARKER_LENGTH $INT $CC) (sketch.RepeatFn 2 (pos 1)))
 
 # x or x
 (rule $PROGRAM ($INT1 $MARKER_OR1 $INT1 $CC) (sketch.RepeatintorintFn 3 (pos 0) (pos 2)))
 
 # x or more, more than x
 (rule $MARKER_ORMORE1 (or more) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))
-(rule $MARKER_ORMORE1 (or more of) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))
 (rule $PROGRAM ($INT1 $MARKER_ORMORE1 $CC) (sketch.RepeatatleastFn 2 (pos 0)))
+(rule $PROGRAM ($CC $MARKER_LENGTH $INT1 - $INT1) (sketch.RepeatrangeFn 0 (pos 2)  (pos 3)))
 
 (rule $CC1 (string) (ConstantFn <any> fb:type.cc))
 (rule $CC1 (character) (ConstantFn <let> fb:type.cc))
@@ -182,6 +186,9 @@
 (rule $MARKER_MAX ($MARKER_MAX1 $Skip) (SelectFn 0))
 (rule $MARKER_MAX1 (max) (ConstantFn fb:en.marker.max fb:type.cc))
 
+(rule $PROGRAM ($MARKER_MAX $INT $CC) (sketch.RepeatrangeFn 2 (arg 1) (pos 1)))
+
+(rule $PROGRAM ($INT $CC) (sketch.RepeatrangeFn 1 (arg 1) (pos 0)))
 (rule $SKETCH ($MARKER_DECIMAL $PROGRAM $PROGRAM) (sketch.DecimalFn 1 2))
 (rule $SKETCH ($PROGRAM $PROGRAM $MARKER_DECIMAL ) (sketch.DecimalFn 0 1))
 
