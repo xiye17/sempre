@@ -69,4 +69,5 @@
 {"lexeme" : "double number", "formula" : "fb:en.marker.doublenum", "type" : "fb:type.marker.doublenum"}
 {"lexeme" : "and", "formula" : "fb:en.marker.and", "type" : "fb:type.marker.and"}
 {"lexeme" : "contain", "formula" : "fb:en.marker.contain", "type" : "fb:type.marker.contain"}
-{"lexeme" : "have", "formula" : "fb:en.marker.contain", "type" : "fb:type.marker.contain"}
+{"lexeme" : "time", "formula" : "fb:en.marker.time", "type" : "fb:type.marker.time"}
+{"lexeme" : "at least", "formula" : "fb:en.marker.atleast", "type" : "fb:type.marker.atleast"}

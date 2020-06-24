@@ -205,3 +205,21 @@
 (rule $MARKER_ORMORETIME1 (or more times) (ConstantFn fb:en.marker.ormore fb:type.marker.ormoretimes))
 (rule $PROGRAM ($PROGRAM $INT1 $MARKER_ORMORETIME1) (sketch.RepeatatleastFn 0 (pos 1)))
 (rule $SKETCH ($MARKER_DOUBLENUM1 ($Skip optional)) (ConstantFn (name "sep(?{<num>},<.>)")))
+
+
+# at least 
+(rule $MARKER_TIME1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.time)))
+(rule $MARKER_TIME ($MARKER_TIME1 ($Skip optional)) (SelectFn 0))
+(rule $MARKER_ATLEAST1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.atleast)))
+
+(rule $MARKER_ATLEASTONCE1 (at least once) (ConstantFn fb:en.marker.atleastonce fb:type.marker.atleastonce))
+(rule $MARKER_ATLEASTONCE ($MARKER_ATLEASTONCE1 ($Skip optional)) (SelectFn 0))
+(rule $PROGRAM ($PROGRAM $MARKER_ATLEASTONCE) (sketch.RepeatatleastFn 0 (arg 1)))
+
+(rule $MARKER_ATLEASTTWICE1 (at least twice) (ConstantFn fb:en.marker.atleasttwice fb:type.marker.atleasttwice))
+(rule $MARKER_ATLEASTTWICE ($MARKER_ATLEASTTWICE1 ($Skip optional)) (SelectFn 0))
+(rule $PROGRAM ($PROGRAM $MARKER_ATLEASTTWICE) (sketch.RepeatatleastFn 0 (arg 2)))
+
+# 1means immediate no skip followed
+(rule $PROGRAM ($PROGRAM $MARKER_ATLEAST1 $INT1 $MARKER_TIME) (sketch.RepeatatleastFn 0 (pos 2)))
+(rule $PROGRAM ($MARKER_ATLEAST1 $INT1 $PROGRAM) (sketch.RepeatatleastFn 2 (pos 1)))
