@@ -71,3 +71,4 @@
 {"lexeme" : "contain", "formula" : "fb:en.marker.contain", "type" : "fb:type.marker.contain"}
 {"lexeme" : "time", "formula" : "fb:en.marker.time", "type" : "fb:type.marker.time"}
 {"lexeme" : "at least", "formula" : "fb:en.marker.atleast", "type" : "fb:type.marker.atleast"}
+{"lexeme" : "or more time", "formula" : "fb:en.marker.ormoretime", "type" : "fb:type.marker.ormoretime"}

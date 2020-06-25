@@ -201,9 +201,9 @@
 
 
 # added for popl
-
-(rule $MARKER_ORMORETIME1 (or more times) (ConstantFn fb:en.marker.ormore fb:type.marker.ormoretimes))
-(rule $PROGRAM ($PROGRAM $INT1 $MARKER_ORMORETIME1) (sketch.RepeatatleastFn 0 (pos 1)))
+(rule $MARKER_ORMORETIME1 ($LEMMA_PHRASE) (SimpleLexiconFn (type fb:type.marker.ormoretime)))
+(rule $MARKER_ORMORETIME ($MARKER_ORMORETIME1 ($Skip optional)) (SelectFn 0))
+(rule $PROGRAM ($PROGRAM $INT1 $MARKER_ORMORETIME) (sketch.RepeatatleastFn 0 (pos 1)))
 (rule $SKETCH ($MARKER_DOUBLENUM1 ($Skip optional)) (ConstantFn (name "sep(?{<num>},<.>)")))
 
 
