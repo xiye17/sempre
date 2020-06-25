@@ -148,15 +148,18 @@
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) or) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 (rule $MAKRKER_CONSTSETUNION1 ((, optional) and) (ConstantFn fb:en.marker.constsetunion fn.type.marker.constsetunion))
 
-(rule $CONST_SET ($CONST1 $CONST_SET) (sketch.ConstUnionFn 0 1))
 (rule $CONST_SET ($CONST1 $CONST1) (sketch.ConstUnionFn 0 1))
-
-(rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (sketch.ConstUnionFn 0 2))
-(rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (sketch.ConstUnionFn 0 2))
 (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
-
 (rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CCPHRASE1) (sketch.ConstUnionFn 0 2))
+(rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CCPHRASE1) (sketch.ConstUnionFn 0 2))
 (rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
+
+# (rule $CONST_SET ($CONST1 $CONST_SET) (sketch.ConstUnionFn 0 1))
+(rule $CONST_SET ($CONST_SET $CONST1) (sketch.ConstUnionFn 0 1))
+# (rule $CONST_SET ($CCPHRASE1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (sketch.ConstUnionFn 0 2))
+(rule $CONST_SET ($CONST_SET $MAKRKER_CONSTSETUNION1 $CCPHRASE1) (sketch.ConstUnionFn 0 2))
+# (rule $CONST_SET ($CONST1 $MAKRKER_CONSTSETUNION1 $CONST_SET) (sketch.ConstUnionFn 0 2))
+(rule $CONST_SET ($CONST_SET $MAKRKER_CONSTSETUNION1 $CONST1) (sketch.ConstUnionFn 0 2))
 
 # string matching
 (rule $CONST1 (leftquoatation $PHRASE rightquoatation) (sketch.ConstFn))
@@ -164,9 +167,6 @@
 # number related
 (rule $INT1 ($LEMMA_PHRASE) (NumberFn NUMBER))
 
-
-# x or x
-(rule $PROGRAM ($INT1 $MARKER_OR1 $INT1 $CC) (sketch.RepeatintorintFn 3 (pos 0) (pos 2)))
 
 # x or more, more than x
 (rule $MARKER_ORMORE1 (or more) (ConstantFn fb:en.marker.ormore fb:type.marker.ormore))

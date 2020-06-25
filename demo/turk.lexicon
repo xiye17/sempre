@@ -58,6 +58,7 @@
 {"lexeme" : "character", "formula" : "<any>", "type" : "fb:type.cc"}
 {"lexeme" : "vowel", "formula" : "<vow>", "type" : "fb:type.cc"}
 {"lexeme" : "a vowel", "formula" : "<vow>", "type" : "fb:type.cc"}
+{"lexeme" : "a number", "formula" : "<num>", "type" : "fb:type.cc"}
 {"lexeme" : "precede", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
 {"lexeme" : "before", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
 {"lexeme" : "prior to", "formula" : "fb:en.marker.followby", "type" : "fb:type.marker.followby"}
