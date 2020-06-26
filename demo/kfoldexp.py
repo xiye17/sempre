@@ -84,9 +84,9 @@ def make_splits(args):
 def exp(args):
     for fold_id in range(args.nfold):
         dataset_id = args.dataset + "s" + str(fold_id)
-
-        cmd = "sh ./demo/exp.sh {0} {1} {2} {3}".format(args.beam, dataset_id, "popl.grammar", args.max_iter)
-        print(cmd)
+        grammar = '{}.grammar'.format(args.dataset)
+        lexicon = '{}.lexicon'.format(args.dataset)
+        cmd = "sh ./demo/exp.sh {0} {1} {2} {3} {4}".format(args.beam, dataset_id, grammar, lexicon, args.max_iter)
         os.system(cmd)
     
     preds = []
