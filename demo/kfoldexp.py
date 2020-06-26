@@ -14,8 +14,6 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="so preprocess")
     parser.add_argument("action", help="action")
     parser.add_argument("--exppath", type=str, dest="exppath", default="./exp")
-    parser.add_argument("--infile", type=str, dest="infile", default="./demo/so.raw.txt")
-    parser.add_argument("--outfile", type=str, dest="outfile", default="./demo/so.ready.txt")
     parser.add_argument("--dataset", type=str, dest="dataset", default="so")
     parser.add_argument("--seed", type=int, dest="seed", default=666)
     parser.add_argument("--nfold", type=int, dest="nfold", default=5)
@@ -23,8 +21,10 @@ def _parse_args():
     parser.add_argument("--max_iter", type=int, dest="max_iter", default=5)
     parser.add_argument("--target", type=int, dest="target", default=-1)
 
-    
     args = parser.parse_args()
+    args.infile = join("demo", "{}.raw.txt".format(args.dataset))
+    args.outfile = join("demo", "{}.ready.txt".format(args.dataset))
+    
     return args
 
 def read_ready_file(filename):

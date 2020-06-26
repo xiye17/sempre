@@ -21,6 +21,8 @@ def _parse_args():
             args.dataset = args.dataset.split('.')[0]
         else:
             args.split = None
+    else:
+        args.split = None
 
     return args
 
@@ -49,7 +51,7 @@ def process_nl(x):
     return y
 
 def tricky_process_nl(id, nl, dataset):
-    if dataset != "so":
+    if not dataset.startswith("so"):
         return nl
 
     list_id = ["3", "52", "77"]
@@ -65,7 +67,7 @@ def tricky_process_nl(id, nl, dataset):
     return nl
 
 def process_sketch(x, dataset):
-    if dataset == "so":
+    if dataset.startswith("so"):
         y = []
         for tok in x:
             if tok.isupper():
