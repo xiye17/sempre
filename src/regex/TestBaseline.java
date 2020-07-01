@@ -28,15 +28,26 @@ public class TestBaseline implements Runnable {
     }
 
 
+    boolean spanFirst = true;
+  
     if (deriv.children.size() == 0) {
 //      System.out.println("ret " + (deriv.end - deriv.start));
+      if (spanFirst) {
+        return (deriv.end - deriv.start) * 1000 + 1;
+      } else {
         return (deriv.end - deriv.start) + 1000;
+      }
 //        return 1;
     }
 
 
     List<Derivation> children = deriv.children;
-    Integer x = new Integer(1000);
+    Integer x;
+    if (spanFirst) {
+       x = new Integer(0);
+    } else {
+      x = new Integer(1000);
+    }
     for (int i = 0; i < children.size(); ++i) {
       x = x + countCoverage(children.get(i));
     }
@@ -200,9 +211,9 @@ public class TestBaseline implements Runnable {
 
       // test on test set
       {
-        String srcFilePath = "regex/data/" + this.dataset + "/src-test.txt";
+        String srcFilePath = "regex/data/" + this.dataset + "/src-train.txt";
         String specFilePath = "regex/data/" + this.dataset + "/spec-test.txt";
-        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-test.txt";
+        String outputFilePath = "regex/data/" + this.dataset + "/" + this.beam + "-pred-train.txt";
         runPrediction(master, session, srcFilePath, specFilePath, outputFilePath);
       }
 
